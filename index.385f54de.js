@@ -1,2 +1,0 @@
-const e={searchFormEl:document.querySelector(".form-search"),galleryContainerEl:document.querySelector(".gallery-list"),aboutTeamBtn:document.querySelector(".about-team"),modalCloseBtn:document.querySelector(".modal__close"),addToWatchedBtn:document.querySelector(".add-to-watched-btn"),addToQueueBtn:document.querySelector(".add-to-queue-btn"),removeFromWatchedBtn:document.querySelector(".remove-from-watched-btn"),removeFromQueueBtn:document.querySelector(".remove-from-queue-btn")};console.log(e);
-//# sourceMappingURL=index.385f54de.js.map
