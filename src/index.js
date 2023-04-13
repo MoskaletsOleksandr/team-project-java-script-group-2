@@ -1,6 +1,6 @@
 //імпортуємо бібліотеки та інші файли
-//
-//
+import { fetchTrendMoves } from './js/api';
+import { createTrendMovesMarkup } from './js/createMarkup';
 //
 //
 //
@@ -20,7 +20,7 @@
 // refs
 const refs = {
   searchFormEl: document.querySelector('.form-search'),
-  galleryContainerEl: document.querySelector('.gallery-list'),
+  galleryContainerEl: document.querySelector('.gallery-container'),
   aboutTeamBtn: document.querySelector('.about-team'),
   modalCloseBtn: document.querySelector('.modal__close'),
   addToWatchedBtn: document.querySelector('.add-to-watched-btn'),
@@ -648,16 +648,16 @@ console.log(refs);
 //
 //
 //Денис
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+fetchTrendMoves()
+  .then(data => {
+    renderMarkup(data);
+  })
+  .catch(error => console.log(error));
+
+function renderMarkup(array) {
+  const markup = createTrendMovesMarkup(array);
+  refs.galleryContainerEl.insertAdjacentHTML('beforeend', markup);
+}
 //
 //
 //
