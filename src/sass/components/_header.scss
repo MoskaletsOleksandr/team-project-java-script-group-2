@@ -17,7 +17,7 @@ a {
   background-image: url(/src/images/header/header-desktop.jpg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  //background-size: cover;
   border-radius: 15px;
 }
 
@@ -26,6 +26,15 @@ a {
   align-items: center;
   position: absolute;
   top: 16px;
+  left: 34px;
+
+  @include tablet {
+    left: 48px;
+  }
+
+  @include desktop {
+    left: 64px;
+  }
 }
 
 .form-search {
