@@ -22,9 +22,11 @@ const refs = {
   searchFormEl: document.querySelector('.form-search'),
   galleryContainerEl: document.querySelector('.gallery-container'),
   aboutTeamBtn: document.querySelector('.about-team'),
-  modalCloseBtn: document.querySelector('.modal__close'),
-  addToWatchedBtn: document.querySelector('.add-to-watched-btn'),
-  addToQueueBtn: document.querySelector('.add-to-queue-btn'),
+  backdropMovieModal: document.querySelector('.backdrop'),
+  movieModal: document.querySelector('[data-movie-modal]'),
+  modalCloseBtn: document.querySelector('[data-movie-modal-close]'),
+  addToWatchedBtn: document.querySelector('[data-btn-to-watched]'),
+  addToQueueBtn: document.querySelector('[data-btn-to-queue]'),
   removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'),
   removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'),
 };
@@ -1048,103 +1050,16 @@ function renderMarkup(array) {
 //
 //
 //Олександр
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+console.log(refs);
+console.log(refs.backdropMovieModal);
+console.log(refs.movieModal);
+console.log(refs.modalCloseBtn);
+console.log(refs.addToWatchedBtn);
+console.log(refs.addToQueueBtn);
+refs.modalCloseBtn.addEventListener('click', e => {
+  console.log('двері зачиняються 😉');
+  refs.backdropMovieModal.classList.add("is-hidden");
+  refs.movieModal.classList.add("is-hidden");
+  console.log(refs.backdropMovieModal);
+  console.log(refs.movieModal);
+});
