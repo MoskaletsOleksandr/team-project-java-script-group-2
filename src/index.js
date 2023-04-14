@@ -1,7 +1,7 @@
 //імпортуємо бібліотеки та інші файли
 import { fetchTrendMoves } from './js/api';
 import { createTrendMovesMarkup } from './js/createMarkup';
-//
+import throttle from 'lodash.throttle'; // npm i lodash.throttle
 //
 //
 //
@@ -23,12 +23,12 @@ const refs = {
   galleryContainerEl: document.querySelector('.gallery-container'),
   aboutTeamBtn: document.querySelector('.about-team'),
   modalCloseBtn: document.querySelector('.modal__close'),
+  btnUpEl: document.querySelector('.btn-up'),
   addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
 };
 
 console.log(refs);
-//
 //
 //
 //
@@ -248,33 +248,33 @@ console.log(refs);
 //Ігор
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+refs.btnUpEl.addEventListener('click', scrollUp);
+
+function show() {
+  refs.btnUpEl.classList.remove('btn-up_hide');
+}
+
+function hide() {
+  refs.btnUpEl.classList.add('btn-up_hide');
+}
+
+window.addEventListener(
+  'scroll',
+  throttle(() => {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+    scrollY > 400 ? show() : hide();
+  }, 500)
+);
+
+function scrollUp() {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+}
 //
 //
 //
