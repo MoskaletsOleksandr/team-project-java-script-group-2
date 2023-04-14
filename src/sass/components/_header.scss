@@ -17,15 +17,24 @@ a {
   background-image: url(/src/images/header/header-desktop.jpg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  //background-size: cover;
   border-radius: 15px;
 }
 
 .search {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   position: absolute;
   top: 16px;
+  left: 34px;
+
+  @include tablet {
+    left: 48px;
+  }
+
+  @include desktop {
+    left: 64px;
+  }
 }
 
 .form-search {
@@ -87,4 +96,8 @@ a {
   font-size: 64px;
   line-height: 1.17;
   color: #ffffff;
+}
+
+.navigation {
+  margin-right: 450px;
 }

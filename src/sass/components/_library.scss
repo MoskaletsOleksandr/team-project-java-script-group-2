@@ -1,0 +1,29 @@
+.library-buttons-list {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.library-buttons-link {
+    border: none;
+    text-align: center;
+    background-color: #FFFFFF;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.17;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 100px;
+    color: #000000;
+}
+
+.library-buttons-link:hover {
+    color: #FFFFFF;
+    background-color: rgb(247, 213, 23);
+}
+
+.library-buttons {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
