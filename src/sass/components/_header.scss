@@ -16,20 +16,19 @@ a {
   position: relative;
   height: 460px;
   background-image: url(/src/images/header/header-mob.jpg);
-  @include retina {
-    background-image: url(/src/images/header/header-mob-2x.jpg);
-  }
-  //background-color: rgb(198, 181, 109);
-  //outline: 2px solid red;
+  // @include retina {
+  //   background-image: url(/src/images/header/header-mob-2x.jpg);
+  // }
+
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 15px;
   @include tablet {
     height: 316px;
     background-image: url(/src/images/header/header-desktop.jpg);
-    @include retina {
-      background-image: url(/src/images/header/header-desktop-2x.jpg);
-    }
+    // @include retina {
+    //   background-image: url(/src/images/header/header-desktop-2x.jpg);
+    // }
   }
   @include desktop {
     height: 316px;
@@ -165,14 +164,26 @@ a {
 //логотип filmoteka
 .header-logo {
   position: absolute;
-  bottom: 32px;
-  left: 64px;
+  bottom: 20px;
+  left: 77px;
+  @include tablet {
+    bottom: 16px;
+    left: 48px;
+  }
+  @include desktop {
+    bottom: 32px;
+    left: 64px;
+  }
 }
 
 .logo-list {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
+
+  @include desktop {
+    gap: 16px;
+  }
 }
 
 .header-text-logo {
@@ -186,5 +197,17 @@ a {
   }
   @include desktop {
     font-size: 64px;
+  }
+}
+
+.icon-film {
+  @include tablet {
+    width: 40px;
+    height: 40px;
+  }
+
+  @include desktop {
+    width: 59px;
+    height: 59px;
   }
 }
