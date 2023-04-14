@@ -35,7 +35,7 @@ function createGenresArray(array) {
 
 function cutGenresArray(array) {
   if (array.length > 2) {
-    cutArray = array.slice(0, 2);
+    let cutArray = array.slice(0, 2);
     cutArray.push(' ...other');
     return cutArray;
   }
