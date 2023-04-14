@@ -2,9 +2,10 @@ a {
   text-decoration: none;
 }
 
-.header {
-  width: 100vw;
-}
+//Хедер
+// .header {
+//   width: 100vw;
+// }
 
 .section-header {
   padding-top: 32px;
@@ -13,91 +14,200 @@ a {
 
 .header-container {
   position: relative;
-  height: 316px;
-  background-image: url(/src/images/header/header-desktop.jpg);
+  height: 460px;
+  background-image: url(/src/images/header/header-mob.jpg);
+  // @include retina {
+  //   background-image: url(/src/images/header/header-mob-2x.jpg);
+  // }
+
   background-repeat: no-repeat;
   background-position: center;
-  //background-size: cover;
   border-radius: 15px;
+  @include tablet {
+    height: 316px;
+    background-image: url(/src/images/header/header-desktop.jpg);
+    // @include retina {
+    //   background-image: url(/src/images/header/header-desktop-2x.jpg);
+    // }
+  }
+  @include desktop {
+    height: 316px;
+  }
 }
 
+//Форма пошуку
 .search {
   display: flex;
-  align-items: baseline;
+  flex-direction: column-reverse;
+  align-items: flex-start;
   position: absolute;
   top: 16px;
   left: 34px;
+  gap: 8px;
 
-  @include tablet {
+  @media screen and (min-width: 768px) {
+    // flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    //flex-wrap: nowrap;
+    gap: 4px;
     left: 48px;
+    align-items: center;
   }
 
   @include desktop {
+    flex-wrap: nowrap;
     left: 64px;
   }
 }
 
 .form-search {
-  padding-right: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 252px;
+  height: 34px;
+
+  @include tablet {
+    width: 165px;
+    height: 38px;
+  }
+
+  @include desktop {
+    width: 187px;
+    height: 42px;
+  }
 }
 
 .input-search {
-  width: 187px;
-  height: 42px;
-  border-radius: 100px;
   padding-left: 16px;
+  font-size: 12px;
+  height: 34px;
+  width: 100%;
+  border: 0;
+  border-radius: 100px;
+
+  @include tablet {
+    height: 42px;
+    font-size: 14px;
+  }
+  @include desktop {
+    height: 42px;
+    font-size: 14px;
+  }
 }
 
-.icon-search {
-  fill: #ffffff;
+.search-button {
+  position: absolute;
+  right: 16px;
   width: 16px;
   height: 16px;
+  border: 0;
+  cursor: pointer;
+  background-color: var(--primary-text-color); //видалити потім
+}
+
+// .icon-search {
+//   fill: red;
+// }
+//кнопки Home та My library
+.navigation {
+  margin-bottom: 8px;
+
+  @include tablet {
+    margin-bottom: 0;
+  }
+
+  @include desktop {
+    margin-bottom: 0;
+  }
 }
 
 .menu-list {
   display: flex;
-  gap: 8px;
+  gap: 4px;
+
+  @include desktop {
+    gap: 8px;
+  }
 }
 
 .menu-link {
   text-align: center;
-  background-color: #ffffff;
+  background-color: var(--buttons-header-bg-color);
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
   text-transform: uppercase;
-  padding: 14px 32px;
+  padding: 10px 26px;
   border-radius: 100px;
-  color: #000000;
+  color: var(--buttons-header-text-color);
+  cursor: pointer;
+
+  @include tablet {
+    padding: 12px 24px;
+  }
+
+  @include desktop {
+    padding: 14px 32px;
+  }
 }
 
 .menu-link:hover {
-  color: #ffffff;
-  background-color: #000000;
+  color: var(--accent-text-color);
+  background-color: var(--buttons-header-hover-bg-color);
 }
 
+//логотип filmoteka
 .header-logo {
   position: absolute;
-  bottom: 32px;
+  bottom: 20px;
+  left: 77px;
+  @include tablet {
+    bottom: 16px;
+    left: 48px;
+  }
+  @include desktop {
+    bottom: 32px;
+    left: 64px;
+  }
 }
 
 .logo-list {
   display: flex;
   align-items: center;
-  gap: 16px;
-}
+  gap: 8px;
 
-.icon-film {
-  fill: #ffffff;
+  @include desktop {
+    gap: 16px;
+  }
 }
 
 .header-text-logo {
   font-weight: 500;
-  font-size: 64px;
+  font-size: 32px;
   line-height: 1.17;
-  color: #ffffff;
+  color: var(--logo-text-color);
+
+  @include tablet {
+    font-size: 40px;
+  }
+  @include desktop {
+    font-size: 64px;
+  }
 }
 
-.navigation {
-  margin-right: 450px;
+.icon-film {
+  @include tablet {
+    width: 40px;
+    height: 40px;
+  }
+
+  @include desktop {
+    width: 59px;
+    height: 59px;
+  }
 }

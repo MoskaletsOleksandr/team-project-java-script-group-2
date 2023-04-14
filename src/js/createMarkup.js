@@ -35,7 +35,7 @@ function createGenresArray(array) {
 
 function cutGenresArray(array) {
   if (array.length > 2) {
-    cutArray = array.slice(0, 2);
+    let cutArray = array.slice(0, 2);
     cutArray.push(' ...other');
     return cutArray;
   }
@@ -44,13 +44,12 @@ function cutGenresArray(array) {
 
 export function createTrendMovesMarkup({ results }) {
   return results
-    .map(({ backdrop_path, genre_ids, release_date, title }) => {
+    .map(({ backdrop_path, genre_ids, release_date, title, id }) => {
       let genresArray = createGenresArray(genre_ids);
-      genresArray = cutGenresArray(createGenresArray(genre_ids));
+      genresArray = cutGenresArray(genresArray);
 
-      return `<ul class="gallery-list">
-                <li class="gallery-item">
-                    <div class="gallery-card">
+      return `<li class="gallery-item">
+                    <div class="gallery-card" data-id='${id}'>
                         <img src="${BASE_IMG_URL}${backdrop_path}" width="395" alt="${title}">
                         <button class="trailer-button" type="button">Trailer</button>
                         <h3 class="film-title">${title}</h3>
@@ -59,8 +58,7 @@ export function createTrendMovesMarkup({ results }) {
         4
       )}</span>
                     </div>
-                </li>
-            </ul>`;
+                </li>`;
     })
     .join('');
 }

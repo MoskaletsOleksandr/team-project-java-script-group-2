@@ -1,13 +1,15 @@
-@import './utils/variables';
 @import './utils/mixins';
+@import './utils/variables';
 
 @import './base/common';
 @import './base/reset';
 
-// @import './components/movie-modal';
+@import './components/movie-modal';
 @import './components/example';
 
 @import './components/container';
 @import './components/header';
 @import './components/library';
+
+@import './components/btn-up';
 
