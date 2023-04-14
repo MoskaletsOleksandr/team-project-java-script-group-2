@@ -1,7 +1,7 @@
 //імпортуємо бібліотеки та інші файли
 import { fetchTrendMoves } from './js/api';
 import { createTrendMovesMarkup } from './js/createMarkup';
-//
+import throttle from 'lodash.throttle'; // npm i lodash.throttle
 //
 //
 //
@@ -21,17 +21,17 @@ import { createTrendMovesMarkup } from './js/createMarkup';
 const refs = {
   searchFormEl: document.querySelector('.form-search'),
   galleryContainerEl: document.querySelector('.gallery-container'),
+  galleryListEl: document.querySelector('.gallery-list'),
   aboutTeamBtn: document.querySelector('.about-team'),
   modalCloseBtn: document.querySelector('.modal__close'),
+  btnUpEl: document.querySelector('.btn-up'),
   addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+  movieModalEl: document.querySelector('div[data-movie-modal]'),
 };
 
 console.log(refs);
-//
-//
-//
-//
+
 //
 //
 //
@@ -248,33 +248,33 @@ console.log(refs);
 //Ігор
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+refs.btnUpEl.addEventListener('click', scrollUp);
+
+function show() {
+  refs.btnUpEl.classList.remove('btn-up_hide');
+}
+
+function hide() {
+  refs.btnUpEl.classList.add('btn-up_hide');
+}
+
+window.addEventListener(
+  'scroll',
+  throttle(() => {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+    scrollY > 400 ? show() : hide();
+  }, 500)
+);
+
+function scrollUp() {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+}
 //
 //
 //
@@ -645,6 +645,8 @@ console.log(refs);
 //
 //
 //
+//
+//
 //Денис
 fetchTrendMoves()
   .then(data => {
@@ -654,7 +656,7 @@ fetchTrendMoves()
 
 function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
-  refs.galleryContainerEl.insertAdjacentHTML('beforeend', markup);
+  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
 }
 //
 //
@@ -1145,4 +1147,31 @@ function renderMarkup(array) {
 //
 //
 //
-//
+//Москалець
+
+refs.galleryContainerEl.addEventListener('click', event => {
+  if (
+    event.target.nodeName !== 'IMG' &&
+    event.target.nodeName !== 'DIV' &&
+    event.target.nodeName !== 'H3' &&
+    event.target.nodeName !== 'SPAN'
+  ) {
+    return;
+  }
+  toggleModal();
+  let id = null;
+  if (event.target.nodeName === 'DIV') {
+    id = event.target.dataset.id;
+    console.log(id);
+    return id;
+  }
+  id = event.target.parentElement.dataset.id;
+  console.log(id);
+  return id;
+});
+
+refs.modalCloseBtn.addEventListener('click', toggleModal);
+
+function toggleModal() {
+  refs.movieModalEl.classList.toggle('is-hidden');
+}

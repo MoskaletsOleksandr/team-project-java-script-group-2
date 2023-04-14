@@ -1,5 +1,5 @@
 //імпортуємо бібліотеки та інші файли
-//
+import throttle from 'lodash.throttle'; // npm i lodash.throttle
 //
 //
 //
@@ -18,17 +18,17 @@
 //
 //
 // refs
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+const refs = {
+  searchFormEl: document.querySelector('.form-search'),
+  galleryContainerEl: document.querySelector('.gallery-container'),
+  aboutTeamBtn: document.querySelector('.about-team'),
+  modalCloseBtn: document.querySelector('.modal__close'),
+  addToWatchedBtn: document.querySelector('.add-to-watched-btn'),
+  addToQueueBtn: document.querySelector('.add-to-queue-btn'),
+  removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'),
+  removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'),
+  btnUpEl: document.querySelector('.btn-up'),
+};
 //
 //
 //
@@ -251,32 +251,32 @@
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+refs.btnUpEl.addEventListener('click', scrollUp);
+
+function show() {
+  refs.btnUpEl.classList.remove('btn-up_hide');
+}
+
+function hide() {
+  refs.btnUpEl.classList.add('btn-up_hide');
+}
+
+window.addEventListener(
+  'scroll',
+  throttle(() => {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+    scrollY > 400 ? show() : hide();
+  }, 500)
+);
+
+function scrollUp() {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+}
 //
 //
 //
