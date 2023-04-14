@@ -26,11 +26,11 @@ const refs = {
   btnUpEl: document.querySelector('.btn-up'),
   addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+  movieModalEl: document.querySelector('div[data-movie-modal]'),
 };
 
 console.log(refs);
-//
-//
+
 //
 //
 //
@@ -1145,4 +1145,31 @@ function renderMarkup(array) {
 //
 //
 //
-//
+//Москалець
+
+refs.galleryContainerEl.addEventListener('click', event => {
+  if (
+    event.target.nodeName !== 'IMG' &&
+    event.target.nodeName !== 'DIV' &&
+    event.target.nodeName !== 'H3' &&
+    event.target.nodeName !== 'SPAN'
+  ) {
+    return;
+  }
+  toggleModal();
+  let id = null;
+  if (event.target.nodeName === 'DIV') {
+    id = event.target.dataset.id;
+    console.log(id);
+    return id;
+  }
+  id = event.target.parentElement.dataset.id;
+  console.log(id);
+  return id;
+});
+
+refs.modalCloseBtn.addEventListener('click', toggleModal);
+
+function toggleModal() {
+  refs.movieModalEl.classList.toggle('is-hidden');
+}
