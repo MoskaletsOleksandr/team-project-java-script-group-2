@@ -23,11 +23,9 @@ const refs = {
   galleryContainerEl: document.querySelector('.gallery-container'),
   aboutTeamBtn: document.querySelector('.about-team'),
   modalCloseBtn: document.querySelector('.modal__close'),
-  addToWatchedBtn: document.querySelector('.add-to-watched-btn'),
-  addToQueueBtn: document.querySelector('.add-to-queue-btn'),
-  removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'),
-  removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'),
   btnUpEl: document.querySelector('.btn-up'),
+  addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
+  addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
 };
 
 console.log(refs);

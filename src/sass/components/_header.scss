@@ -23,7 +23,7 @@ a {
 
 .search {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   position: absolute;
   top: 16px;
   left: 34px;
@@ -96,4 +96,8 @@ a {
   font-size: 64px;
   line-height: 1.17;
   color: #ffffff;
+}
+
+.navigation {
+  margin-right: 450px;
 }
