@@ -1,6 +1,7 @@
 //імпортуємо бібліотеки та інші файли
 import { fetchTrendMoves } from './js/api';
 import { createTrendMovesMarkup } from './js/createMarkup';
+import { fetchDataById } from './js/fetch-data-by-id';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 //
 //
@@ -29,16 +30,17 @@ const refs = {
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
   movieModalEl: document.querySelector('div[data-movie-modal]'),
 };
+//
+//
+//
+//
 
-console.log(refs);
+let movieIdForModalMarkup = null; //При натисканні на куртку фільму на головній сторінці сюди заисується id
+// фільму і за цим id відбувається запит на бекенд
+let dataForModalMarkup = null; //Об'єкт із повною інформацією про фільм,
+//який ми отримуємо після натискання на картку фільму на головній сторінці.
+// Цей об'єкт перезаписується щоразу після натискання на куртку
 
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1149,7 +1151,11 @@ function renderMarkup(array) {
 //
 //Москалець
 
-refs.galleryContainerEl.addEventListener('click', event => {
+export function toggleModal() {
+  refs.movieModalEl.classList.toggle('is-hidden');
+}
+
+function modalOpener(event) {
   if (
     event.target.nodeName !== 'IMG' &&
     event.target.nodeName !== 'DIV' &&
@@ -1159,19 +1165,28 @@ refs.galleryContainerEl.addEventListener('click', event => {
     return;
   }
   toggleModal();
-  let id = null;
+
   if (event.target.nodeName === 'DIV') {
-    id = event.target.dataset.id;
-    console.log(id);
-    return id;
+    movieIdForModalMarkup = event.target.dataset.id;
+    return;
   }
-  id = event.target.parentElement.dataset.id;
-  console.log(id);
-  return id;
-});
+  movieIdForModalMarkup = event.target.parentElement.dataset.id;
+  return;
+}
+
+function handleMovieCard(event) {
+  modalOpener(event); //ця функція перезаписує значення movieIdForModalMarkup
+  dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => console.log(error));
+
+  //тут запустити функцію, яка малює розмітку і в неї вкласти dataForModalMarkup
+
+  console.log(dataForModalMarkup);
+}
+
+refs.galleryContainerEl.addEventListener('click', handleMovieCard);
 
 refs.modalCloseBtn.addEventListener('click', toggleModal);
-
-function toggleModal() {
-  refs.movieModalEl.classList.toggle('is-hidden');
-}
