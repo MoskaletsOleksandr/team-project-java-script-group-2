@@ -1,10 +1,11 @@
 .library-buttons-list {
     display: flex;
     gap: 8px;
+    align-items: center;
 }
 
 .library-buttons-link {
-   border: transparent;
+    border: none;
     text-align: center;
     background-color: #FFFFFF;
     font-weight: 500;
@@ -24,4 +25,5 @@
 .library-buttons {
     display: flex;
     margin-left: auto;
+    align-items: center;
 }
