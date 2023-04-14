@@ -30,6 +30,16 @@ const refs = {
   removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'),
   removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'),
 };
+//
+//
+//
+//
+
+let movieIdForModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
+// фільму і за цим id відбувається запит на бекенд
+let dataForModalMarkup = null; //Об'єкт із повною інформацією про фільм,
+//який ми отримуємо після натискання на картку фільму на головній сторінці.
+// Цей об'єкт перезаписується щоразу після натискання на картку
 
 console.log(refs);
 //
