@@ -2,8 +2,9 @@
   position: fixed;
   top: 0;
   left: 0;
-
   opacity: 1;
+  transition: opacity var(--animation), visibility var(--animation);
+
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
@@ -16,36 +17,35 @@
   pointer-events: none;
 
   .modal {
+    transform: translate(-50%, -50%) scale(0.3);
     opacity: 0;
   }
 }
 
 .modal {
-  position: relative;
-  top: 40px;
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%) scale(1);
+  opacity: 1;
+  transition: opacity var(--animation), transform var(--animation);
 
   margin-left: auto;
   margin-right: auto;
-  max-width: 440px;
-  height: 100%;
-  padding: 48px 20px 40px 20px;
+  max-width: 100%;
+  width: 440px;
+  padding: 48px 20px 40px;
   background-color: var(--buttons-modal-bg-color);
 
   @include tablet {
-    position: absolute; 
-    max-width: 704px;
-    max-height: 552px;
-    // width: 100%;
-    // height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    padding: 40px 72px 64px 36px;  
-   }
-   @include desktop {
-    max-width: 806px;
-    max-height: 558px;
-   }
+    top: 250px;
+    width: 704px;
+    padding: 40px 72px 64px 36px;
+  }
+  @include desktop {
+    width: 806px;
+    padding: 40px 12px;
+  }
 }
 
 .modal__close {
@@ -58,24 +58,39 @@
   align-items: center;
   width: 30px;
   height: 30px;
+  border-radius: 50%;
   border-color: transparent;
   background-color: inherit;
-  border-radius: 50%;
   cursor: pointer;
+  transition: fill var(--animation), background-color var(--animation);
+  &:hover,
+  &:focus {
+    background-color: var(--buttons-modal-text-color);
+    fill: var(--accent-text-color);
+  }
+  &:active {
+    fill: var(--primary-text-color);
+  }
 }
 .js-film-info {
   @include tablet {
     display: flex;
-    column-gap: 68px; 
+    column-gap: 68px;
+  }
+  @include desktop {
+    column-gap: 16px;
   }
 }
 .js-film-info__thumb {
   margin-bottom: 20px;
   @include tablet {
     margin-bottom: 0;
-    display: block;
     width: 264px;
-    height: 374px;  
+    height: 374px;
+  }
+  @include desktop {
+    width: 375px;
+    height: 478px;
   }
 }
 
@@ -83,12 +98,15 @@
   width: 100%;
   height: 100%;
   border-radius: 5px;
+}
+.js-film-info__content {
   @include tablet {
-    // width: 264px;
-    // height: 374px;  
+    width: 264px;
+  }
+  @include desktop {
+    width: 391px;
   }
 }
-
 .js-film-info__name {
   margin-bottom: 20px;
 
@@ -97,6 +115,10 @@
   line-height: calc(23 / 20);
   text-transform: uppercase;
   color: var(--primary-text-color);
+  @include desktop {
+    font-size: 30px;
+    line-height: calc(35 / 30);
+  }
 }
 .js-film-info__table-thumb {
   margin-bottom: 20px;
@@ -176,11 +198,10 @@
 .js-film-info__btns {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   justify-content: center;
   gap: 4px;
-  margin-bottom: 10px; // прибери цей марджин!!!!!!!!!!!!!
   @include tablet {
+    justify-content: flex-start;
     gap: 8px;
   }
 }
@@ -195,15 +216,17 @@
   border: var(--buttons-modal-border);
   background-color: var(--buttons-modal-bg-color);
   color: var(--buttons-modal-text-color);
+  cursor: pointer;
+  transition: color var(--animation), background-color var(--animation);
   &:hover,
   &:focus {
     color: var(--buttons-modal-bg-color);
     background-color: var(--buttons-modal-text-color);
-    cursor: pointer;
   }
 }
 .active-btn {
   border-radius: 100px;
+  border-color: transparent;
   box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
   color: var(--buttons-modal-bg-color);
   background-color: var(--buttons-modal-text-color);
