@@ -46,10 +46,9 @@ export function createTrendMovesMarkup({ results }) {
   return results
     .map(({ backdrop_path, genre_ids, release_date, title, id }) => {
       let genresArray = createGenresArray(genre_ids);
-      genresArray = cutGenresArray(createGenresArray(genre_ids));
+      genresArray = cutGenresArray(genresArray);
 
-      return `<ul class="gallery-list">
-                <li class="gallery-item">
+      return `<li class="gallery-item">
                     <div class="gallery-card" data-id='${id}'>
                         <img src="${BASE_IMG_URL}${backdrop_path}" width="395" alt="${title}">
                         <button class="trailer-button" type="button">Trailer</button>
@@ -59,8 +58,7 @@ export function createTrendMovesMarkup({ results }) {
         4
       )}</span>
                     </div>
-                </li>
-            </ul>`;
+                </li>`;
     })
     .join('');
 }

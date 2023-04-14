@@ -21,6 +21,7 @@ import throttle from 'lodash.throttle'; // npm i lodash.throttle
 const refs = {
   searchFormEl: document.querySelector('.form-search'),
   galleryContainerEl: document.querySelector('.gallery-container'),
+  galleryListEl: document.querySelector('.gallery-list'),
   aboutTeamBtn: document.querySelector('.about-team'),
   modalCloseBtn: document.querySelector('.modal__close'),
   btnUpEl: document.querySelector('.btn-up'),
@@ -31,7 +32,6 @@ const refs = {
 
 console.log(refs);
 
-//
 //
 //
 //
@@ -645,6 +645,8 @@ function scrollUp() {
 //
 //
 //
+//
+//
 //Денис
 fetchTrendMoves()
   .then(data => {
@@ -654,7 +656,7 @@ fetchTrendMoves()
 
 function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
-  refs.galleryContainerEl.insertAdjacentHTML('beforeend', markup);
+  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
 }
 //
 //
