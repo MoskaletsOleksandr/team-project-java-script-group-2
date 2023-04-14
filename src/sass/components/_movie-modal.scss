@@ -2,33 +2,51 @@
   position: fixed;
   top: 0;
   left: 0;
-
   opacity: 1;
+  transition: opacity var(--animation), visibility var(--animation);
+
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   overflow: auto;
 }
 
-// .backdrop.is-hidden {
-//   visibility: hidden;
-//   opacity: 0;
-//   pointer-events: none;
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 
-//   .modal {
-//     opacity: 0;
-//   }
-// }
+  .modal {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0;
+  }
+}
 
 .modal {
-  position: relative;
-  top: 40px;
+
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%) scale(1);
+  opacity: 1;
+  transition: opacity var(--animation), transform var(--animation);
+
   margin-left: auto;
   margin-right: auto;
-  max-width: 280px;
-  height: 100%;
-  padding: 48px 20px 40px 20px;
-  background-color: #ffffff;
+  max-width: 100%;
+  width: 440px;
+  padding: 48px 20px 40px;
+  background-color: var(--buttons-modal-bg-color);
+
+  @include tablet {
+    top: 250px;
+    width: 704px;
+    padding: 40px 72px 64px 36px;
+  }
+  @include desktop {
+    width: 806px;
+    padding: 40px 12px;
+  }
 }
 
 .modal__close {
@@ -41,22 +59,54 @@
   align-items: center;
   width: 30px;
   height: 30px;
+  border-radius: 50%;
   border-color: transparent;
   background-color: inherit;
-  border-radius: 50%;
   cursor: pointer;
+  transition: fill var(--animation), background-color var(--animation);
+  &:hover,
+  &:focus {
+    background-color: var(--buttons-modal-text-color);
+    fill: var(--accent-text-color);
+  }
+  &:active {
+    fill: var(--primary-text-color);
+  }
 }
-
-// .js-film-info {
-//   outline: 1px dotted orange;
-// }
+.js-film-info {
+  @include tablet {
+    display: flex;
+    column-gap: 68px;
+  }
+  @include desktop {
+    column-gap: 16px;
+  }
+}
 .js-film-info__thumb {
   margin-bottom: 20px;
+  @include tablet {
+    margin-bottom: 0;
+    width: 264px;
+    height: 374px;
+  }
+  @include desktop {
+    width: 375px;
+    height: 478px;
+  }
 }
+
 .js-film-info__poster {
   width: 100%;
   height: 100%;
   border-radius: 5px;
+}
+.js-film-info__content {
+  @include tablet {
+    width: 264px;
+  }
+  @include desktop {
+    width: 391px;
+  }
 }
 .js-film-info__name {
   margin-bottom: 20px;
@@ -65,7 +115,11 @@
   font-size: 20px;
   line-height: calc(23 / 20);
   text-transform: uppercase;
-  color: #000000;
+  color: var(--primary-text-color);
+  @include desktop {
+    font-size: 30px;
+    line-height: calc(35 / 30);
+  }
 }
 .js-film-info__table-thumb {
   margin-bottom: 20px;
@@ -84,7 +138,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16 / 12);
-  color: #8c8c8c;
+  color: var(--description-film-text-color);
 }
 .js-film-info__vote {
   padding: 1px 9px;
@@ -93,8 +147,8 @@
   line-height: calc(14 / 12);
   text-transform: uppercase;
   border-radius: 5px;
-  color: #ffffff;
-  background-color: #b92f2c;
+  color: var(--accent-text-color);
+  background-color: var(--vote-bg-color);
 }
 .js-film-info__votes {
   padding: 1px 4px;
@@ -103,27 +157,27 @@
   line-height: calc(14 / 12);
   text-transform: uppercase;
   border-radius: 5px;
-  color: #000000;
-  background-color: #f7f7f7;
+  color: var(--primary-text-color);
+  background-color: var(--votes-bg-color);
 }
 .js-film-info__popularity {
   font-weight: 500;
   font-size: 12px;
   line-height: calc(14 / 12);
-  color: #000000;
+  color: var(--primary-text-color);
 }
 .js-film-info__original-title {
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16 / 12);
   text-transform: uppercase;
-  color: #000000;
+  color: var(--primary-text-color);
 }
 .js-film-info__genre {
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16 / 12);
-  color: #000000;
+  color: var(--primary-text-color);
 }
 
 .js-film-info__description-title {
@@ -132,7 +186,7 @@
   font-size: 12px;
   line-height: calc(16 / 12);
   text-transform: uppercase;
-  color: #000000;
+  color: var(--primary-text-color);
 }
 
 .js-film-info__description-text {
@@ -140,30 +194,41 @@
   font-weight: 500;
   font-size: 12px;
   line-height: calc(20 / 12);
-  color: #000000;
+  color: var(--primary-text-color);
 }
 .js-film-info__btns {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  justify-content: center;
   gap: 4px;
-  margin-bottom: 10px; // прибери цей марджин!!!!!!!!!!!!!
+  @include tablet {
+    justify-content: flex-start;
+    gap: 8px;
+  }
 }
 .js-film-info__btn {
-  padding: 10px 12px;
+  padding: 10px 10px;
 
   font-weight: 500;
   font-size: 12px;
   line-height: calc(14 / 12);
   text-transform: uppercase;
   border-radius: 100px;
-  border: 1px solid #000000;
-  background-color: #ffffff;
-  color: #b92f2c;
+  border: var(--buttons-modal-border);
+  background-color: var(--buttons-modal-bg-color);
+  color: var(--buttons-modal-text-color);
+  cursor: pointer;
+  transition: color var(--animation), background-color var(--animation);
+  &:hover,
+  &:focus {
+    color: var(--buttons-modal-bg-color);
+    background-color: var(--buttons-modal-text-color);
+  }
 }
 .active-btn {
   border-radius: 100px;
+  border-color: transparent;
   box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
-  color: #ffffff;
-  background-color: #b92f2c;
+  color: var(--buttons-modal-bg-color);
+  background-color: var(--buttons-modal-text-color);
 }
