@@ -1151,7 +1151,7 @@ function renderMarkup(array) {
 //
 //Москалець
 
-export function toggleModal() {
+function toggleModal() {
   refs.movieModalEl.classList.toggle('is-hidden');
 }
 
