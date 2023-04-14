@@ -10,15 +10,15 @@
   overflow: auto;
 }
 
-// .backdrop.is-hidden {
-//   visibility: hidden;
-//   opacity: 0;
-//   pointer-events: none;
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 
-//   .modal {
-//     opacity: 0;
-//   }
-// }
+  .modal {
+    opacity: 0;
+  }
+}
 
 .modal {
   position: relative;
@@ -26,10 +26,26 @@
 
   margin-left: auto;
   margin-right: auto;
-  max-width: 280px;
+  max-width: 440px;
   height: 100%;
   padding: 48px 20px 40px 20px;
-  background-color: #ffffff;
+  background-color: var(--buttons-modal-bg-color);
+
+  @include tablet {
+    position: absolute; 
+    max-width: 704px;
+    max-height: 552px;
+    // width: 100%;
+    // height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    padding: 40px 72px 64px 36px;  
+   }
+   @include desktop {
+    max-width: 806px;
+    max-height: 558px;
+   }
 }
 
 .modal__close {
@@ -47,18 +63,32 @@
   border-radius: 50%;
   cursor: pointer;
 }
-
-// .js-film-info {
-//   outline: 1px dotted orange;
-// }
+.js-film-info {
+  @include tablet {
+    display: flex;
+    column-gap: 68px; 
+  }
+}
 .js-film-info__thumb {
   margin-bottom: 20px;
+  @include tablet {
+    margin-bottom: 0;
+    display: block;
+    width: 264px;
+    height: 374px;  
+  }
 }
+
 .js-film-info__poster {
   width: 100%;
   height: 100%;
   border-radius: 5px;
+  @include tablet {
+    // width: 264px;
+    // height: 374px;  
+  }
 }
+
 .js-film-info__name {
   margin-bottom: 20px;
 
@@ -66,7 +96,7 @@
   font-size: 20px;
   line-height: calc(23 / 20);
   text-transform: uppercase;
-  color: #000000;
+  color: var(--primary-text-color);
 }
 .js-film-info__table-thumb {
   margin-bottom: 20px;
@@ -85,7 +115,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16 / 12);
-  color: #8c8c8c;
+  color: var(--description-film-text-color);
 }
 .js-film-info__vote {
   padding: 1px 9px;
@@ -94,8 +124,8 @@
   line-height: calc(14 / 12);
   text-transform: uppercase;
   border-radius: 5px;
-  color: #ffffff;
-  background-color: #b92f2c;
+  color: var(--accent-text-color);
+  background-color: var(--vote-bg-color);
 }
 .js-film-info__votes {
   padding: 1px 4px;
@@ -104,27 +134,27 @@
   line-height: calc(14 / 12);
   text-transform: uppercase;
   border-radius: 5px;
-  color: #000000;
-  background-color: #f7f7f7;
+  color: var(--primary-text-color);
+  background-color: var(--votes-bg-color);
 }
 .js-film-info__popularity {
   font-weight: 500;
   font-size: 12px;
   line-height: calc(14 / 12);
-  color: #000000;
+  color: var(--primary-text-color);
 }
 .js-film-info__original-title {
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16 / 12);
   text-transform: uppercase;
-  color: #000000;
+  color: var(--primary-text-color);
 }
 .js-film-info__genre {
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16 / 12);
-  color: #000000;
+  color: var(--primary-text-color);
 }
 
 .js-film-info__description-title {
@@ -133,7 +163,7 @@
   font-size: 12px;
   line-height: calc(16 / 12);
   text-transform: uppercase;
-  color: #000000;
+  color: var(--primary-text-color);
 }
 
 .js-film-info__description-text {
@@ -141,30 +171,40 @@
   font-weight: 500;
   font-size: 12px;
   line-height: calc(20 / 12);
-  color: #000000;
+  color: var(--primary-text-color);
 }
 .js-film-info__btns {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: center;
   gap: 4px;
   margin-bottom: 10px; // прибери цей марджин!!!!!!!!!!!!!
+  @include tablet {
+    gap: 8px;
+  }
 }
 .js-film-info__btn {
-  padding: 10px 12px;
+  padding: 10px 10px;
 
   font-weight: 500;
   font-size: 12px;
   line-height: calc(14 / 12);
   text-transform: uppercase;
   border-radius: 100px;
-  border: 1px solid #000000;
-  background-color: #ffffff;
-  color: #b92f2c;
+  border: var(--buttons-modal-border);
+  background-color: var(--buttons-modal-bg-color);
+  color: var(--buttons-modal-text-color);
+  &:hover,
+  &:focus {
+    color: var(--buttons-modal-bg-color);
+    background-color: var(--buttons-modal-text-color);
+    cursor: pointer;
+  }
 }
 .active-btn {
   border-radius: 100px;
   box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
-  color: #ffffff;
-  background-color: #b92f2c;
+  color: var(--buttons-modal-bg-color);
+  background-color: var(--buttons-modal-text-color);
 }
