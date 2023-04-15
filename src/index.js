@@ -29,6 +29,10 @@ const refs = {
   addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
   movieModalEl: document.querySelector('div[data-movie-modal]'),
+  teamOpenModalBtn: document.querySelector('button[data-team-modal-open]'),
+  teamCloseModalBtn: document.querySelector('div[data-team-modal-close]'),
+  teamModal: document.querySelector('div[data-team-modal]'),
+
 };
 //
 //
@@ -350,65 +354,30 @@ function scrollUp() {
 //Ірина Петренко
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// teamOpenModalBtn: document.querySelector('button[data-team-modal-open]'),
+// teamCloseModalBtn: document.querySelector('div[data-team-modal-close]'),
+// teamModal: document.querySelector('div[data-team-modal]'),
+
+teamOpenModalBtn.addEventListener('click', e => {
+  
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 //
 //
@@ -1190,3 +1159,5 @@ function handleMovieCard(event) {
 refs.galleryContainerEl.addEventListener('click', handleMovieCard);
 
 refs.modalCloseBtn.addEventListener('click', toggleModal);
+
+
