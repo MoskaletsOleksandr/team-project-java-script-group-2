@@ -30,8 +30,8 @@ const refs = {
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
-  teamOpenModalBtn: document.querySelector('button[data-team-modal-open]'),
-  teamCloseModalBtn: document.querySelector('div[data-team-modal-close]'),
+  teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
+  teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
 };
 //
@@ -350,21 +350,34 @@ function scrollUp() {
 //Ірина Петренко
 //
 //
-// teamOpenModalBtn: document.querySelector('button[data-team-modal-open]'),
-// teamCloseModalBtn: document.querySelector('div[data-team-modal-close]'),
-// teamModal: document.querySelector('div[data-team-modal]'),
+// teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
+  // teamModalCloseBtn: document.querySelector('div[data-team-modal-close]'),
+  // teamModal: document.querySelector('div[data-team-modal]'),
 
-refs.teamOpenModalBtn.addEventListener('click', e => {});
+function openTeamModal() {
+  refs.teamModal.classList.remove('is-hidden-team');
+}
+//
+function closeTeamModal() {
+  refs.teamModal.classList.add('is-hidden-team');
+}
+//
+refs.teamModalOpenBtn.addEventListener('click', openTeamModal);
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
+refs.teamModalCloseBtn.addEventListener('click', closeTeamModal);
+
+refs.teamModal.addEventListener('click', function(event) {
+  if (event.target === refs.teamModal) {
+    closeTeamModal();
+  }
+});
+
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeTeamModal();
+  }
+});
 //
 //
 //
@@ -1133,4 +1146,4 @@ function handleMovieCard(event) {
 //
 refs.galleryContainerEl.addEventListener('click', handleMovieCard);
 
-refs.modalCloseBtn.addEventListener('click', toggleModal);
+// refs.modalCloseBtn.addEventListener('click', toggleModal);
