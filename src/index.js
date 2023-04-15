@@ -48,7 +48,7 @@ let dataForModalMarkup = null; //Об'єкт із повною інформац�
 //
 //
 //
-//Аліна присяжнюк дещо сплутала
+//Аліна присяжнюк
 //
 //
 //
@@ -449,85 +449,85 @@ function scrollUp() {
 //
 //
 //Мар'яна Собашевська
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+refs.addToWatchedBtn.addEventListener('click', handleMakeBtnAddWatched);
+function handleMakeBtnAddWatched() {
+  dataForModalMarkup
+    .then(data => {
+      const getLocalStorage = localStorage.getItem('watched');
+      const parseLocalStorage = JSON.parse(getLocalStorage);
+      parseLocalStorage.push(data);
+
+      localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
+
+      refs.addToWatchedBtn.textContent = 'Remove from watch';
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
+
+function handleMakeBtnAddQueue() {
+  dataForModalMarkup
+    .then(data => {
+      const getLocalStorage = localStorage.getItem('queue');
+      const parseLocalStorage = JSON.parse(getLocalStorage);
+      parseLocalStorage.push(data);
+
+      localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
+
+      refs.addToQueueBtn.textContent = 'Remove from queue';
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+// записав твою перевірку в окрему фінкцію, яку запускаємо при натисканні на картку. Тільки тоді воно коректно малює
+//текст на кнопках. Але треба трохи допиляти логіку перевірок, бо коли я додам фільм до масиву, то все супер, функція переписує
+// текст із Add to watch на Remove from watch, а Add to Queue не чіпає. Але якщо відкрити ту ж картку, то перевірка коректно
+//замінить текст із Add to watch на Remove from watch, але і наступна перевірка:
+// if (id === Number(movieIdForModalMarkup)) {
+//   refs.addToQueueBtn.textContent = 'Add to Queue';
+// } else {
+//   refs.addToQueueBtn.textContent = 'Remove from Queue';
+// }
+//  спрацьовує і переписує Add to Queue на Remove from Queue (коли в чергу ми не додавали).
+// Треба якось більш специфічно перевіряти, виходить. Щось я вже й сам заплутався((((((
+function checkLocalStorage() {
+  if (!localStorage.watched && !localStorage.queue) {
+    let localStorageArray = [];
+    localStorage.setItem('watched', JSON.stringify(localStorageArray));
+    localStorage.setItem('queue', JSON.stringify(localStorageArray));
+    refs.addToWatchedBtn.textContent = 'Add to watch';
+    refs.addToQueueBtn.textContent = 'Add to Queue';
+  } else {
+    const getLocalStorageWatched = localStorage.getItem('watched');
+    const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
+    console.log(parseLocalStorageWatched);
+    parseLocalStorageWatched.map(el => {
+      const { id } = el;
+      if (id === Number(movieIdForModalMarkup)) {
+        refs.addToWatchedBtn.textContent = 'Remove from watch';
+      } else {
+        refs.addToWatchedBtn.textContent = 'Add to watch';
+      }
+    });
+    const getLocalStorageQueue = localStorage.getItem('queue');
+    const parseLocalStorageQueue = JSON.parse(getLocalStorageQueue);
+    console.log(parseLocalStorageQueue);
+
+    parseLocalStorageQueue.map(el => {
+      const { id } = el;
+      if (id === Number(movieIdForModalMarkup)) {
+        refs.addToQueueBtn.textContent = 'Add to Queue';
+      } else {
+        refs.addToQueueBtn.textContent = 'Remove from Queue';
+      }
+    });
+  }
+}
 //
 //
 //
@@ -549,8 +549,6 @@ function scrollUp() {
 //
 //
 //Сергій Трефель
-//
-//
 //
 //
 //
@@ -1164,8 +1162,6 @@ function onCloseMovieModal(e){
 //
 //
 //
-//
-//
 //Москалець
 
 // function toggleModal() {
@@ -1191,18 +1187,19 @@ function onCloseMovieModal(e){
 //   return;
 // }
 
-// function handleMovieCard(event) {
-//   modalOpener(event); //ця функція перезаписує значення movieIdForModalMarkup
-//   dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
-//     .then(data => {
-//       console.log(data);
-//     })
-//     .catch(error => console.log(error));
+function handleMovieCard(event) {
+  modalOpener(event); //ця функція перезаписує значення movieIdForModalMarkup
+  dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
+    .then(data => {
+      console.log(data);
+      return data;
+    })
+    .catch(error => console.log(error));
 
-//   //тут запустити функцію, яка малює розмітку і в неї вкласти dataForModalMarkup
-
-//   console.log(dataForModalMarkup);
-// }
+  //тут запустити функцію, яка малює розмітку і в неї вкласти dataForModalMarkup
+  checkLocalStorage();
+  console.log(dataForModalMarkup);
+}
 
 // refs.galleryContainerEl.addEventListener('click', handleMovieCard);
 
