@@ -13,10 +13,9 @@ a {
 }
 
 .header-container {
-  padding-left: 32px;
-  padding-right: 32px;
   position: relative;
   height: 460px;
+  width: 280px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -34,6 +33,7 @@ a {
 
   @include tablet {
     height: 222px;
+    width: 702px;
     background-image: url(/src/images/header/header-tablet.jpg);
     // @include retina {
     //   background-image: url(/src/images/header/header-desktop-2x.jpg);
@@ -41,6 +41,7 @@ a {
   }
   @include desktop {
     height: 316px;
+    width: 1216px;
     background-image: url(/src/images/header/header-desktop.jpg);
     @include retina {
       background-image: url(/src/images/header/header-desktop-2x.jpg);
