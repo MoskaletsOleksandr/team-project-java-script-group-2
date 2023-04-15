@@ -3,13 +3,14 @@ a {
 }
 
 //Хедер
-// .header {
-//   width: 100vw;
-// }
-
-.section-header {
+.header {
+  background-color: #ffffff;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
   padding-top: 32px;
   padding-bottom: 32px;
+  //top: 0;
 }
 
 .header-container {
@@ -27,22 +28,32 @@ a {
       rgba(0, 0, 0, 0.4) 65.37%
     ),
     url(/src/images/header/header-bg-mob.jpg);
-  // @include retina {
-  //   background-image: url(/src/images/header/header-bg-mob-2x.jpg);
-  // }
+  @include retina {
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header/header-bg-mob-2x.jpg);
+  }
 
   @include tablet {
     height: 222px;
-    width: 702px;
+    width: 704px;
     background-image: linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.05),
         rgba(0, 0, 0, 0.05)
       ),
       url(/src/images/header/header-tablet.jpg);
-    // @include retina {
-    //   background-image: url(/src/images/header/header-desktop-2x.jpg);
-    // }
+    @include retina {
+      background-image: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.05)
+        ),
+        url(/src/images/header/header-tablet-2x.jpg);
+    }
   }
   @include desktop {
     height: 316px;
@@ -199,7 +210,7 @@ a {
 .header-logo {
   position: absolute;
   bottom: 20px;
-  left: 57px;
+  left: 45px;
   @include tablet {
     bottom: 16px;
     left: 16px;
@@ -243,5 +254,16 @@ a {
   @include desktop {
     width: 59px;
     height: 59px;
+  }
+}
+
+.gallery-fixed {
+  padding-top: 500px;
+  @include tablet {
+    padding-top: 286px;
+  }
+
+  @include desktop {
+    padding-top: 380px;
   }
 }
