@@ -130,6 +130,8 @@ a {
   width: 100%;
   border: 0;
   border-radius: 100px;
+  transition: background-color var(--animation);
+  transition: border var(--animation);
 
   @include tablet {
     height: 38px;
@@ -138,6 +140,12 @@ a {
   @include desktop {
     height: 42px;
     font-size: 14px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: #f1ecca;
+    border: 1px solid #bbac49;
   }
 }
 
@@ -149,7 +157,11 @@ a {
   right: 16px;
   border: 0;
   cursor: pointer;
-  background-color: var(--buttons-header-bg-color); //видалити потім
+  background-color: transparent;
+  transition: scale var(--animation);
+  &:hover {
+    scale: 1.5;
+  }
 }
 
 // .icon-film {
@@ -191,6 +203,8 @@ a {
   border-radius: 100px;
   color: var(--buttons-header-text-color);
   cursor: pointer;
+  transition: color var(--animation);
+  transition: background-color var(--animation);
 
   @include tablet {
     padding: 12px 24px;
@@ -199,11 +213,11 @@ a {
   @include desktop {
     padding: 14px 32px;
   }
-}
 
-.menu-link:hover {
-  color: var(--accent-text-color);
-  background-color: var(--buttons-header-hover-bg-color);
+  &:hover {
+    color: var(--accent-text-color);
+    background-color: var(--buttons-header-hover-bg-color);
+  }
 }
 
 //логотип filmoteka
@@ -211,6 +225,8 @@ a {
   position: absolute;
   bottom: 20px;
   left: 45px;
+  transition: scale var(--animation);
+
   @include tablet {
     bottom: 16px;
     left: 16px;
@@ -218,6 +234,10 @@ a {
   @include desktop {
     bottom: 32px;
     left: 32px;
+  }
+
+  &:hover {
+    scale: 1.1;
   }
 }
 
