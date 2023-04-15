@@ -75,6 +75,7 @@ a {
   @include desktop {
     flex-wrap: nowrap;
     left: 64px;
+    gap: 8px;
   }
 }
 
