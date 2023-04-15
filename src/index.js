@@ -1062,15 +1062,8 @@ function onCloseMovieModal(e) {
   }
 }
 
-function modalOpener(event) {
-  if (
-    event.target.nodeName !== 'IMG' &&
-    event.target.nodeName !== 'DIV' &&
-    event.target.nodeName !== 'H3' &&
-    event.target.nodeName !== 'SPAN'
-  ) {
-    return;
-  } else if (event.target.nodeName === 'DIV') {
+function idRewriter(event) {
+  if (event.target.nodeName === 'DIV') {
     movieIdForModalMarkup = event.target.dataset.id;
     return;
   }
@@ -1079,7 +1072,15 @@ function modalOpener(event) {
 }
 
 function handleMovieCard(event) {
-  modalOpener(event); //ця функція перезаписує значення movieIdForModalMarkup
+  idRewriter(event); //ця функція перезаписує значення movieIdForModalMarkup
+  if (
+    event.target.nodeName !== 'IMG' &&
+    event.target.nodeName !== 'DIV' &&
+    event.target.nodeName !== 'H3' &&
+    event.target.nodeName !== 'SPAN'
+  ) {
+    return;
+  }
   dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
     .then(data => {
       refs.backdropMovieModal.classList.remove('is-hidden');
@@ -1131,6 +1132,3 @@ function handleMovieCard(event) {
 //
 //
 //
-refs.galleryContainerEl.addEventListener('click', handleMovieCard);
-
-refs.modalCloseBtn.addEventListener('click', toggleModal);
