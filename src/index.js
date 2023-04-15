@@ -448,6 +448,35 @@ function scrollUp() {
 //
 //
 //Мар'яна Собашевська
+
+function checkLocalStorage() {
+  if (!localStorage.watched && !localStorage.queue) {
+    let localStorageArray = [];
+    localStorage.setItem('watched', JSON.stringify(localStorageArray));
+    localStorage.setItem('queue', JSON.stringify(localStorageArray));
+    refs.addToWatchedBtn.textContent = 'Add to watch';
+    refs.addToQueueBtn.textContent = 'Add to Queue';
+  } else {
+    const getLocalStorageWatched = localStorage.getItem('watched');
+    const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
+    
+    if (parseLocalStorageWatched.some(el => el.id === Number(movieIdForModalMarkup))){
+      refs.addToWatchedBtn.textContent = 'hello';
+    } else {refs.addToQueueBtn.textContent = 'Add to watch';}
+  } 
+
+    // const getLocalStorageQueue = localStorage.getItem('queue');
+    // const parseLocalStorageQueue = JSON.parse(getLocalStorageQueue);
+
+    // parseLocalStorageQueue.map(el => {
+    //   const { id } = el;
+    //   if (id === Number(movieIdForModalMarkup)) {
+    //     refs.addToQueueBtn.textContent = 'Add to Queue';
+    //   } else {
+    //     refs.addToQueueBtn.textContent = 'Remove from Queue';
+    //   }
+    // });
+  }
 refs.addToWatchedBtn.addEventListener('click', handleMakeBtnAddWatched);
 function handleMakeBtnAddWatched() {
   dataForModalMarkup
@@ -458,7 +487,7 @@ function handleMakeBtnAddWatched() {
 
       localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
-      refs.addToWatchedBtn.textContent = 'Remove from watch';
+      refs.addToWatchedBtn.textContent = 'hello my dear';
     })
     .catch(err => {
       console.log(err);
@@ -494,37 +523,7 @@ function handleMakeBtnAddQueue() {
 // }
 //  спрацьовує і переписує Add to Queue на Remove from Queue (коли в чергу ми не додавали).
 // Треба якось більш специфічно перевіряти, виходить. Щось я вже й сам заплутався((((((
-function checkLocalStorage() {
-  if (!localStorage.watched && !localStorage.queue) {
-    let localStorageArray = [];
-    localStorage.setItem('watched', JSON.stringify(localStorageArray));
-    localStorage.setItem('queue', JSON.stringify(localStorageArray));
-    refs.addToWatchedBtn.textContent = 'Add to watch';
-    refs.addToQueueBtn.textContent = 'Add to Queue';
-  } else {
-    const getLocalStorageWatched = localStorage.getItem('watched');
-    const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
-    parseLocalStorageWatched.map(el => {
-      const { id } = el;
-      if (id === Number(movieIdForModalMarkup)) {
-        refs.addToWatchedBtn.textContent = 'Remove from watch';
-      } else {
-        refs.addToWatchedBtn.textContent = 'Add to watch';
-      }
-    });
-    const getLocalStorageQueue = localStorage.getItem('queue');
-    const parseLocalStorageQueue = JSON.parse(getLocalStorageQueue);
 
-    parseLocalStorageQueue.map(el => {
-      const { id } = el;
-      if (id === Number(movieIdForModalMarkup)) {
-        refs.addToQueueBtn.textContent = 'Add to Queue';
-      } else {
-        refs.addToQueueBtn.textContent = 'Remove from Queue';
-      }
-    });
-  }
-}
 //
 //
 //
