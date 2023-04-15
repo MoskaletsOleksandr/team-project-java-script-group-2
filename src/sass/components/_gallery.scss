@@ -7,12 +7,38 @@
 
 .gallery-item {
     flex-basis: calc((100% - 2*16px)/3);
+    border-radius: 5px;
     margin-bottom: 32px;
+<<<<<<< Updated upstream
+    transition: box-shadow 250 ms cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+    
+        &:hover,
+        &:focus {
+            background-color: var(--buttons-library-hover-bg-color);
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+            ;
+        }
+}
+
+.gallery-img {
+    width: 395px;
+    height: 574px;
+=======
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus {
+    color: blue;
+    border-color: blue;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+    }
 }
 
 .gallery-img {
    width: 395px;
    height: 574px;
+   border-radius: 5px;
+>>>>>>> Stashed changes
 }
 
 .gallery-container-img {
@@ -31,7 +57,7 @@
     border: none;
     color: var(--logo-text-color);
     background-color: var(--buttons-library-text-color);
-    }
+}
 
 .film-title {
     font-family: var(--main-font-family);
@@ -42,7 +68,8 @@
 }
 
 .gallery-film {
-   margin-top: 12px;;
+    margin-top: 12px;
+    ;
 }
 
 .film-genres,
@@ -53,4 +80,3 @@
     line-height: 24px;
     color: #B92F2C;
 }
-
