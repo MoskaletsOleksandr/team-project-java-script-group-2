@@ -850,6 +850,53 @@ function scrollUp() {
 //
 //
 //Ірина
+import { createTrendMovesMarkup } from "./js/createMarkup";
+
+const watchedBtn = document.querySelector('.watched-btn');
+const queueBtn = document.querySelector('.queue-btn');
+const galleryContainerEl = document.querySelector('.library-container');
+
+watchedBtn.addEventListener('click', handleWatchedBtn);
+queueBtn.addEventListener('click', handleQueueBtn);
+
+let watchedFilms = [];
+let queueFilms = [];
+
+function handleWatchedBtn() {
+  watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
+
+  if (watchedFilms.length <= 0) {
+    galleryContainerEl.innerHTML = `<div class="gallery-container">
+        <h2 class="nothing-text"> OOPS, THERE IS NOTHING ON THIS PAGE </h2>
+    <picture class="nothing-img">
+        <source srcset="/src/images/film-162029_1280-2.png 2x" media="(min-width: 1200px)" />
+        <img src="/src/images/film-162029_640-2.png" alt="nothing" width="680" />
+    </picture>
+        </div>`;
+    return;
+  }
+  createTrendMovesMarkup(watchedFilms);
+}
+
+function handleQueueBtn() {
+  queueFilms = JSON.parse(localStorage.getItem('queue')) || [];
+
+  if (queueFilms.length <= 0) {
+    galleryContainerEl.innerHTML = `<div class="gallery-container">
+        <h2 class="nothing-text"> OOPS, THERE IS NOTHING ON THIS PAGE </h2>
+    <picture class="nothing-img">
+        <source srcset="/src/images/film-162029_1280-2.png 2x" media="(min-width: 1200px)" />
+        <img src="/src/images/film-162029_640-2.png" alt="nothing" width="680" />
+    </picture>
+        </div>`;
+    return;
+  }
+  createTrendMovesMarkup(queueFilms);
+}
+
+handleWatchedBtn();
+
+
 //
 //
 //
