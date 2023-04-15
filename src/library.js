@@ -22,11 +22,13 @@ const refs = {
   searchFormEl: document.querySelector('.form-search'),
   galleryContainerEl: document.querySelector('.gallery-container'),
   aboutTeamBtn: document.querySelector('.about-team'),
-  modalCloseBtn: document.querySelector('.modal__close'),
-  addToWatchedBtn: document.querySelector('.add-to-watched-btn'),
-  addToQueueBtn: document.querySelector('.add-to-queue-btn'),
-  removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'),
-  removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'),
+  backdropMovieModal: document.querySelector('.backdrop'),
+  movieModalEl: document.querySelector('div[data-movie-modal]'),
+  modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
+  addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
+  addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+  removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'),  // <--- цієї кнопки більше немає в розмітці
+  removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'), // <--- цієї кнопки більше немає в розмітці
   btnUpEl: document.querySelector('.btn-up'),
 };
 //
