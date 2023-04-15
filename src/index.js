@@ -1,6 +1,7 @@
 //імпортуємо бібліотеки та інші файли
 import { fetchTrendMoves } from './js/api';
 import { createTrendMovesMarkup } from './js/createMarkup';
+import { markupMovieModal } from './js/markupMovieModal';
 import { fetchDataById } from './js/fetch-data-by-id';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 //
@@ -505,7 +506,7 @@ function checkLocalStorage() {
   } else {
     const getLocalStorageWatched = localStorage.getItem('watched');
     const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
-    console.log(parseLocalStorageWatched);
+    // console.log(parseLocalStorageWatched);
     parseLocalStorageWatched.map(el => {
       const { id } = el;
       if (id === Number(movieIdForModalMarkup)) {
@@ -516,7 +517,7 @@ function checkLocalStorage() {
     });
     const getLocalStorageQueue = localStorage.getItem('queue');
     const parseLocalStorageQueue = JSON.parse(getLocalStorageQueue);
-    console.log(parseLocalStorageQueue);
+    // console.log(parseLocalStorageQueue);
 
     parseLocalStorageQueue.map(el => {
       const { id } = el;
@@ -1060,6 +1061,7 @@ function onCloseMovieModal(e){
     e.target.className === 'backdrop' ||
     e.target.classList[0] === 'modal__close' ||
     e.target.classList[0] === "icon-close" ||
+    e.target.classList[0] === 'svg-icon-close' ||
     e.code === "Escape"
     ) {
     refs.backdropMovieModal.classList.add('is-hidden');
@@ -1068,131 +1070,35 @@ function onCloseMovieModal(e){
     window.removeEventListener("keydown", onCloseMovieModal);
   };
 }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//Москалець
 
-// function toggleModal() {
-//   refs.movieModalEl.classList.toggle('is-hidden');
-// }
+function modalOpener(event) {
+  if (
+    event.target.nodeName !== 'IMG' &&
+    event.target.nodeName !== 'DIV' &&
+    event.target.nodeName !== 'H3' &&
+    event.target.nodeName !== 'SPAN'
+  ) {
+    return;
+  } else if (event.target.nodeName === 'DIV') {
+    movieIdForModalMarkup = event.target.dataset.id;
+    return;
+  }
+  movieIdForModalMarkup = event.target.parentElement.dataset.id;
+  return;
+}
 
-// function modalOpener(event) {
-//   if (
-//     event.target.nodeName !== 'IMG' &&
-//     event.target.nodeName !== 'DIV' &&
-//     event.target.nodeName !== 'H3' &&
-//     event.target.nodeName !== 'SPAN'
-//   ) {
-//     return;
-//   }
-//   toggleModal();
-
-//   if (event.target.nodeName === 'DIV') {
-//     movieIdForModalMarkup = event.target.dataset.id;
-//     return;
-//   }
-//   movieIdForModalMarkup = event.target.parentElement.dataset.id;
-//   return;
-// }
+refs.galleryContainerEl.addEventListener('click', handleMovieCard);
 
 function handleMovieCard(event) {
   modalOpener(event); //ця функція перезаписує значення movieIdForModalMarkup
   dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
     .then(data => {
-      console.log(data);
-      return data;
+      refs.backdropMovieModal.classList.remove('is-hidden');
+      refs.movieModalEl.classList.remove('is-hidden');
+      // markupMovieModal(data)
+      refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
+      window.addEventListener("keydown", onCloseMovieModal);
+      onCloseMovieModal(e)
     })
     .catch(error => console.log(error));
 
@@ -1201,6 +1107,67 @@ function handleMovieCard(event) {
   console.log(dataForModalMarkup);
 }
 
-// refs.galleryContainerEl.addEventListener('click', handleMovieCard);
+const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
 
-// refs.modalCloseBtn.addEventListener('click', toggleModal);
+function markupMovieModal(data) {
+  const {backdrop_path, title, vote_average, vote_count, popularity, original_title, genres, overview} = data;
+  refs.backdropMovieModal.innerHTML = `<div class="backdrop">
+      <div class="modal" data-movie-modal>
+        <button type="button" class="modal__close" data-movie-modal-close>
+          <svg width="14" height="14" class="svg-icon-close">
+            <use href="/src/images/svg-sprite.svg#close" class="icon-close"></use>
+          </svg>
+        </button>
+        <div class="js-film-info">
+          <div class="js-film-info__thumb">
+            <img
+              src="${BASE_IMG_URL}${backdrop_path}"
+              alt="${title}"
+              width="240"
+              class="js-film-info__poster"
+            />
+          </div>
+          <div class="js-film-info__content">
+            <h2 class="js-film-info__name">${title}</h2>
+            <table class="js-film-info__table-thumb">
+              <tr class="js-film-info__item">
+                <td class="js-film-info__title">Vote / Votes</td>
+                <td>
+                  <span class="js-film-info__vote">${vote_average}</span>
+                  <span class="slash">/</span>
+                  <span class="js-film-info__votes">${vote_count}</span>
+                </td>
+              </tr>
+              <tr class="js-film-info__item">
+                <td class="js-film-info__title">Popularity</td>
+                <td class="js-film-info__popularity">${popularity}</td>
+              </tr>
+              <tr class="js-film-info__item">
+                <td class="js-film-info__title">Original Title</td>
+                <td class="js-film-info__original-title">${original_title}</td>
+              </tr>
+              <tr class="js-film-info__item">
+                <td class="js-film-info__title">Genre</td>
+                <td class="js-film-info__genre">${genres}</td>
+              </tr>
+            </table>
+            <h3 class="js-film-info__description-title">About</h3>
+            <p class="js-film-info__description-text">${overview}
+            </p>
+            <div class="js-film-info__btns">
+              <button
+                type="button"
+                class="js-film-info__btn active-btn"
+                data-btn-to-watched
+              >
+                add to Watched
+              </button>
+              <button type="button" class="js-film-info__btn" data-btn-to-queue>
+                add to queue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>`;
+    }
