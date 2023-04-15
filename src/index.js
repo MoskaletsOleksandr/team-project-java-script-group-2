@@ -17,8 +17,6 @@ import { createMoveModalMarkup } from './js/create-modal-markup';
 //
 //
 //
-//
-//
 // refs
 const refs = {
   searchFormEl: document.querySelector('.form-search'),
@@ -32,12 +30,14 @@ const refs = {
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+  teamOpenModalBtn: document.querySelector('button[data-team-modal-open]'),
+  teamCloseModalBtn: document.querySelector('div[data-team-modal-close]'),
+  teamModal: document.querySelector('div[data-team-modal]'),
 };
 //
 //
 //
 //
-
 let movieIdForModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
 // фільму і за цим id відбувається запит на бекенд
 let dataForModalMarkup = null; //Об'єкт із повною інформацією про фільм,
@@ -350,17 +350,17 @@ function scrollUp() {
 //Ірина Петренко
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// teamOpenModalBtn: document.querySelector('button[data-team-modal-open]'),
+// teamCloseModalBtn: document.querySelector('div[data-team-modal-close]'),
+// teamModal: document.querySelector('div[data-team-modal]'),
+
+teamOpenModalBtn.addEventListener('click', e => {
+  
+})
+
+refs.galleryContainerEl.addEventListener('click', handleMovieCard);
+
+refs.modalCloseBtn.addEventListener('click', toggleModal);
 //
 //
 //
@@ -1100,3 +1100,7 @@ function handleMovieCard(event) {
     .catch(error => console.log(error));
   checkLocalStorage();
 }
+
+
+
+
