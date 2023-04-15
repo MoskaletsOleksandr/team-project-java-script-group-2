@@ -15,23 +15,52 @@ a {
 .header-container {
   position: relative;
   height: 460px;
-  background-image: url(/src/images/header/header-mob.jpg);
-  // @include retina {
-  //   background-image: url(/src/images/header/header-mob-2x.jpg);
-  // }
-
+  width: 280px;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.4) 65.37%
+    ),
+    url(/src/images/header/header-bg-mob.jpg);
+  // @include retina {
+  //   background-image: url(/src/images/header/header-bg-mob-2x.jpg);
+  // }
+
   @include tablet {
-    height: 316px;
-    background-image: url(/src/images/header/header-desktop.jpg);
+    height: 222px;
+    width: 702px;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header/header-tablet.jpg);
     // @include retina {
     //   background-image: url(/src/images/header/header-desktop-2x.jpg);
     // }
   }
   @include desktop {
     height: 316px;
+    width: 1216px;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header/header-desktop.jpg);
+    @include retina {
+      background-image: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.05)
+        ),
+        url(/src/images/header/header-desktop-2x.jpg);
+    }
   }
 }
 
@@ -42,7 +71,7 @@ a {
   align-items: flex-start;
   position: absolute;
   top: 16px;
-  left: 34px;
+  left: 14px;
   gap: 8px;
 
   @media screen and (min-width: 768px) {
@@ -54,13 +83,14 @@ a {
   @media screen and (min-width: 768px) {
     //flex-wrap: nowrap;
     gap: 4px;
-    left: 48px;
+    left: 16px;
     align-items: center;
   }
 
   @include desktop {
     flex-wrap: nowrap;
-    left: 64px;
+    left: 32px;
+    gap: 8px;
   }
 }
 
@@ -91,7 +121,7 @@ a {
   border-radius: 100px;
 
   @include tablet {
-    height: 42px;
+    height: 38px;
     font-size: 14px;
   }
   @include desktop {
@@ -101,28 +131,32 @@ a {
 }
 
 .search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   right: 16px;
-  width: 16px;
-  height: 16px;
   border: 0;
   cursor: pointer;
-  background-color: var(--primary-text-color); //видалити потім
+  background-color: var(--buttons-header-bg-color); //видалити потім
 }
 
-// .icon-search {
+// .icon-film {
 //   fill: red;
 // }
+
 //кнопки Home та My library
 .navigation {
   margin-bottom: 8px;
 
   @include tablet {
     margin-bottom: 0;
+    margin-right: 50px;
   }
 
   @include desktop {
     margin-bottom: 0;
+    margin-right: 470px;
   }
 }
 
@@ -165,14 +199,14 @@ a {
 .header-logo {
   position: absolute;
   bottom: 20px;
-  left: 77px;
+  left: 57px;
   @include tablet {
     bottom: 16px;
-    left: 48px;
+    left: 16px;
   }
   @include desktop {
     bottom: 32px;
-    left: 64px;
+    left: 32px;
   }
 }
 
