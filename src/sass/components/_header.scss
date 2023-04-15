@@ -27,14 +27,19 @@ a {
       rgba(0, 0, 0, 0.4) 65.37%
     ),
     url(/src/images/header/header-bg-mob.jpg);
-  @include retina {
-    background-image: url(/src/images/header/header-bg-mob-2x.jpg);
-  }
+  // @include retina {
+  //   background-image: url(/src/images/header/header-bg-mob-2x.jpg);
+  // }
 
   @include tablet {
     height: 222px;
     width: 702px;
-    background-image: url(/src/images/header/header-tablet.jpg);
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header/header-tablet.jpg);
     // @include retina {
     //   background-image: url(/src/images/header/header-desktop-2x.jpg);
     // }
@@ -42,9 +47,19 @@ a {
   @include desktop {
     height: 316px;
     width: 1216px;
-    background-image: url(/src/images/header/header-desktop.jpg);
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header/header-desktop.jpg);
     @include retina {
-      background-image: url(/src/images/header/header-desktop-2x.jpg);
+      background-image: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.05)
+        ),
+        url(/src/images/header/header-desktop-2x.jpg);
     }
   }
 }
