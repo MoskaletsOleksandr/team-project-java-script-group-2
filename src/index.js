@@ -448,7 +448,45 @@ console.log(refs);
 //
 //
 //Мар'яна Собашевська
-//
+refs.addToWatchedBtn.addEventListener('click', handleMakeBtnAddWatched);
+function handleMakeBtnAddWatched() {
+
+  dataForModalMarkup
+    .then(
+      data => {
+        const getLocalStorage = localStorage.getItem('watched');
+        const parseLocalStorage = JSON.parse(getLocalStorage);
+        parseLocalStorage.push(data);
+       
+        localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
+
+        refs.addToWatchedBtn.textContent = 'Remove to watch';
+     }
+    )
+  .catch(err => {console.log(err);})
+
+}
+
+refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
+
+function handleMakeBtnAddQueue() {
+   dataForModalMarkup
+    .then(
+      data => {
+        const getLocalStorage = localStorage.getItem('queue');
+        const parseLocalStorage = JSON.parse(getLocalStorage);
+        parseLocalStorage.push(data);
+       
+        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
+
+        refs.addToQueueBtn.textContent = 'Remove to watch';
+        
+      }
+      )
+  .catch(err => {console.log(err);})
+
+}
+
 //
 //
 //
