@@ -354,12 +354,8 @@ function scrollUp() {
 // teamCloseModalBtn: document.querySelector('div[data-team-modal-close]'),
 // teamModal: document.querySelector('div[data-team-modal]'),
 
-// refs.teamOpenModalBtn.addEventListener('click', e => {});
+refs.teamOpenModalBtn.addEventListener('click', e => {});
 
-// refs.galleryContainerEl.addEventListener('click', handleMovieCard);
-
-// refs.modalCloseBtn.addEventListener('click', toggleModal);
-//
 //
 //
 //
@@ -1098,3 +1094,43 @@ function handleMovieCard(event) {
     .catch(error => console.log(error));
   checkLocalStorage();
 }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+refs.galleryContainerEl.addEventListener('click', handleMovieCard);
+
+refs.modalCloseBtn.addEventListener('click', toggleModal);
