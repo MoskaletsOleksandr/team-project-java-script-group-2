@@ -101,3 +101,34 @@ a {
 .navigation {
   margin-right: 450px;
 }
+
+// btn-theme
+.btn-theme {
+  position: absolute;
+  top: 16px;
+  left: 506px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--buttons-header-bg-color);
+  border: var(--buttons-header-bg-color);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--buttons-header-hover-bg-color);
+    border: 2px solid var(--buttons-header-hover-bg-color);
+  }
+}
+
+.btn-theme-icon {
+  fill: var(--buttons-header-text-color);
+  width: 40px;
+  height: 40px;
+
+  .btn-theme:hover & {
+    fill: var(--buttons-header-hover-text-color);
+  }
+}

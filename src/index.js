@@ -247,7 +247,7 @@ console.log(refs);
 //
 //Ігор
 //
-//
+// ------- btnUp -------
 
 refs.btnUpEl.addEventListener('click', scrollUp);
 
@@ -276,10 +276,39 @@ function scrollUp() {
   });
 }
 //
+//------- btnTheme -------
 //
-//
-//
-//
+const btnThemeEl = document.querySelector('.btn-theme');
+const btnThemeIconEl = document.querySelector('.btn-theme-icon use');
+const headerContainerEl = document.querySelector('.header-container');
+console.log(headerContainerEl);
+
+function setDarkTheme() {
+document.body.classList.add('dark');
+  btnThemeIconEl.setAttribute('href', '/svg-sprite.d9898e17.svg#icon-sun');
+  // headerContainerEl.style.backgroundImage = "url('/src/images/header/header-desktop-dark.jpg')";
+  headerContainerEl.classList.add("header-container-dark");
+    localStorage.theme = 'dark';
+}
+
+function setLightTheme() {
+document.body.classList.remove('dark');
+  btnThemeIconEl.setAttribute('href', '/svg-sprite.d9898e17.svg#icon-moon');
+  headerContainerEl.classList.remove("header-container-dark");
+    localStorage.theme = 'light';
+}
+
+btnThemeEl.addEventListener('click', () => {
+  if (document.body.classList.contains('dark')) {
+    setLightTheme();
+  } else {
+    setDarkTheme();
+  }
+})
+
+if (localStorage.theme === 'dark') {
+  setDarkTheme();
+}
 //
 //
 //
