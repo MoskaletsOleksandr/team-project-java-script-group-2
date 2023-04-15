@@ -1,7 +1,6 @@
 //імпортуємо бібліотеки та інші файли
 import { fetchTrendMoves } from './js/api';
 import { createTrendMovesMarkup } from './js/createMarkup';
-import { markupMovieModal } from './js/markupMovieModal';
 import { fetchDataById } from './js/fetch-data-by-id';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 //
@@ -28,6 +27,7 @@ const refs = {
   btnUpEl: document.querySelector('.btn-up'),
   backdropMovieModal: document.querySelector('.backdrop'),
   movieModalEl: document.querySelector('div[data-movie-modal]'),
+  movieModalFilmInfoEl: document.querySelector('.js-film-info'),
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
@@ -450,40 +450,40 @@ function scrollUp() {
 //
 //
 //Мар'яна Собашевська
-refs.addToWatchedBtn.addEventListener('click', handleMakeBtnAddWatched);
-function handleMakeBtnAddWatched() {
-  dataForModalMarkup
-    .then(data => {
-      const getLocalStorage = localStorage.getItem('watched');
-      const parseLocalStorage = JSON.parse(getLocalStorage);
-      parseLocalStorage.push(data);
+// refs.addToWatchedBtn.addEventListener('click', handleMakeBtnAddWatched);
+// function handleMakeBtnAddWatched() {
+//   dataForModalMarkup
+//     .then(data => {
+//       const getLocalStorage = localStorage.getItem('watched');
+//       const parseLocalStorage = JSON.parse(getLocalStorage);
+//       parseLocalStorage.push(data);
 
-      localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
+//       localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
-      refs.addToWatchedBtn.textContent = 'Remove from watch';
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
+//       refs.addToWatchedBtn.textContent = 'Remove from watch';
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// }
 
-refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
+// refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
 
-function handleMakeBtnAddQueue() {
-  dataForModalMarkup
-    .then(data => {
-      const getLocalStorage = localStorage.getItem('queue');
-      const parseLocalStorage = JSON.parse(getLocalStorage);
-      parseLocalStorage.push(data);
+// function handleMakeBtnAddQueue() {
+//   dataForModalMarkup
+//     .then(data => {
+//       const getLocalStorage = localStorage.getItem('queue');
+//       const parseLocalStorage = JSON.parse(getLocalStorage);
+//       parseLocalStorage.push(data);
 
-      localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
+//       localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
 
-      refs.addToQueueBtn.textContent = 'Remove from queue';
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
+//       refs.addToQueueBtn.textContent = 'Remove from queue';
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// }
 
 // записав твою перевірку в окрему фінкцію, яку запускаємо при натисканні на картку. Тільки тоді воно коректно малює
 //текст на кнопках. Але треба трохи допиляти логіку перевірок, бо коли я додам фільм до масиву, то все супер, функція переписує
@@ -1054,21 +1054,23 @@ function renderMarkup(array) {
 //
 //
 refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
-window.addEventListener("keydown", onCloseMovieModal);
+window.addEventListener('keydown', onCloseMovieModal);
+refs.galleryContainerEl.addEventListener('click', handleMovieCard);
+const BASE_IMG_URL = 'https://image.tmdb.org/t/p/original';
 
-function onCloseMovieModal(e){
+function onCloseMovieModal(e) {
   if (
     e.target.className === 'backdrop' ||
     e.target.classList[0] === 'modal__close' ||
-    e.target.classList[0] === "icon-close" ||
+    e.target.classList[0] === 'icon-close' ||
     e.target.classList[0] === 'svg-icon-close' ||
-    e.code === "Escape"
-    ) {
+    e.code === 'Escape'
+  ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
-    window.removeEventListener("keydown", onCloseMovieModal);
-  };
+    window.removeEventListener('keydown', onCloseMovieModal);
+  }
 }
 
 function modalOpener(event) {
@@ -1081,93 +1083,83 @@ function modalOpener(event) {
     return;
   } else if (event.target.nodeName === 'DIV') {
     movieIdForModalMarkup = event.target.dataset.id;
+    console.log(movieIdForModalMarkup);
     return;
   }
   movieIdForModalMarkup = event.target.parentElement.dataset.id;
+  console.log(movieIdForModalMarkup);
   return;
 }
-
-refs.galleryContainerEl.addEventListener('click', handleMovieCard);
 
 function handleMovieCard(event) {
   modalOpener(event); //ця функція перезаписує значення movieIdForModalMarkup
   dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
     .then(data => {
+      console.log(data);
       refs.backdropMovieModal.classList.remove('is-hidden');
       refs.movieModalEl.classList.remove('is-hidden');
-      // markupMovieModal(data)
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
-      window.addEventListener("keydown", onCloseMovieModal);
-      onCloseMovieModal(e)
+      window.addEventListener('keydown', onCloseMovieModal);
+      const {
+        poster_path,
+        title,
+        vote_average,
+        vote_count,
+        popularity,
+        original_title,
+        genres,
+        overview,
+      } = data;
+      return (refs.movieModalFilmInfoEl.innerHTML = `
+                   <div class="js-film-info__thumb">
+                     <img
+                       src="${BASE_IMG_URL}${poster_path}"
+                       alt="${title}"
+                       width="240"
+                       class="js-film-info__poster"
+                     />
+                  </div>
+                  <div class="js-film-info__content">
+                    <h2 class="js-film-info__name">${title}</h2>
+                    <table class="js-film-info__table-thumb">
+                      <tr class="js-film-info__item">
+                        <td class="js-film-info__title">Vote / Votes</td>
+                        <td>
+                          <span class="js-film-info__vote">${vote_average}</span>
+                          <span class="slash">/</span>
+                          <span class="js-film-info__votes">${vote_count}</span>
+                        </td>
+                      </tr>
+                      <tr class="js-film-info__item">
+                        <td class="js-film-info__title">Popularity</td>
+                        <td class="js-film-info__popularity">${popularity}</td>
+                      </tr>
+                      <tr class="js-film-info__item">
+                        <td class="js-film-info__title">Original Title</td>
+                        <td class="js-film-info__original-title">${original_title}</td>
+                      </tr>
+                      <tr class="js-film-info__item">
+                        <td class="js-film-info__title">Genre</td>
+                        <td class="js-film-info__genre">${genres}</td>
+                      </tr>
+                    </table>
+                    <h3 class="js-film-info__description-title">About</h3>
+                    <p class="js-film-info__description-text">${overview}
+                    </p>
+                    <div class="js-film-info__btns">
+                      <button
+                        type="button"
+                        class="js-film-info__btn active-btn"
+                        data-btn-to-watched
+                      >
+                        add to Watched
+                      </button>
+                      <button type="button" class="js-film-info__btn" data-btn-to-queue>
+                        add to queue
+                      </button>
+                    </div>
+                  </div>`);
     })
     .catch(error => console.log(error));
-
-  //тут запустити функцію, яка малює розмітку і в неї вкласти dataForModalMarkup
   checkLocalStorage();
-  console.log(dataForModalMarkup);
 }
-
-const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
-
-function markupMovieModal(data) {
-  const {backdrop_path, title, vote_average, vote_count, popularity, original_title, genres, overview} = data;
-  refs.backdropMovieModal.innerHTML = `<div class="backdrop">
-      <div class="modal" data-movie-modal>
-        <button type="button" class="modal__close" data-movie-modal-close>
-          <svg width="14" height="14" class="svg-icon-close">
-            <use href="/src/images/svg-sprite.svg#close" class="icon-close"></use>
-          </svg>
-        </button>
-        <div class="js-film-info">
-          <div class="js-film-info__thumb">
-            <img
-              src="${BASE_IMG_URL}${backdrop_path}"
-              alt="${title}"
-              width="240"
-              class="js-film-info__poster"
-            />
-          </div>
-          <div class="js-film-info__content">
-            <h2 class="js-film-info__name">${title}</h2>
-            <table class="js-film-info__table-thumb">
-              <tr class="js-film-info__item">
-                <td class="js-film-info__title">Vote / Votes</td>
-                <td>
-                  <span class="js-film-info__vote">${vote_average}</span>
-                  <span class="slash">/</span>
-                  <span class="js-film-info__votes">${vote_count}</span>
-                </td>
-              </tr>
-              <tr class="js-film-info__item">
-                <td class="js-film-info__title">Popularity</td>
-                <td class="js-film-info__popularity">${popularity}</td>
-              </tr>
-              <tr class="js-film-info__item">
-                <td class="js-film-info__title">Original Title</td>
-                <td class="js-film-info__original-title">${original_title}</td>
-              </tr>
-              <tr class="js-film-info__item">
-                <td class="js-film-info__title">Genre</td>
-                <td class="js-film-info__genre">${genres}</td>
-              </tr>
-            </table>
-            <h3 class="js-film-info__description-title">About</h3>
-            <p class="js-film-info__description-text">${overview}
-            </p>
-            <div class="js-film-info__btns">
-              <button
-                type="button"
-                class="js-film-info__btn active-btn"
-                data-btn-to-watched
-              >
-                add to Watched
-              </button>
-              <button type="button" class="js-film-info__btn" data-btn-to-queue>
-                add to queue
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>`;
-    }

@@ -24,7 +24,7 @@
 
 .modal {
   position: absolute;
-  top: 80px;
+  top: 100px;
   left: 50%;
   transform: translate(-50%) scale(1);
   opacity: 1;
@@ -43,7 +43,6 @@
   background-color: var(--buttons-modal-bg-color);
   
   @include tablet {
-    top: 250px;
     width: 704px;
     padding: 40px 72px 64px 36px;
   }
@@ -88,6 +87,7 @@
 }
 .js-film-info__thumb {
   margin-bottom: 20px;
+  object-fit: cover;
   @include tablet {
     margin-bottom: 0;
     width: 264px;
