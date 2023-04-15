@@ -56,7 +56,7 @@ a {
   align-items: flex-start;
   position: absolute;
   top: 16px;
-  left: 34px;
+  left: 14px;
   gap: 8px;
 
   @media screen and (min-width: 768px) {
@@ -68,13 +68,13 @@ a {
   @media screen and (min-width: 768px) {
     //flex-wrap: nowrap;
     gap: 4px;
-    left: 48px;
+    left: 16px;
     align-items: center;
   }
 
   @include desktop {
     flex-wrap: nowrap;
-    left: 64px;
+    left: 32px;
     gap: 8px;
   }
 }
@@ -184,14 +184,14 @@ a {
 .header-logo {
   position: absolute;
   bottom: 20px;
-  left: 77px;
+  left: 57px;
   @include tablet {
     bottom: 16px;
-    left: 48px;
+    left: 16px;
   }
   @include desktop {
     bottom: 32px;
-    left: 64px;
+    left: 32px;
   }
 }
 
