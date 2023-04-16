@@ -249,7 +249,7 @@ let dataForModalMarkup = null; //Об'єкт із повною інформац�
 //
 //Ігор
 //
-//
+// ------- btnUp -------
 
 refs.btnUpEl.addEventListener('click', scrollUp);
 
@@ -278,40 +278,42 @@ function scrollUp() {
   });
 }
 //
+//------- btnTheme -------
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+const btnThemeEl = document.querySelector('.btn-theme');
+const headerContainerEl = document.querySelector('.header-container');
+const btnIconMoonEl = document.querySelector('.btn-icon-moon');
+const btnIconSunEl = document.querySelector('.btn-icon-sun');
+
+function setDarkTheme() {
+  document.body.classList.add('dark');
+
+  btnIconSunEl.classList.remove('btn-icon-hidden');
+  btnIconMoonEl.classList.add('btn-icon-hidden');
+  headerContainerEl.classList.add('header-container-dark');
+  localStorage.theme = 'dark';
+}
+
+function setLightTheme() {
+  document.body.classList.remove('dark');
+
+  btnIconMoonEl.classList.remove('btn-icon-hidden');
+  btnIconSunEl.classList.add('btn-icon-hidden');
+  headerContainerEl.classList.remove('header-container-dark');
+  localStorage.theme = 'light';
+}
+
+btnThemeEl.addEventListener('click', () => {
+  if (document.body.classList.contains('dark')) {
+    setLightTheme();
+  } else {
+    setDarkTheme();
+  }
+});
+
+if (localStorage.theme === 'dark') {
+  setDarkTheme();
+}
 //
 //
 //
