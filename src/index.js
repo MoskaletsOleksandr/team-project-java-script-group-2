@@ -50,29 +50,29 @@ let dataForModalMarkup = null; //Об'єкт із повною інформац�
 //
 //Аліна присяжнюк
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+const headerEl = document.querySelector('.header');
+const headerContainer = document.querySelector('.header-container');
+const logoHeader = document.querySelector('.header-logo');
+const logoTextHeader = document.querySelector('.header-text-logo');
+const iconFilmHeader = document.querySelector('.icon-film');
+//const searchBox = document.querySelector('.search');
+let positionHeader = headerEl.offsetTop;
+function onScrollHeader() {
+  if (window.pageYOffset > positionHeader) {
+    headerEl.classList.add('fixed');
+    headerContainer.classList.add('fixed-header');
+    logoHeader.classList.add('fixed-logo');
+    logoTextHeader.classList.add('text-logo-fixed');
+    iconFilmHeader.classList.add('icon-film-fixed');
+    //searchBox.classList.add('fixed-search');
+  } else {
+    headerEl.classList.remove('fixed');
+    headerContainer.classList.remove('fixed-header');
+    logoHeader.classList.remove('fixed-logo');
+  }
+}
+
+window.addEventListener('scroll', onScrollHeader);
 //
 //
 //
