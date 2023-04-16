@@ -1,8 +1,6 @@
 import { fetchTrailer } from './api';
 
-let videoKeysArray = [];
-
-// const array111 = ['q', 'w', 'e', 'r', 't'];
+const videoKeysArray = [];
 
 let BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
 const GENRES = [
@@ -28,15 +26,13 @@ const GENRES = [
 ];
 
 function searchVideoKeyById(id, array) {
-  //   console.log(id);
-  console.log(array);
-
-  //   array.forEach(item => {
-  //     console.log(item);
-  //   });
-  //   for (const item of array) {
-  // console.log(111);
-  //   }
+  let videoKey = '';
+  array.forEach(item => {
+    if (item.id === id) {
+      videoKey = item.key;
+    }
+  });
+  return videoKey;
 }
 
 function createGenresArray(array) {
@@ -80,35 +76,12 @@ export function createTrendMovesMarkup({ results }) {
         genresArray = 'Unknown genres';
       }
 
-      fetchTrailer(id)
-        .then(data => {
-          const videoKeys = {};
-          videoKeys.id = id;
-          videoKeys.key = data.results[0].key;
-
-          //   console.log(videoKeys.id);
-          //   if (!data.results[0].key) {
-          //     videoKeys.key = '';
-          //   } else {
-          //     videoKeys.key = data.results[0].key;
-          //   }
-          //   console.log(data.results[0].key);
-          // data.results[0].key;
-          videoKeysArray.push(videoKeys);
-          //   console.log(videoKeysArray);
-          //   console.log(videoKeysArray);
-        })
-        .catch(error => console.log(error));
-
-      searchVideoKeyById(id, videoKeysArray);
-
-      // <button class="trailer-button tube" onclick=document.location="https://www.youtube.com/watch?v=23XQsJMYG84" type="button">Trailer</button>
+      const videoKey = searchVideoKeyById(id, videoKeysArray);
       return `<li class="gallery-item">
                     <div class="gallery-container-img" data-id='${id}'>
                     <div class="gallery-card" data-id='${id}'>
                         <img class="gallery-img" src="${BASE_IMG_URL}${poster_path}" alt="${title}">
-                      
-                        <a class="tube" href="https://www.youtube.com/watch?v=y_0CaX66H9M">Trailer</a>
+                        <a class="trailer-link tube" href="https://www.youtube.com/watch?v=${videoKey}">Trailer</a>
                         </div>
                         <div class="gallery-film" data-id='${id}'>
                         <h3 class="film-title">${title}
@@ -123,17 +96,15 @@ export function createTrendMovesMarkup({ results }) {
     .join('');
 }
 
-// const ttt = fetchTrailer(id)
-//   .then(data => {
-//     //   console.log(data.results[0].key);
-//     data.results[0].key;
-//     let wer = 1;
-//     function createMarkupTrailer(id) {
-//       return results
-//         .map(id => {
-//           return `<a class="tube" href="https://www.youtube.com/watch?v=23XQsJMYG84${data.results[0].key}">Trailer</a>`;
-//         })
-//         .join('');
-//     }
-//   })
-//   .catch(error => console.log(error));
+export function createTrailerIdAndKeysArray({ results }) {
+  for (const item of results) {
+    fetchTrailer(item.id)
+      .then(data => {
+        const videoKeys = {};
+        videoKeys.id = item.id;
+        videoKeys.key = data.results[0].key;
+        videoKeysArray.push(videoKeys);
+      })
+      .catch(error => console.log(error));
+  }
+}

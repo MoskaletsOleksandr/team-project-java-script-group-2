@@ -1,11 +1,9 @@
 //імпортуємо бібліотеки та інші файли
+import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
 import {
-  fetchTrendMoves,
-  fetchDataById,
-  fetchMovesByKeyword,
-  fetchTrailer,
-} from './js/api';
-import { createTrendMovesMarkup } from './js/createMarkup';
+  createTrendMovesMarkup,
+  createTrailerIdAndKeysArray,
+} from './js/createMarkup';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 import { createMoveModalMarkup } from './js/create-modal-markup';
 //
@@ -35,7 +33,7 @@ const refs = {
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
-  // addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+  addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
@@ -254,7 +252,7 @@ window.addEventListener('scroll', onScrollHeader);
 //
 //Ігор
 //
-// ------- btnUp -------
+//
 
 refs.btnUpEl.addEventListener('click', scrollUp);
 
@@ -283,42 +281,40 @@ function scrollUp() {
   });
 }
 //
-//------- btnTheme -------
 //
-const btnThemeEl = document.querySelector('.btn-theme');
-const headerContainerEl = document.querySelector('.header-container');
-const btnIconMoonEl = document.querySelector('.btn-icon-moon');
-const btnIconSunEl = document.querySelector('.btn-icon-sun');
-
-function setDarkTheme() {
-  document.body.classList.add('dark');
-
-  btnIconSunEl.classList.remove('btn-icon-hidden');
-  btnIconMoonEl.classList.add('btn-icon-hidden');
-  headerContainerEl.classList.add('header-container-dark');
-  localStorage.theme = 'dark';
-}
-
-function setLightTheme() {
-  document.body.classList.remove('dark');
-
-  btnIconMoonEl.classList.remove('btn-icon-hidden');
-  btnIconSunEl.classList.add('btn-icon-hidden');
-  headerContainerEl.classList.remove('header-container-dark');
-  localStorage.theme = 'light';
-}
-
-btnThemeEl.addEventListener('click', () => {
-  if (document.body.classList.contains('dark')) {
-    setLightTheme();
-  } else {
-    setDarkTheme();
-  }
-});
-
-if (localStorage.theme === 'dark') {
-  setDarkTheme();
-}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -463,7 +459,7 @@ document.addEventListener('keydown', function (event) {
 //Мар'яна Собашевська
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched);
 function handleMakeBtnAddRemoveWatched(event) {
-  if (event.target.dataset.watchedBtn === 'add-to-watched') {
+  if (event.target.dataset.btn === 'add-to-watched') {
     console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
@@ -474,12 +470,12 @@ function handleMakeBtnAddRemoveWatched(event) {
         localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
         event.target.textContent = 'Remove from watched';
-        event.target.dataset.watchedBtn = 'remove-from-watched';
+        event.target.dataset.btn = 'remove-from-watched';
       })
       .catch(err => {
         console.log(err);
       });
-  } else if (event.target.dataset.watchedBtn === 'remove-from-watched') {
+  } else if (event.target.dataset.btn === 'remove-from-watched') {
     console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
@@ -490,7 +486,7 @@ function handleMakeBtnAddRemoveWatched(event) {
         localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
         event.target.textContent = 'Add to watched';
-        event.target.dataset.watchedBtn = 'add-to-watched';
+        event.target.dataset.btn = 'add-to-watched';
       })
       .catch(err => {
         console.log(err);
@@ -499,43 +495,22 @@ function handleMakeBtnAddRemoveWatched(event) {
   return;
 }
 
-refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
+// refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
 
-function handleMakeBtnAddRemoveQueue(event) {
-  if (event.target.dataset.queueBtn === 'add-to-queue') {
-    console.log(event.target.dataset);
-    dataForModalMarkup
-      .then(data => {
-        const getLocalStorage = localStorage.getItem('queue');
-        const parseLocalStorage = JSON.parse(getLocalStorage);
-        parseLocalStorage.push(data);
+function handleMakeBtnAddQueue() {
+  dataForModalMarkup
+    .then(data => {
+      const getLocalStorage = localStorage.getItem('queue');
+      const parseLocalStorage = JSON.parse(getLocalStorage);
+      parseLocalStorage.push(data);
 
-        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
+      localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
 
-        event.target.textContent = 'Remove from queue';
-        event.target.dataset.queueBtn = 'remove-from-queue';
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  } else if (event.target.dataset.queueBtn === 'remove-from-queue') {
-    console.log(event.target.dataset);
-    dataForModalMarkup
-      .then(data => {
-        const getLocalStorage = localStorage.getItem('queue');
-        const parseLocalStorage = JSON.parse(getLocalStorage);
-        parseLocalStorage.push(data);
-
-        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
-
-        event.target.textContent = 'Add to queue';
-        event.target.dataset.queueBtn = 'add-to-queue';
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-  return;
+      refs.addToQueueBtn.textContent = 'Remove from queue';
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
 
 function checkLocalStorage() {
@@ -672,9 +647,6 @@ function checkLocalStorage() {
 //
 //
 //
-//
-//
-//
 //Денис
 function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
@@ -683,19 +655,10 @@ function renderMarkup(array) {
 }
 fetchTrendMoves()
   .then(data => {
-    // console.log(data);
-    renderMarkup(data);
-
-    // const trailerButton = document.querySelector(
-    //   '[data-button-id=`${data.id}`]'
-    // );
-    // console.log(trailerButton);
-
-    //   fetchTrailer(948713)
-    //     .then(data => {
-    //       console.log(data);
-    //     })
-    //     .catch(error => console.log(error));
+    createTrailerIdAndKeysArray(data);
+    setTimeout(() => {
+      renderMarkup(data);
+    }, 100);
   })
   .catch(error => console.log(error));
 
@@ -714,7 +677,10 @@ function handleClickSearchButton(e) {
         alert('Please try again');
         return;
       }
-      renderMarkup(data);
+      createTrailerIdAndKeysArray(data);
+      setTimeout(() => {
+        renderMarkup(data);
+      }, 100);
       scrollUp();
     })
     .catch(error => console.log(error));
