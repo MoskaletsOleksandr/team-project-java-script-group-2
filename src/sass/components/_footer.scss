@@ -24,9 +24,54 @@ font-family: 'Roboto';
   text-align: center;
   
   color: var(--footer-text-color);
+  position: relative;
+  transition: color 1s ease-in-out;
+  &:hover,
+  &:focus,
+  &:focus-within {
+    font-weight: 800;
+    color: #2b3abe;
+  }
+  
 }
 
 
+.team-btn::after {
+  content: ""; /* Додавання вмісту до псевдоелемента */
+  position: absolute; /* Встановлення позиції absolute для відносного розташування псевдоелемента відносно батьківського елемента */
+  bottom: -1px; /* Відступ вниз від тексту для розташування під лінією */
+  left: 0; /* Встановлення початкового положення зліва */
+  width: 100%; /* Задання ширини лінії відповідно до ширини тексту */
+  height: 2px; /* Задання висоти лінії */
+  background-color: #2b3abe; /* Колір фону лінії */
+  opacity: 0.5; /* Початкова прозорість лінії */
+  animation-name: animateLine; /* Встановлення назви анімації */
+  animation-duration: 1s; /* Тривалість анімації */
+  animation-timing-function: ease-in-out; /* Функція розподілу часу анімації */
+  animation-direction: alternate; /* Напрямок анімації (по черзі в обидва боки) */
+  animation-iteration-count: infinite; 
+  transition: opacity 1s ease-in-out;/* Кількість повторень анімації (безкінечність) */
+  &:focus,
+  &:hover,
+  &:focus-within {
+    opacity: 1;
+  }
+}
+.team-btn:hover::after {
+  opacity: 0; /* Зміна прозорості лінії при ховері (зникає) */
+}
+
+@keyframes animateLine {
+  0% {
+    transform: scaleX(1); /* Початковий розмір лінії (1 - оригінальний розмір) */
+  }
+  50% {
+    transform: scaleX(1.1); /* Розмір лінії під час анімації (збільшення до 1.2) */
+  }
+  100% {
+    transform: scaleX(1); /* Завершальний розмір лінії (повернення до початкового розміру) */
+  }
+}
 .footer {
   display: flex;
   align-items: center;
