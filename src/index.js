@@ -449,81 +449,93 @@ function scrollUp() {
 //
 //Мар'яна Собашевська
 
+// функція додає обєкт до сховища
+function saveLocalStorage(key, value) {
+  try {localStorage.setItem(key, JSON.stringify(value));}
+  catch {console.log(error);}
+}
+// функція повертає інформацію про обєкт із сховища
+function loadLocalStorage(key) {
+  try {const get = localStorage.getItem(key);
+    return parse = JSON.parse(get);}
+  catch {console.log(error);}
+}
+// оголошую змінні для ключів до сховища
+const keyWatched = 'watched'; 
+const keyQueue = 'queue';
+
+// функція викликаться при завантаженні модалки
 function checkLocalStorage() {
-  if (!localStorage.watched && !localStorage.queue) {
-    let localStorageArray = [];
-    localStorage.setItem('watched', JSON.stringify(localStorageArray));
-    localStorage.setItem('queue', JSON.stringify(localStorageArray));
-    refs.addToWatchedBtn.textContent = 'Add to watch';
-    refs.addToQueueBtn.textContent = 'Add to Queue';
-  } else {
-    const getLocalStorageWatched = localStorage.getItem('watched');
-    const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
-    
-    if (parseLocalStorageWatched.some(el => el.id === Number(movieIdForModalMarkup))){
-      refs.addToWatchedBtn.textContent = 'hello';
-    } else {refs.addToQueueBtn.textContent = 'Add to watch';}
+  const objectArray = [];   // огошую прожній масив
+  dataForModalMarkup.then((data) => {     
+    if (localStorage.length === 0) {          // якщо сховище порожнє, добавляю порожний масив по двом ключам
+      saveLocalStorage(keyWatched, objectArray);
+      saveLocalStorage(keyQueue, objectArray);
+     
+    } else {                                    //якщо масив не порожний, шукаю, чи даний обєкт є сховищі
+       const watchedArray = loadLocalStorage(keyWatched);                   // для watched
+      if (watchedArray.some(el => Number(el.id) === Number(data.id))) {    //тут потрібно задати кнопці textContent = remove
+          divBtnEl.children[0].textContent = 'remove from Watched';        // але не можу перезаписати значення
+      }
+       
+      // const queueArray = loadLocalStorage(keyQueue);
+      // if (queueArray.some(el => Number(el.id) === Number(data.id))) {      // тут для queue
+      //   divBtnEl.children[1].textContent = 'remove from Queue';
+      // }
   } 
+  })
+  .catch(err=>console.log(err))
+}
+  
 
-    // const getLocalStorageQueue = localStorage.getItem('queue');
-    // const parseLocalStorageQueue = JSON.parse(getLocalStorageQueue);
+refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched); // клік по кнопці watched
 
-    // parseLocalStorageQueue.map(el => {
-    //   const { id } = el;
-    //   if (id === Number(movieIdForModalMarkup)) {
-    //     refs.addToQueueBtn.textContent = 'Add to Queue';
-    //   } else {
-    //     refs.addToQueueBtn.textContent = 'Remove from Queue';
-    //   }
-    // });
-  }
-refs.addToWatchedBtn.addEventListener('click', handleMakeBtnAddWatched);
-function handleMakeBtnAddWatched() {
+function handleMakeBtnAddRemoveWatched(event) {                                 // функція обробника події кліку
   dataForModalMarkup
-    .then(data => {
-      const getLocalStorage = localStorage.getItem('watched');
-      const parseLocalStorage = JSON.parse(getLocalStorage);
-      parseLocalStorage.push(data);
-
-      localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
-
-      refs.addToWatchedBtn.textContent = 'hello my dear';
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    .then((data) => {
+      console.log(data);
+      if (event.target.textContent.trim() === "add to Watched") {                //якщо надпис на кнопці add то додаємо обєкт до сховища 
+        const watchedArray = loadLocalStorage(keyWatched);                       // з ключем watched   
+        watchedArray.push(data);
+        saveLocalStorage(keyWatched, watchedArray);
+        event.target.textContent = "remove from Watched"; 
+      }
+      else if (event.target.textContent.trim() === "remove from Watched") {       //якщо надпис remove то видаляє обєкт зі сховища 
+        const watchedArray = loadLocalStorage(keyWatched);
+        const index = watchedArray.findIndex(el => Number(el.id) === Number(data.id));
+        watchedArray.splice(index, 1);
+        localStorage.removeItem(keyWatched);
+        saveLocalStorage(keyWatched, watchedArray);
+        event.target.textContent = "add to Watched";
+      }
+    }
+     
+    )   
 }
 
-refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
-
-function handleMakeBtnAddQueue() {
-  dataForModalMarkup
-    .then(data => {
-      const getLocalStorage = localStorage.getItem('queue');
-      const parseLocalStorage = JSON.parse(getLocalStorage);
-      parseLocalStorage.push(data);
-
-      localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
-
-      refs.addToQueueBtn.textContent = 'Remove from queue';
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
-// записав твою перевірку в окрему фінкцію, яку запускаємо при натисканні на картку. Тільки тоді воно коректно малює
-//текст на кнопках. Але треба трохи допиляти логіку перевірок, бо коли я додам фільм до масиву, то все супер, функція переписує
-// текст із Add to watch на Remove from watch, а Add to Queue не чіпає. Але якщо відкрити ту ж картку, то перевірка коректно
-//замінить текст із Add to watch на Remove from watch, але і наступна перевірка:
-// if (id === Number(movieIdForModalMarkup)) {
-//   refs.addToQueueBtn.textContent = 'Add to Queue';
-// } else {
-//   refs.addToQueueBtn.textContent = 'Remove from Queue';
+// refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);          // зробила аналогічну функцію для кнопки queue
+// function handleMakeBtnAddRemoveQueue(event) {                                      // але не можу зрозуміти як добавити слухача на неї
+//   dataForModalMarkup
+//     .then((data) => {
+    
+//         if (event.target.textContent.trim() === "add to Watched") {
+//         const queuedArray = loadLocalStorage(keyQueue);
+//         queuedArray.push(data);
+//         saveLocalStorage(keyQueue, queuedArray);
+//         event.target.textContent = "remove from Queue"; 
+//         } else if (event.target.textContent.trim() === "remove from Queue") {
+//         const queuedArray = loadLocalStorage(keyQueue);
+//         const index = queuedArray.findIndex(el => Number(el.id) === Number(data.id));
+//         queuedArray.splice(index, 1);
+//         localStorage.removeItem(keyQueue);
+//         saveLocalStorage(keyWatched, queuedArray);
+//         event.target.textContent = "add to Watched";
+//     }
+//     }
+     
+//     )
+     
 // }
-//  спрацьовує і переписує Add to Queue на Remove from Queue (коли в чергу ми не додавали).
-// Треба якось більш специфічно перевіряти, виходить. Щось я вже й сам заплутався((((((
-
 //
 //
 //
