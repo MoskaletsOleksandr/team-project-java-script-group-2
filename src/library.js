@@ -862,7 +862,6 @@ let watchedFilms = [];
 let queueFilms = [];
 
 function handleWatchedBtn() {
-  // evt.preventDefault();
 
   nothingContainer.style.display = 'none';
 
@@ -873,12 +872,11 @@ function handleWatchedBtn() {
     nothingContainer.style.display = 'block';
     return;
   }
-
-  createTrendMovesMarkup(watchedFilms);
+clg
+  createTrendMovesMarkup({ ...watchedFilms });
 }
 
 function handleQueueBtn() {
-  // evt.preventDefault();
 
   queueFilms = JSON.parse(localStorage.getItem('queue')) || [];
 
