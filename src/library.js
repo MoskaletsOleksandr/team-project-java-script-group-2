@@ -27,7 +27,7 @@ const refs = {
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
-  removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'),  // <--- цієї кнопки більше немає в розмітці
+  removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'), // <--- цієї кнопки більше немає в розмітці
   removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'), // <--- цієї кнопки більше немає в розмітці
   btnUpEl: document.querySelector('.btn-up'),
 };
@@ -850,7 +850,7 @@ function scrollUp() {
 //
 //
 //Ірина
-import { createTrendMovesMarkup } from "./js/createMarkup";
+import { createTrendMovesMarkup } from './js/createMarkup';
 
 const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
@@ -863,39 +863,49 @@ let watchedFilms = [];
 let queueFilms = [];
 
 function handleWatchedBtn() {
+  // evt.preventDefault();
+
   watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
 
+  const nothingContainer = document.querySelector('.library-container');
+  nothingContainer.style.display = 'none';
+
   if (watchedFilms.length <= 0) {
-    galleryContainerEl.innerHTML = `<div class="gallery-container">
-        <h2 class="nothing-text"> OOPS, THERE IS NOTHING ON THIS PAGE </h2>
-    <picture class="nothing-img">
-        <source srcset="/src/images/film-162029_1280-2.png 2x" media="(min-width: 1200px)" />
-        <img src="/src/images/film-162029_640-2.png" alt="nothing" width="680" />
-    </picture>
-        </div>`;
+    // galleryContainerEl.innerHTML = `<div class="gallery-container">
+    //     <h2 class="nothing-text"> OOPS, THERE IS NOTHING ON THIS PAGE </h2>
+    // <picture class="nothing-img">
+    //     <source srcset="/src/images/film-162029_1280-2.png 2x" media="(min-width: 1200px)" />
+    //     <img src="/src/images/film-162029_640-2.png" alt="nothing" width="680" />
+    // </picture>
+    //     </div>`;
     return;
   }
   createTrendMovesMarkup(watchedFilms);
 }
 
 function handleQueueBtn() {
+  // evt.preventDefault();
+
   queueFilms = JSON.parse(localStorage.getItem('queue')) || [];
 
+  const nothingContainer = document.querySelector('.library-container');
+  nothingContainer.style.display = 'none';
+
   if (queueFilms.length <= 0) {
-    galleryContainerEl.innerHTML = `<div class="gallery-container">
-        <h2 class="nothing-text"> OOPS, THERE IS NOTHING ON THIS PAGE </h2>
-    <picture class="nothing-img">
-        <source srcset="/src/images/film-162029_1280-2.png 2x" media="(min-width: 1200px)" />
-        <img src="/src/images/film-162029_640-2.png" alt="nothing" width="680" />
-    </picture>
-        </div>`;
+    // galleryContainerEl.innerHTML = `<div class="gallery-container">
+    //     <h2 class="nothing-text"> OOPS, THERE IS NOTHING ON THIS PAGE </h2>
+    // <picture class="nothing-img">
+    //     <source srcset="./src/images/film-162029_1280-2.png 2x" media="(min-width: 1200px)" />
+    //     <img src="./src/images/film-162029_640-2.png" alt="nothing" width="680" />
+    // </picture>
+    //     </div>`;
+    nothingContainer.style.display = 'block';
     return;
   }
   createTrendMovesMarkup(queueFilms);
 }
 
 handleWatchedBtn();
-
 
 //
 //
