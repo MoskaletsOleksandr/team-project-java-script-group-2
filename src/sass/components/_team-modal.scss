@@ -24,6 +24,31 @@
   }
 }
 
+.team-list-photo {
+  width: 250px;
+}
+
+.modal-team {
+  width: 80%;
+  // max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.team-list {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
 // // .backdrop-team {
 // //   display: none;
 // // }
@@ -108,13 +133,13 @@
 // //   z-index: 99;
 // // }
 
-// // /* Стилі для кнопки закриття модалки */
-// // .modal-close {
-// //   position: absolute;
-// //   top: 10px;
-// //   right: 10px;
-// //   cursor: pointer;
-// // }
+
+// .modal-close {
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+//   cursor: pointer;
+// }
 
 // // /* Стилі для вмісту модалки */
 // // .team-item {
@@ -151,23 +176,21 @@
 // //   margin: 0;
 // // }
 
-// .github-link,
-// .linkedin-link {
-//   /* Ваші стилі для посилань на GitHub та LinkedIn команди */
-//   /* Наприклад: */
-//   display: inline-block;
-//   margin-top: 5px;
-//   color: #000;
-// }
+.github-link,
+.linkedin-link {
 
-// .github-link svg,
-// .linkedin-link svg {
-//   /* Ваші стилі для іконок GitHub та LinkedIn команди */
-//   /* Наприклад: */
-//   width: 20px;
-//   height: 20px;
-//   margin-right: 5px;
-// }
+  display: inline-block;
+  margin-top: 5px;
+  color: #000;
+}
+
+.github-link svg,
+.linkedin-link svg {
+ 
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
 
 
 // // /* Стилі для кнопки відкриття модалки */
