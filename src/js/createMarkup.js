@@ -1,4 +1,4 @@
-const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
+let BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
 const GENRES = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },
@@ -45,8 +45,22 @@ function cutGenresArray(array) {
 export function createTrendMovesMarkup({ results }) {
   return results
     .map(({ poster_path, genre_ids, release_date, title, id }) => {
+      BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
+      if (poster_path === null) {
+        BASE_IMG_URL = '';
+        poster_path =
+          'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg?w=1480';
+      }
+
+      if (release_date === '') {
+        release_date = 'None';
+      }
       let genresArray = createGenresArray(genre_ids);
       genresArray = cutGenresArray(genresArray);
+
+      if (genresArray.length === 0) {
+        genresArray = 'Unknown genres';
+      }
 
       return `<li class="gallery-item">
                     <div class="gallery-container-img" data-id='${id}'>
