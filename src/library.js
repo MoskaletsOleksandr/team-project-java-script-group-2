@@ -864,6 +864,8 @@ let queueFilms = [];
 function handleWatchedBtn() {
   // evt.preventDefault();
 
+  nothingContainer.style.display = 'none';
+
   watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
   console.log(watchedFilms);
 
@@ -880,7 +882,7 @@ function handleQueueBtn() {
 
   queueFilms = JSON.parse(localStorage.getItem('queue')) || [];
 
-  // nothingContainer.style.display = 'none';
+  nothingContainer.style.display = 'none';
 
   if (queueFilms.length <= 0) {
     nothingContainer.style.display = 'block';
