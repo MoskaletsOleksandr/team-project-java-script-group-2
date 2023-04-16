@@ -855,6 +855,7 @@ import { createTrendMovesMarkup } from './js/createMarkup';
 const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
 const galleryContainerEl = document.querySelector('.library-container');
+const nothingContainer = document.querySelector('.library-container');
 
 watchedBtn.addEventListener('click', handleWatchedBtn);
 queueBtn.addEventListener('click', handleQueueBtn);
@@ -867,7 +868,7 @@ function handleWatchedBtn() {
 
   watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
 
-  const nothingContainer = document.querySelector('.library-container');
+  
   nothingContainer.style.display = 'none';
 
   if (watchedFilms.length <= 0) {
@@ -878,6 +879,7 @@ function handleWatchedBtn() {
     //     <img src="/src/images/film-162029_640-2.png" alt="nothing" width="680" />
     // </picture>
     //     </div>`;
+ nothingContainer.style.display = 'block';
     return;
   }
   createTrendMovesMarkup(watchedFilms);
