@@ -24,9 +24,14 @@ const refs = {
   galleryListEl: document.querySelector('.gallery-list'),
   aboutTeamBtn: document.querySelector('.about-team'),
   btnUpEl: document.querySelector('.btn-up'),
+  bodyEl: document.querySelector('body'),
   backdropMovieModal: document.querySelector('.backdrop'),
   movieModalEl: document.querySelector('div[data-movie-modal]'),
+<<<<<<< Updated upstream
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
+=======
+  movieModalWrapEl: document.querySelector('.wrap'),
+>>>>>>> Stashed changes
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
@@ -1058,13 +1063,14 @@ refs.galleryContainerEl.addEventListener('click', handleMovieCard);
 function onCloseMovieModal(e) {
   if (
     e.target.className === 'backdrop' ||
-    e.target.classList[0] === 'modal__close' ||
+    e.target.classList[0] === 'modal__close-btn' ||
     e.target.classList[0] === 'icon-close' ||
     e.target.classList[0] === 'svg-icon-close' ||
     e.code === 'Escape'
   ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
+    refs.bodyEl.style.overflow = "scroll";
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
   }
@@ -1095,9 +1101,10 @@ function handleMovieCard(event) {
       refs.movieModalEl.classList.remove('is-hidden');
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
       window.addEventListener('keydown', onCloseMovieModal);
-
+      
       const markup = createMoveModalMarkup(data);
-      refs.movieModalFilmInfoEl.innerHTML = markup;
+      refs.movieModalWrapEl.innerHTML = markup;
+      refs.bodyEl.style.overflow = "hidden";
       return data;
     })
     .catch(error => console.log(error));
