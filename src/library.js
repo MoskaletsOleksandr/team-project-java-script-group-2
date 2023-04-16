@@ -870,6 +870,7 @@ function handleWatchedBtn() {
 
   if (watchedFilms.length <= 0) {
     nothingContainer.style.display = 'block';
+    galleryContainerEl.innerHTML = "";
     return;
   }
 
@@ -885,6 +886,7 @@ function handleQueueBtn() {
 
   if (queueFilms.length <= 0) {
     nothingContainer.style.display = 'block';
+     galleryContainerEl.innerHTML = "";
     return;
   }
   const markup = createLibraryMarkup(queueFilms);
