@@ -1,5 +1,10 @@
 //імпортуємо бібліотеки та інші файли
-import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
+import {
+  fetchTrendMoves,
+  fetchDataById,
+  fetchMovesByKeyword,
+  fetchTrailer,
+} from './js/api';
 import { createTrendMovesMarkup } from './js/createMarkup';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 import { createMoveModalMarkup } from './js/create-modal-markup';
@@ -678,7 +683,19 @@ function renderMarkup(array) {
 }
 fetchTrendMoves()
   .then(data => {
+    // console.log(data);
     renderMarkup(data);
+
+    // const trailerButton = document.querySelector(
+    //   '[data-button-id=`${data.id}`]'
+    // );
+    // console.log(trailerButton);
+
+    //   fetchTrailer(948713)
+    //     .then(data => {
+    //       console.log(data);
+    //     })
+    //     .catch(error => console.log(error));
   })
   .catch(error => console.log(error));
 
@@ -693,7 +710,6 @@ function handleClickSearchButton(e) {
   }
   fetchMovesByKeyword(inputData.trim())
     .then(data => {
-      console.log(data);
       if (data.results.length === 0) {
         alert('Please try again');
         return;

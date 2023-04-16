@@ -27,3 +27,12 @@ export async function fetchMovesByKeyword(keyword) {
   }
   return await response.json();
 }
+
+export async function fetchTrailer(id) {
+  const trailerUrl = `${BASE_URL}movie/${id}/videos?api_key=${API_KEY}`;
+  const response = await fetch(trailerUrl);
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return await response.json();
+}
