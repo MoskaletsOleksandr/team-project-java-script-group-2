@@ -73,7 +73,7 @@ export function createTrendMovesMarkup({ results }) {
       genresArray = cutGenresArray(genresArray);
 
       if (genresArray.length === 0) {
-        genresArray = 'Unknown genres';
+        genresArray = 'Other';
       }
 
       const videoKey = searchVideoKeyById(id, videoKeysArray);

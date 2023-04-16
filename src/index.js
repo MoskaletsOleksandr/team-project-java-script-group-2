@@ -6,7 +6,8 @@ import {
 } from './js/createMarkup';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 import { createMoveModalMarkup } from './js/create-modal-markup';
-//
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 //
 //
 //
@@ -646,7 +647,6 @@ function checkLocalStorage() {
 //
 //
 //
-//
 //Денис
 function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
@@ -668,13 +668,13 @@ function handleClickSearchButton(e) {
   e.preventDefault();
   const inputData = refs.searchInputEl.value;
   if (inputData === '') {
-    alert('Please try again');
+    Notify.failure('Input is empty');
     return;
   }
   fetchMovesByKeyword(inputData.trim())
     .then(data => {
       if (data.results.length === 0) {
-        alert('Please try again');
+        Notify.failure('No results for your search');
         return;
       }
       createTrailerIdAndKeysArray(data);
