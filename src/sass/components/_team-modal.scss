@@ -25,15 +25,25 @@
 }
 
 .team-list-photo {
-  width: 250px;
+  width: 140px;
+}
+
+.team-list-social {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+margin-left: auto;
+margin-right: auto;
 }
 
 .modal-team {
-  width: 80%;
+  width: 90%;
   // max-width: 800px;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .modal-close {
@@ -45,8 +55,71 @@
 
 .team-list {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.team-list-info {
+  align-items: center;
+  text-align: center;
+}
+.team-item {
+
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.team-list-item {
+  border: black;
+  
+  padding: 4px;
+}
+.team-img {
+
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.team-desc-container {
+
+  flex-grow: 1;
+}
+
+.team-list-position {
+
+  margin-bottom: 5px;
+  font-size: 14;
+}
+
+.team-list-name {
+  margin-bottom: 5px;
+  font-size: 14;
+}
+
+.github-link,
+.linkedin-link {
+
+  display: inline-block;
+  margin-top: 5px;
+  color: #000;
+}
+
+.team-list-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.about-team-btn {
+ 
+  cursor: pointer;
+  border: transparent;
+  background-color: transparent;
 }
 
 // // .backdrop-team {
