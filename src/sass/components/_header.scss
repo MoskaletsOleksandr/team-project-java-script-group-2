@@ -263,8 +263,8 @@ a {
 // btn-theme
 .btn-theme {
   position: absolute;
-  top: 16px;
-  left: 506px;
+  top: 5px;
+  left: 235px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -278,6 +278,16 @@ a {
   &:hover {
     background-color: var(--buttons-header-hover-bg-color);
     border: 2px solid var(--buttons-header-hover-bg-color);
+  }
+
+  @include tablet {
+    left: 398px;
+    top: 16px;
+  }
+
+  @include desktop {
+    left: 480px;
+    top: 16px;
   }
 }
 
