@@ -14,7 +14,8 @@ export function createMoveModalMarkup(data) {
 
   const listOfGenres = genres.map(genre => genre.name).join(', ');
 
-  return `<div class="js-film-info__thumb">
+  return `
+                   <div class="js-film-info__thumb">
                      <img
                        src="${BASE_IMG_URL}${poster_path}"
                        alt="${title}"
@@ -48,6 +49,18 @@ export function createMoveModalMarkup(data) {
                     </table>
                     <h3 class="js-film-info__description-title">About</h3>
                     <p class="js-film-info__description-text">${overview}
-                    </p>                    
+                    </p>
+                    <div class="js-film-info__btns">
+                      <button
+                        type="button"
+                        class="js-film-info__btn active-btn"
+                        data-btn=add-to-watched
+                      >
+                        add to Watched
+                      </button>
+                      <button type="button" class="js-film-info__btn" data-btn-to-queue>
+                        add to queue
+                      </button>
+                    </div>
                   </div>`;
 }
