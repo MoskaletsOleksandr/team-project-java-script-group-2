@@ -49,12 +49,12 @@ export function createTrendMovesMarkup({ results }) {
       genresArray = cutGenresArray(genresArray);
 
       return `<li class="gallery-item">
-                    <div class="gallery-container-img"
+                    <div class="gallery-container-img" data-id='${id}'>
                     <div class="gallery-card" data-id='${id}'>
                         <img class="gallery-img" src="${BASE_IMG_URL}${poster_path}" alt="${title}">
                         <button class="trailer-button" type="button">Trailer</button> 
                         </div>
-                        <div class="gallery-film">
+                        <div class="gallery-film" data-id='${id}'>
                         <h3 class="film-title">${title}
                         </h3>
                         <span class="film-genres">${genresArray}</span><span class="film-year"> | ${release_date.slice(
