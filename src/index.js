@@ -30,7 +30,7 @@ const refs = {
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
-  addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+  // addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
@@ -458,7 +458,7 @@ document.addEventListener('keydown', function (event) {
 //Мар'яна Собашевська
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched);
 function handleMakeBtnAddRemoveWatched(event) {
-  if (event.target.dataset.btn === 'add-to-watched') {
+  if (event.target.dataset.watchedBtn === 'add-to-watched') {
     console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
@@ -469,12 +469,12 @@ function handleMakeBtnAddRemoveWatched(event) {
         localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
         event.target.textContent = 'Remove from watched';
-        event.target.dataset.btn = 'remove-from-watched';
+        event.target.dataset.watchedBtn = 'remove-from-watched';
       })
       .catch(err => {
         console.log(err);
       });
-  } else if (event.target.dataset.btn === 'remove-from-watched') {
+  } else if (event.target.dataset.watchedBtn === 'remove-from-watched') {
     console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
@@ -485,7 +485,7 @@ function handleMakeBtnAddRemoveWatched(event) {
         localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
         event.target.textContent = 'Add to watched';
-        event.target.dataset.btn = 'add-to-watched';
+        event.target.dataset.watchedBtn = 'add-to-watched';
       })
       .catch(err => {
         console.log(err);
@@ -494,22 +494,43 @@ function handleMakeBtnAddRemoveWatched(event) {
   return;
 }
 
-// refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
+refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
 
-function handleMakeBtnAddQueue() {
-  dataForModalMarkup
-    .then(data => {
-      const getLocalStorage = localStorage.getItem('queue');
-      const parseLocalStorage = JSON.parse(getLocalStorage);
-      parseLocalStorage.push(data);
+function handleMakeBtnAddRemoveQueue(event) {
+  if (event.target.dataset.queueBtn === 'add-to-queue') {
+    console.log(event.target.dataset);
+    dataForModalMarkup
+      .then(data => {
+        const getLocalStorage = localStorage.getItem('queue');
+        const parseLocalStorage = JSON.parse(getLocalStorage);
+        parseLocalStorage.push(data);
 
-      localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
+        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
 
-      refs.addToQueueBtn.textContent = 'Remove from queue';
-    })
-    .catch(err => {
-      console.log(err);
-    });
+        event.target.textContent = 'Remove from queue';
+        event.target.dataset.queueBtn = 'remove-from-queue';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } else if (event.target.dataset.queueBtn === 'remove-from-queue') {
+    console.log(event.target.dataset);
+    dataForModalMarkup
+      .then(data => {
+        const getLocalStorage = localStorage.getItem('queue');
+        const parseLocalStorage = JSON.parse(getLocalStorage);
+        parseLocalStorage.push(data);
+
+        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
+
+        event.target.textContent = 'Add to queue';
+        event.target.dataset.queueBtn = 'add-to-queue';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  return;
 }
 
 function checkLocalStorage() {
