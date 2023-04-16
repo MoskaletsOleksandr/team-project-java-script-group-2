@@ -1,8 +1,12 @@
 //імпортуємо бібліотеки та інші файли
 import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
-import { createTrendMovesMarkup } from './js/createMarkup';
+// import { createTrendMovesMarkup } from './js/createMarkup';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 import { createMoveModalMarkup } from './js/create-modal-markup';
+import refs from './js/refs';
+import './js/createGallery';
+import './js/onSearch';
+import './js/pagination';
 //
 //
 //
@@ -18,23 +22,23 @@ import { createMoveModalMarkup } from './js/create-modal-markup';
 //
 //
 // refs
-const refs = {
-  searchFormEl: document.querySelector('.form-search'),
-  searchInputEl: document.querySelector('.input-search'),
-  galleryContainerEl: document.querySelector('.gallery-container'),
-  galleryListEl: document.querySelector('.gallery-list'),
-  aboutTeamBtn: document.querySelector('.about-team'),
-  btnUpEl: document.querySelector('.btn-up'),
-  backdropMovieModal: document.querySelector('.backdrop'),
-  movieModalEl: document.querySelector('div[data-movie-modal]'),
-  movieModalFilmInfoEl: document.querySelector('.js-film-info'),
-  modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
-  // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
-  // addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
-  teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
-  teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
-  teamModal: document.querySelector('div[data-team-modal]'),
-};
+// const refs = {
+//   searchFormEl: document.querySelector('.form-search'),
+//   searchInputEl: document.querySelector('.input-search'),
+//   galleryContainerEl: document.querySelector('.gallery-container'),
+//   galleryListEl: document.querySelector('.gallery-list'),
+//   aboutTeamBtn: document.querySelector('.about-team'),
+//   btnUpEl: document.querySelector('.btn-up'),
+//   backdropMovieModal: document.querySelector('.backdrop'),
+//   movieModalEl: document.querySelector('div[data-movie-modal]'),
+//   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
+//   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
+//   // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
+//   // addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+//   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
+//   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
+//   teamModal: document.querySelector('div[data-team-modal]'),
+// };
 //
 //
 //
@@ -671,38 +675,38 @@ function checkLocalStorage() {
 //
 //
 //Денис
-function renderMarkup(array) {
-  const markup = createTrendMovesMarkup(array);
-  refs.galleryListEl.innerHTML = '';
-  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
-}
-fetchTrendMoves()
-  .then(data => {
-    renderMarkup(data);
-  })
-  .catch(error => console.log(error));
+// function renderMarkup(array) {
+//   const markup = createTrendMovesMarkup(array);
+//   refs.galleryListEl.innerHTML = '';
+//   refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
+// }
+// fetchTrendMoves()
+//   .then(data => {
+//     renderMarkup(data);
+//   })
+//   .catch(error => console.log(error));
 
-refs.searchFormEl.addEventListener('submit', handleClickSearchButton);
+// refs.searchFormEl.addEventListener('submit', handleClickSearchButton);
 
-function handleClickSearchButton(e) {
-  e.preventDefault();
-  const inputData = refs.searchInputEl.value;
-  if (inputData === '') {
-    alert('Please try again');
-    return;
-  }
-  fetchMovesByKeyword(inputData.trim())
-    .then(data => {
-      console.log(data);
-      if (data.results.length === 0) {
-        alert('Please try again');
-        return;
-      }
-      renderMarkup(data);
-      scrollUp();
-    })
-    .catch(error => console.log(error));
-}
+// function handleClickSearchButton(e) {
+//   e.preventDefault();
+//   const inputData = refs.searchInputEl.value;
+//   if (inputData === '') {
+//     alert('Please try again');
+//     return;
+//   }
+//   fetchMovesByKeyword(inputData.trim())
+//     .then(data => {
+//       console.log(data);
+//       if (data.results.length === 0) {
+//         alert('Please try again');
+//         return;
+//       }
+//       renderMarkup(data);
+//       scrollUp();
+//     })
+//     .catch(error => console.log(error));
+// }
 //
 //
 //
