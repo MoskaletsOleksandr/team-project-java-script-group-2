@@ -867,19 +867,11 @@ function handleWatchedBtn() {
   // evt.preventDefault();
 
   watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
-
-  
+  console.log(watchedFilms);
   nothingContainer.style.display = 'none';
 
   if (watchedFilms.length <= 0) {
-    // galleryContainerEl.innerHTML = `<div class="gallery-container">
-    //     <h2 class="nothing-text"> OOPS, THERE IS NOTHING ON THIS PAGE </h2>
-    // <picture class="nothing-img">
-    //     <source srcset="/src/images/film-162029_1280-2.png 2x" media="(min-width: 1200px)" />
-    //     <img src="/src/images/film-162029_640-2.png" alt="nothing" width="680" />
-    // </picture>
-    //     </div>`;
- nothingContainer.style.display = 'block';
+    nothingContainer.style.display = 'block';
     return;
   }
   createTrendMovesMarkup(watchedFilms);
@@ -894,13 +886,6 @@ function handleQueueBtn() {
   nothingContainer.style.display = 'none';
 
   if (queueFilms.length <= 0) {
-    // galleryContainerEl.innerHTML = `<div class="gallery-container">
-    //     <h2 class="nothing-text"> OOPS, THERE IS NOTHING ON THIS PAGE </h2>
-    // <picture class="nothing-img">
-    //     <source srcset="./src/images/film-162029_1280-2.png 2x" media="(min-width: 1200px)" />
-    //     <img src="./src/images/film-162029_640-2.png" alt="nothing" width="680" />
-    // </picture>
-    //     </div>`;
     nothingContainer.style.display = 'block';
     return;
   }
