@@ -1066,7 +1066,7 @@ function onCloseMovieModal(e) {
   ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
-    // refs.bodyEl.style.overflow = "scroll";
+    refs.bodyEl.style.overflow = "scroll";
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
   }
@@ -1100,7 +1100,7 @@ function handleMovieCard(event) {
       
       const markup = createMoveModalMarkup(data);
       refs.movieModalFilmInfoEl.innerHTML = markup;
-      // refs.bodyEl.style.overflow = "hidden";
+      refs.bodyEl.style.overflow = "hidden";
       return data;
     })
     .catch(error => console.log(error));

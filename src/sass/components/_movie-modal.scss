@@ -1,3 +1,12 @@
+// ВІЗУАЛЬНО ПРИХОВУЮ СКРОЛ НА body
+body {
+  scrollbar-width: none;  // Firefox //
+  -ms-overflow-style: none;  // IE и Edge //
+}
+//візуально приховую scrollbar для Chrome, Safari и Opera //
+body::-webkit-scrollbar {
+  display: none;
+}
 .backdrop {
   position: fixed;
   top: 0;
@@ -56,7 +65,7 @@
     padding: 40px 12px;
   }
 }
-// для моб версії візуально приховую scrollbar для Chrome, Safari и Opera //
+// для моб версії візуально приховую scrollbar для Chrome, Safari и Opera на МОДАЛЦІ//
 .modal::-webkit-scrollbar {
   display: none;
 }
