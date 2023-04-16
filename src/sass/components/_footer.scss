@@ -7,42 +7,12 @@
   margin-right: 10px;
 }
 
-.team-link {
+.team-btn {
   text-decoration: none;
-  color: inherit;
   align-items: center;
   display: flex;
   transition: all .25s cubic-bezier(.4,0,.2,1);
-  position: absolute;
-width: 122px;
-height: 19px;
-left: 759px;
-top: 5199px;
-
 font-family: 'Roboto';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 19px;
-/* identical to box height */
-
-display: flex;
-align-items: center;
-
-color: #545454;
-}
-
-
-.footer {
-  display: flex;
-  align-items: center;
-  margin-bottom: 50px;
-
-}
-
-.footer-text {
-  display: block;
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -53,16 +23,42 @@ color: #545454;
   align-items: center;
   text-align: center;
   
-  color: #545454;
+  color: var(--footer-text-color);
+}
+
+
+.footer {
+  display: flex;
+  align-items: center;
+ }
+
+.footer-text {
+  display: block;
+  
 }
 
 .footer-container {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
   display: flex;
  text-align: center;
  align-items: center;
+ font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  color: var(--footer-text-color);
 }
+
 
 @keyframes heartScale {
   0% {
