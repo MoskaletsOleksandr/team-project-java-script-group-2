@@ -54,7 +54,7 @@ export function createMoveModalMarkup(data) {
                       <button
                         type="button"
                         class="js-film-info__btn active-btn"
-                        data-btn=add-to-watched
+                        data-btn-add-to-watched
                       >
                         add to Watched
                       </button>
