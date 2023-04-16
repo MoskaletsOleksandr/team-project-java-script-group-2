@@ -847,14 +847,12 @@ function scrollUp() {
 //
 //
 //
-//
-//
 //Ірина
-import { createTrendMovesMarkup } from './js/createMarkup';
+import { createTrendMovesMarkup } from "./js/createMarkup";
 
 const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
-const galleryContainerEl = document.querySelector('.library-container');
+// const galleryContainerEl = document.querySelector('.library-container');
 const nothingContainer = document.querySelector('.library-container');
 
 watchedBtn.addEventListener('click', handleWatchedBtn);
@@ -868,12 +866,12 @@ function handleWatchedBtn() {
 
   watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
   console.log(watchedFilms);
-  nothingContainer.style.display = 'none';
 
   if (watchedFilms.length <= 0) {
     nothingContainer.style.display = 'block';
     return;
   }
+
   createTrendMovesMarkup(watchedFilms);
 }
 
@@ -882,8 +880,7 @@ function handleQueueBtn() {
 
   queueFilms = JSON.parse(localStorage.getItem('queue')) || [];
 
-  const nothingContainer = document.querySelector('.library-container');
-  nothingContainer.style.display = 'none';
+  // nothingContainer.style.display = 'none';
 
   if (queueFilms.length <= 0) {
     nothingContainer.style.display = 'block';
