@@ -1,9 +1,9 @@
 //імпортуємо бібліотеки та інші файли
-import { fetchTrendMoves } from './js/api';
+import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
 import { createTrendMovesMarkup } from './js/createMarkup';
-import { fetchDataById } from './js/fetch-data-by-id';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 import { createMoveModalMarkup } from './js/create-modal-markup';
+//
 //
 //
 //
@@ -20,6 +20,7 @@ import { createMoveModalMarkup } from './js/create-modal-markup';
 // refs
 const refs = {
   searchFormEl: document.querySelector('.form-search'),
+  searchInputEl: document.querySelector('.input-search'),
   galleryContainerEl: document.querySelector('.gallery-container'),
   galleryListEl: document.querySelector('.gallery-list'),
   aboutTeamBtn: document.querySelector('.about-team'),
@@ -30,12 +31,11 @@ const refs = {
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
-  addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
-  teamOpenModalBtn: document.querySelector('button[data-team-modal-open]'),
-  teamCloseModalBtn: document.querySelector('div[data-team-modal-close]'),
+  // addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+  teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
+  teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
 };
-//
 //
 //
 //
@@ -250,7 +250,7 @@ let dataForModalMarkup = null; //Об'єкт із повною інформац�
 //
 //Ігор
 //
-//
+// ------- btnUp -------
 
 refs.btnUpEl.addEventListener('click', scrollUp);
 
@@ -279,40 +279,42 @@ function scrollUp() {
   });
 }
 //
+//------- btnTheme -------
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+const btnThemeEl = document.querySelector('.btn-theme');
+const headerContainerEl = document.querySelector('.header-container');
+const btnIconMoonEl = document.querySelector('.btn-icon-moon');
+const btnIconSunEl = document.querySelector('.btn-icon-sun');
+
+function setDarkTheme() {
+  document.body.classList.add('dark');
+
+  btnIconSunEl.classList.remove('btn-icon-hidden');
+  btnIconMoonEl.classList.add('btn-icon-hidden');
+  headerContainerEl.classList.add('header-container-dark');
+  localStorage.theme = 'dark';
+}
+
+function setLightTheme() {
+  document.body.classList.remove('dark');
+
+  btnIconMoonEl.classList.remove('btn-icon-hidden');
+  btnIconSunEl.classList.add('btn-icon-hidden');
+  headerContainerEl.classList.remove('header-container-dark');
+  localStorage.theme = 'light';
+}
+
+btnThemeEl.addEventListener('click', () => {
+  if (document.body.classList.contains('dark')) {
+    setLightTheme();
+  } else {
+    setDarkTheme();
+  }
+});
+
+if (localStorage.theme === 'dark') {
+  setDarkTheme();
+}
 //
 //
 //
@@ -351,21 +353,33 @@ function scrollUp() {
 //Ірина Петренко
 //
 //
-// teamOpenModalBtn: document.querySelector('button[data-team-modal-open]'),
-// teamCloseModalBtn: document.querySelector('div[data-team-modal-close]'),
+// teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
+// teamModalCloseBtn: document.querySelector('div[data-team-modal-close]'),
 // teamModal: document.querySelector('div[data-team-modal]'),
 
-refs.teamOpenModalBtn.addEventListener('click', e => {});
+function openTeamModal() {
+  refs.teamModal.classList.remove('is-hidden-team');
+}
+//
+function closeTeamModal() {
+  refs.teamModal.classList.add('is-hidden-team');
+}
+//
+refs.teamModalOpenBtn.addEventListener('click', openTeamModal);
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
+refs.teamModalCloseBtn.addEventListener('click', closeTeamModal);
+
+refs.teamModal.addEventListener('click', function (event) {
+  if (event.target === refs.teamModal) {
+    closeTeamModal();
+  }
+});
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    closeTeamModal();
+  }
+});
 //
 //
 //
@@ -445,7 +459,7 @@ refs.teamOpenModalBtn.addEventListener('click', e => {});
 //Мар'яна Собашевська
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched);
 function handleMakeBtnAddRemoveWatched(event) {
-  if (event.target.dataset.btn === 'add-to-watched') {
+  if (event.target.dataset.watchedBtn === 'add-to-watched') {
     console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
@@ -456,12 +470,12 @@ function handleMakeBtnAddRemoveWatched(event) {
         localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
         event.target.textContent = 'Remove from watched';
-        event.target.dataset.btn = 'remove-from-watched';
+        event.target.dataset.watchedBtn = 'remove-from-watched';
       })
       .catch(err => {
         console.log(err);
       });
-  } else if (event.target.dataset.btn === 'remove-from-watched') {
+  } else if (event.target.dataset.watchedBtn === 'remove-from-watched') {
     console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
@@ -472,7 +486,7 @@ function handleMakeBtnAddRemoveWatched(event) {
         localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
         event.target.textContent = 'Add to watched';
-        event.target.dataset.btn = 'add-to-watched';
+        event.target.dataset.watchedBtn = 'add-to-watched';
       })
       .catch(err => {
         console.log(err);
@@ -481,22 +495,43 @@ function handleMakeBtnAddRemoveWatched(event) {
   return;
 }
 
-// refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
+refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
 
-function handleMakeBtnAddQueue() {
-  dataForModalMarkup
-    .then(data => {
-      const getLocalStorage = localStorage.getItem('queue');
-      const parseLocalStorage = JSON.parse(getLocalStorage);
-      parseLocalStorage.push(data);
+function handleMakeBtnAddRemoveQueue(event) {
+  if (event.target.dataset.queueBtn === 'add-to-queue') {
+    console.log(event.target.dataset);
+    dataForModalMarkup
+      .then(data => {
+        const getLocalStorage = localStorage.getItem('queue');
+        const parseLocalStorage = JSON.parse(getLocalStorage);
+        parseLocalStorage.push(data);
 
-      localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
+        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
 
-      refs.addToQueueBtn.textContent = 'Remove from queue';
-    })
-    .catch(err => {
-      console.log(err);
-    });
+        event.target.textContent = 'Remove from queue';
+        event.target.dataset.queueBtn = 'remove-from-queue';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } else if (event.target.dataset.queueBtn === 'remove-from-queue') {
+    console.log(event.target.dataset);
+    dataForModalMarkup
+      .then(data => {
+        const getLocalStorage = localStorage.getItem('queue');
+        const parseLocalStorage = JSON.parse(getLocalStorage);
+        parseLocalStorage.push(data);
+
+        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
+
+        event.target.textContent = 'Add to queue';
+        event.target.dataset.queueBtn = 'add-to-queue';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  return;
 }
 
 function checkLocalStorage() {
@@ -636,51 +671,39 @@ function checkLocalStorage() {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //Денис
+function renderMarkup(array) {
+  const markup = createTrendMovesMarkup(array);
+  refs.galleryListEl.innerHTML = '';
+  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
+}
 fetchTrendMoves()
   .then(data => {
     renderMarkup(data);
   })
   .catch(error => console.log(error));
 
-function renderMarkup(array) {
-  const markup = createTrendMovesMarkup(array);
-  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
+refs.searchFormEl.addEventListener('submit', handleClickSearchButton);
+
+function handleClickSearchButton(e) {
+  e.preventDefault();
+  const inputData = refs.searchInputEl.value;
+  if (inputData === '') {
+    alert('Please try again');
+    return;
+  }
+  fetchMovesByKeyword(inputData.trim())
+    .then(data => {
+      console.log(data);
+      if (data.results.length === 0) {
+        alert('Please try again');
+        return;
+      }
+      renderMarkup(data);
+      scrollUp();
+    })
+    .catch(error => console.log(error));
 }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //

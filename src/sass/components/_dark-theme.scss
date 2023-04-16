@@ -1,0 +1,21 @@
+body {
+    transition: var(--animation);
+}
+
+body.dark {
+  --btn-up-fill-color: #ffffff;
+  --btn-up-bg-color: #B92F2C;
+  --btn-up-hover-fill-color: #B92F2C;
+  --btn-up-hover-bg-color: #ffffff;
+  --btn-up-border-color: #B92F2C;
+}
+
+.header-container-dark {
+    position: relative;
+    height: 316px;
+    background-image: url(/src/images/header/header-desktop-dark.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    //background-size: cover;
+    border-radius: 15px;
+}
