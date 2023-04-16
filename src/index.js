@@ -1,9 +1,9 @@
 //імпортуємо бібліотеки та інші файли
-import { fetchTrendMoves } from './js/api';
+import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
 import { createTrendMovesMarkup } from './js/createMarkup';
-import { fetchDataById } from './js/fetch-data-by-id';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 import { createMoveModalMarkup } from './js/create-modal-markup';
+//
 //
 //
 //
@@ -20,6 +20,7 @@ import { createMoveModalMarkup } from './js/create-modal-markup';
 // refs
 const refs = {
   searchFormEl: document.querySelector('.form-search'),
+  searchInputEl: document.querySelector('.input-search'),
   galleryContainerEl: document.querySelector('.gallery-container'),
   galleryListEl: document.querySelector('.gallery-list'),
   aboutTeamBtn: document.querySelector('.about-team'),
@@ -34,7 +35,6 @@ const refs = {
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
 };
-//
 //
 //
 //
@@ -351,8 +351,8 @@ function scrollUp() {
 //
 //
 // teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
-  // teamModalCloseBtn: document.querySelector('div[data-team-modal-close]'),
-  // teamModal: document.querySelector('div[data-team-modal]'),
+// teamModalCloseBtn: document.querySelector('div[data-team-modal-close]'),
+// teamModal: document.querySelector('div[data-team-modal]'),
 
 function openTeamModal() {
   refs.teamModal.classList.remove('is-hidden-team');
@@ -366,14 +366,13 @@ refs.teamModalOpenBtn.addEventListener('click', openTeamModal);
 
 refs.teamModalCloseBtn.addEventListener('click', closeTeamModal);
 
-refs.teamModal.addEventListener('click', function(event) {
+refs.teamModal.addEventListener('click', function (event) {
   if (event.target === refs.teamModal) {
     closeTeamModal();
   }
 });
 
-
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
   if (event.key === 'Escape') {
     closeTeamModal();
   }
@@ -648,51 +647,39 @@ function checkLocalStorage() {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //Денис
+function renderMarkup(array) {
+  const markup = createTrendMovesMarkup(array);
+  refs.galleryListEl.innerHTML = '';
+  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
+}
 fetchTrendMoves()
   .then(data => {
     renderMarkup(data);
   })
   .catch(error => console.log(error));
 
-function renderMarkup(array) {
-  const markup = createTrendMovesMarkup(array);
-  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
+refs.searchFormEl.addEventListener('submit', handleClickSearchButton);
+
+function handleClickSearchButton(e) {
+  e.preventDefault();
+  const inputData = refs.searchInputEl.value;
+  if (inputData === '') {
+    alert('Please try again');
+    return;
+  }
+  fetchMovesByKeyword(inputData.trim())
+    .then(data => {
+      console.log(data);
+      if (data.results.length === 0) {
+        alert('Please try again');
+        return;
+      }
+      renderMarkup(data);
+      scrollUp();
+    })
+    .catch(error => console.log(error));
 }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1153,4 +1140,3 @@ function handleMovieCard(event) {
 //
 //
 //
-
