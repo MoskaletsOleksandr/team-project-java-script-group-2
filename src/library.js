@@ -848,11 +848,11 @@ if (localStorage.theme === 'dark') {
 //
 //
 //Ірина
-import { createTrendMovesMarkup } from "./js/createMarkup";
+import { createLibraryMarkup } from "./js/createLibraryMarkup.js";
 
 const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
-// const galleryContainerEl = document.querySelector('.library-container');
+const galleryContainerEl = document.querySelector('.gallery-lib-list');
 const nothingContainer = document.querySelector('.library-container');
 
 watchedBtn.addEventListener('click', handleWatchedBtn);
@@ -873,7 +873,8 @@ function handleWatchedBtn() {
     return;
   }
 
-  createTrendMovesMarkup({ watchedFilms });
+  const markup = createLibraryMarkup(watchedFilms);
+  galleryContainerEl.innerHTML = markup;
 }
 
 function handleQueueBtn() {
@@ -886,7 +887,8 @@ function handleQueueBtn() {
     nothingContainer.style.display = 'block';
     return;
   }
-  createTrendMovesMarkup(queueFilms);
+  const markup = createLibraryMarkup(queueFilms);
+  galleryContainerEl.innerHTML = markup;;
 }
 
 handleWatchedBtn();
