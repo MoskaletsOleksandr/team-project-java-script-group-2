@@ -872,8 +872,8 @@ function handleWatchedBtn() {
     nothingContainer.style.display = 'block';
     return;
   }
-clg
-  createTrendMovesMarkup({ ...watchedFilms });
+
+  createTrendMovesMarkup({ watchedFilms });
 }
 
 function handleQueueBtn() {
