@@ -26,9 +26,9 @@ const refs = {
   btnUpEl: document.querySelector('.btn-up'),
   backdropMovieModal: document.querySelector('.backdrop'),
   movieModalEl: document.querySelector('div[data-movie-modal]'),
-  movieModalFilmInfoEl: document.querySelector('.wrap'),
+  movieModalFilmInfoEl: document.querySelector('.js-film-info'),
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
-  addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
+  // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
@@ -455,24 +455,45 @@ document.addEventListener('keydown', function(event) {
 //
 //
 //Мар'яна Собашевська
-refs.addToWatchedBtn.addEventListener('click', handleMakeBtnAddWatched);
-function handleMakeBtnAddWatched() {
-  dataForModalMarkup
-    .then(data => {
-      const getLocalStorage = localStorage.getItem('watched');
-      const parseLocalStorage = JSON.parse(getLocalStorage);
-      parseLocalStorage.push(data);
+refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched);
+function handleMakeBtnAddRemoveWatched(event) {
+  if (event.target.dataset.btn === 'add-to-watched') {
+    console.log(event.target.dataset);
+    dataForModalMarkup
+      .then(data => {
+        const getLocalStorage = localStorage.getItem('watched');
+        const parseLocalStorage = JSON.parse(getLocalStorage);
+        parseLocalStorage.push(data);
 
-      localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
+        localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
-      refs.addToWatchedBtn.textContent = 'Remove from watch';
-    })
-    .catch(err => {
-      console.log(err);
-    });
+        event.target.textContent = 'Remove from watched';
+        event.target.dataset.btn = 'remove-from-watched';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } else if (event.target.dataset.btn === 'remove-from-watched') {
+    console.log(event.target.dataset);
+    dataForModalMarkup
+      .then(data => {
+        const getLocalStorage = localStorage.getItem('watched');
+        const parseLocalStorage = JSON.parse(getLocalStorage);
+        parseLocalStorage.push(data);
+
+        localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
+
+        event.target.textContent = 'Add to watched';
+        event.target.dataset.btn = 'add-to-watched';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  return;
 }
 
-refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
+// refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
 
 function handleMakeBtnAddQueue() {
   dataForModalMarkup
@@ -490,24 +511,13 @@ function handleMakeBtnAddQueue() {
     });
 }
 
-// записав твою перевірку в окрему фінкцію, яку запускаємо при натисканні на картку. Тільки тоді воно коректно малює
-//текст на кнопках. Але треба трохи допиляти логіку перевірок, бо коли я додам фільм до масиву, то все супер, функція переписує
-// текст із Add to watch на Remove from watch, а Add to Queue не чіпає. Але якщо відкрити ту ж картку, то перевірка коректно
-//замінить текст із Add to watch на Remove from watch, але і наступна перевірка:
-// if (id === Number(movieIdForModalMarkup)) {
-//   refs.addToQueueBtn.textContent = 'Add to Queue';
-// } else {
-//   refs.addToQueueBtn.textContent = 'Remove from Queue';
-// }
-//  спрацьовує і переписує Add to Queue на Remove from Queue (коли в чергу ми не додавали).
-// Треба якось більш специфічно перевіряти, виходить. Щось я вже й сам заплутався((((((
 function checkLocalStorage() {
   if (!localStorage.watched && !localStorage.queue) {
     let localStorageArray = [];
     localStorage.setItem('watched', JSON.stringify(localStorageArray));
     localStorage.setItem('queue', JSON.stringify(localStorageArray));
-    refs.addToWatchedBtn.textContent = 'Add to watch';
-    refs.addToQueueBtn.textContent = 'Add to Queue';
+    // refs.addToWatchedBtn.textContent = 'Add to watch';
+    // refs.addToQueueBtn.textContent = 'Add to Queue';
   } else {
     const getLocalStorageWatched = localStorage.getItem('watched');
     const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
@@ -532,8 +542,6 @@ function checkLocalStorage() {
     });
   }
 }
-//
-//
 //
 //
 //
@@ -1075,15 +1083,8 @@ function onCloseMovieModal(e) {
   }
 }
 
-function modalOpener(event) {
-  if (
-    event.target.nodeName !== 'IMG' &&
-    event.target.nodeName !== 'DIV' &&
-    event.target.nodeName !== 'H3' &&
-    event.target.nodeName !== 'SPAN'
-  ) {
-    return;
-  } else if (event.target.nodeName === 'DIV') {
+function idRewriter(event) {
+  if (event.target.nodeName === 'DIV') {
     movieIdForModalMarkup = event.target.dataset.id;
     return;
   }
@@ -1092,7 +1093,15 @@ function modalOpener(event) {
 }
 
 function handleMovieCard(event) {
-  modalOpener(event); //ця функція перезаписує значення movieIdForModalMarkup
+  idRewriter(event); //ця функція перезаписує значення movieIdForModalMarkup
+  if (
+    event.target.nodeName !== 'IMG' &&
+    event.target.nodeName !== 'DIV' &&
+    event.target.nodeName !== 'H3' &&
+    event.target.nodeName !== 'SPAN'
+  ) {
+    return;
+  }
   dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
     .then(data => {
       refs.backdropMovieModal.classList.remove('is-hidden');
@@ -1144,6 +1153,3 @@ function handleMovieCard(event) {
 //
 //
 //
-refs.galleryContainerEl.addEventListener('click', handleMovieCard);
-
-// refs.modalCloseBtn.addEventListener('click', toggleModal);
