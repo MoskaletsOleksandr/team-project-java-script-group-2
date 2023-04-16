@@ -2,100 +2,267 @@ a {
   text-decoration: none;
 }
 
+//Хедер
 .header {
-  width: 100vw;
-}
-
-.section-header {
+  background-color: #ffffff;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
   padding-top: 32px;
   padding-bottom: 32px;
+  //top: 0;
 }
 
 .header-container {
   position: relative;
-  height: 316px;
-  background-image: url(/src/images/header/header-desktop.jpg);
+  height: 460px;
+  width: 280px;
   background-repeat: no-repeat;
   background-position: center;
-  //background-size: cover;
+  background-size: cover;
   border-radius: 15px;
-}
-
-.search {
-  display: flex;
-  align-items: baseline;
-  position: absolute;
-  top: 16px;
-  left: 34px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.4) 65.37%
+    ),
+    url(/src/images/header/header-bg-mob.jpg);
+  @include retina {
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header/header-bg-mob-2x.jpg);
+  }
 
   @include tablet {
-    left: 48px;
+    height: 222px;
+    width: 704px;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header/header-tablet.jpg);
+    @include retina {
+      background-image: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.05)
+        ),
+        url(/src/images/header/header-tablet-2x.jpg);
+    }
+  }
+  @include desktop {
+    height: 316px;
+    width: 1216px;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header/header-desktop.jpg);
+    @include retina {
+      background-image: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.05)
+        ),
+        url(/src/images/header/header-desktop-2x.jpg);
+    }
+  }
+}
+
+//Форма пошуку
+.search {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  position: absolute;
+  top: 16px;
+  left: 14px;
+  gap: 8px;
+
+  @media screen and (min-width: 768px) {
+    // flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    //flex-wrap: nowrap;
+    gap: 4px;
+    left: 16px;
+    align-items: center;
   }
 
   @include desktop {
-    left: 64px;
+    flex-wrap: nowrap;
+    left: 32px;
+    gap: 8px;
   }
 }
 
 .form-search {
-  padding-right: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 252px;
+  height: 34px;
+
+  @include tablet {
+    width: 165px;
+    height: 38px;
+  }
+
+  @include desktop {
+    width: 187px;
+    height: 42px;
+  }
 }
 
 .input-search {
-  width: 187px;
-  height: 42px;
-  border-radius: 100px;
   padding-left: 16px;
+  font-size: 12px;
+  height: 34px;
+  width: 100%;
+  border: 0;
+  border-radius: 100px;
+  transition: background-color var(--animation);
+  transition: border var(--animation);
+
+  @include tablet {
+    height: 38px;
+    font-size: 14px;
+  }
+  @include desktop {
+    height: 42px;
+    font-size: 14px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: #f1ecca;
+    border: 1px solid #bbac49;
+  }
 }
 
-.icon-search {
-  fill: #ffffff;
-  width: 16px;
-  height: 16px;
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 16px;
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
+  transition: scale var(--animation);
+  &:hover {
+    scale: 1.5;
+  }
+}
+
+// .icon-film {
+//   fill: red;
+// }
+
+//кнопки Home та My library
+.navigation {
+  margin-bottom: 8px;
+
+  @include tablet {
+    margin-bottom: 0;
+    margin-right: 50px;
+  }
+
+  @include desktop {
+    margin-bottom: 0;
+    margin-right: 470px;
+  }
 }
 
 .menu-list {
   display: flex;
-  gap: 8px;
+  gap: 4px;
+
+  @include desktop {
+    gap: 8px;
+  }
 }
 
 .menu-link {
   text-align: center;
-  background-color: #ffffff;
+  background-color: var(--buttons-header-bg-color);
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
   text-transform: uppercase;
-  padding: 14px 32px;
+  padding: 10px 26px;
   border-radius: 100px;
-  color: #000000;
+  color: var(--buttons-header-text-color);
+  cursor: pointer;
+  transition: color var(--animation);
+  transition: background-color var(--animation);
+
+  @include tablet {
+    padding: 12px 24px;
+  }
+
+  @include desktop {
+    padding: 14px 32px;
+  }
+
+  &:hover {
+    color: var(--accent-text-color);
+    background-color: var(--buttons-header-hover-bg-color);
+  }
 }
 
-.menu-link:hover {
-  color: #ffffff;
-  background-color: #000000;
-}
-
+//логотип filmoteka
 .header-logo {
   position: absolute;
-  bottom: 32px;
+  bottom: 20px;
+  left: 45px;
+  transition: scale var(--animation);
+
+  @include tablet {
+    bottom: 16px;
+    left: 16px;
+  }
+  @include desktop {
+    bottom: 32px;
+    left: 32px;
+  }
+
+  &:hover {
+    scale: 1.1;
+  }
 }
 
 .logo-list {
   display: flex;
   align-items: center;
-  gap: 16px;
-}
+  gap: 8px;
 
-.icon-film {
-  fill: #ffffff;
+  @include desktop {
+    gap: 16px;
+  }
 }
 
 .header-text-logo {
   font-weight: 500;
-  font-size: 64px;
+  font-size: 32px;
   line-height: 1.17;
-  color: #ffffff;
+  color: var(--logo-text-color);
+
+  @include tablet {
+    font-size: 40px;
+  }
+  @include desktop {
+    font-size: 64px;
+  }
 }
 
 .navigation {
@@ -135,4 +302,26 @@ a {
 
 .btn-icon-hidden {
   display: none;
+}
+.icon-film {
+  @include tablet {
+    width: 40px;
+    height: 40px;
+  }
+
+  @include desktop {
+    width: 59px;
+    height: 59px;
+  }
+}
+
+.gallery-fixed {
+  padding-top: 500px;
+  @include tablet {
+    padding-top: 286px;
+  }
+
+  @include desktop {
+    padding-top: 380px;
+  }
 }

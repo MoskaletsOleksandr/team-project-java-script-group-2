@@ -1,16 +1,22 @@
-@import './utils/variables';
 @import './utils/mixins';
+@import './utils/variables';
 
 @import './base/common';
 @import './base/reset';
 
-// @import './components/movie-modal';
+@import './components/movie-modal';
 @import './components/example';
 
 @import './components/container';
 @import './components/header';
+@import './components/gallery';
 @import './components/library';
 
 @import './components/btn-up';
 @import './components/dark-theme';
+
+@import './components/nothing-img';
+
+@import './components/footer';
+@import './components/team-modal';
 

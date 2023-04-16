@@ -5,13 +5,15 @@
   opacity: 1;
   transition: opacity var(--animation), visibility var(--animation);
 
+  z-index: 2;
+
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   overflow: auto;
 }
 
-.backdrop.is-hidden {
+.is-hidden {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
@@ -23,23 +25,26 @@
 }
 
 .modal {
-
   position: absolute;
-  top: 80px;
+  top: 100px;
   left: 50%;
   transform: translate(-50%) scale(1);
   opacity: 1;
   transition: opacity var(--animation), transform var(--animation);
-
+  
   margin-left: auto;
   margin-right: auto;
   max-width: 100%;
   width: 440px;
   padding: 48px 20px 40px;
+  font-family: var(--main-font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(14 / 12);
+  color: var(--primary-text-color);
   background-color: var(--buttons-modal-bg-color);
-
+  
   @include tablet {
-    top: 250px;
     width: 704px;
     padding: 40px 72px 64px 36px;
   }
@@ -53,7 +58,7 @@
   position: absolute;
   top: 8px;
   right: 8px;
-
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,6 +89,7 @@
 }
 .js-film-info__thumb {
   margin-bottom: 20px;
+  object-fit: cover;
   @include tablet {
     margin-bottom: 0;
     width: 264px;
@@ -115,7 +121,6 @@
   font-size: 20px;
   line-height: calc(23 / 20);
   text-transform: uppercase;
-  color: var(--primary-text-color);
   @include desktop {
     font-size: 30px;
     line-height: calc(35 / 30);
@@ -135,16 +140,11 @@
 .js-film-info__title,
 .slash {
   width: 108px;
-  font-weight: 500;
-  font-size: 12px;
   line-height: calc(16 / 12);
   color: var(--description-film-text-color);
 }
 .js-film-info__vote {
   padding: 1px 9px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: calc(14 / 12);
   text-transform: uppercase;
   border-radius: 5px;
   color: var(--accent-text-color);
@@ -152,49 +152,28 @@
 }
 .js-film-info__votes {
   padding: 1px 4px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: calc(14 / 12);
   text-transform: uppercase;
   border-radius: 5px;
-  color: var(--primary-text-color);
   background-color: var(--votes-bg-color);
 }
-.js-film-info__popularity {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: calc(14 / 12);
-  color: var(--primary-text-color);
-}
 .js-film-info__original-title {
-  font-weight: 500;
-  font-size: 12px;
   line-height: calc(16 / 12);
   text-transform: uppercase;
-  color: var(--primary-text-color);
 }
 .js-film-info__genre {
-  font-weight: 500;
-  font-size: 12px;
   line-height: calc(16 / 12);
-  color: var(--primary-text-color);
 }
 
 .js-film-info__description-title {
   margin-bottom: 8px;
   font-weight: 500;
-  font-size: 12px;
   line-height: calc(16 / 12);
   text-transform: uppercase;
-  color: var(--primary-text-color);
 }
 
 .js-film-info__description-text {
   margin-bottom: 20px;
-  font-weight: 500;
-  font-size: 12px;
   line-height: calc(20 / 12);
-  color: var(--primary-text-color);
 }
 .js-film-info__btns {
   display: flex;
@@ -209,9 +188,6 @@
 .js-film-info__btn {
   padding: 10px 10px;
 
-  font-weight: 500;
-  font-size: 12px;
-  line-height: calc(14 / 12);
   text-transform: uppercase;
   border-radius: 100px;
   border: var(--buttons-modal-border);
@@ -219,6 +195,12 @@
   color: var(--buttons-modal-text-color);
   cursor: pointer;
   transition: color var(--animation), background-color var(--animation);
+  @include tablet {
+    padding: 12px 14px;
+  }
+  @include desktop {
+    padding: 14px 24px;
+  }
   &:hover,
   &:focus {
     color: var(--buttons-modal-bg-color);

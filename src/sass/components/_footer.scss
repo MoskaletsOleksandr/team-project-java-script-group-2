@@ -1,0 +1,154 @@
+.heart-svg {
+  animation-name: heartScale;
+  animation-duration: 1000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.team-link {
+  text-decoration: none;
+  color: inherit;
+  align-items: center;
+  display: flex;
+}
+
+.list {
+  list-style: none;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+}
+
+.footer-text {
+  display: block;
+}
+
+.footer-container {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+ text-align: center;
+ align-items: center;
+}
+
+@keyframes heartScale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Стилі для модалки */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-team {
+  /* Ваші стилі для модалки команди */
+  /* Наприклад: */
+  width: 80%;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Стилі для затемненого фону за модалкою (бекдропу) */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+/* Стилі для кнопки закриття модалки */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Стилі для вмісту модалки */
+.team-item {
+  /* Ваші стилі для елементів команди */
+  /* Наприклад: */
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.team-img {
+  /* Ваші стилі для фото команди */
+  /* Наприклад: */
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.team-desc-container {
+  /* Ваші стилі для контейнера з описом команди */
+  /* Наприклад: */
+  flex-grow: 1;
+}
+
+.team-position {
+  /* Ваші стилі для посади команди */
+  /* Наприклад: */
+  margin: 0;
+  font-weight: bold;
+}
+
+.team-name {
+  /* Ваші стилі для імені команди */
+  /* Наприклад: */
+  margin: 0;
+}
+
+.github-link,
+.linkedin-link {
+  /* Ваші стилі для посилань на GitHub та LinkedIn команди */
+  /* Наприклад: */
+  display: inline-block;
+  margin-top: 5px;
+  color: #000;
+}
+
+.github-link svg,
+.linkedin-link svg {
+  /* Ваші стилі для іконок GitHub та LinkedIn команди */
+  /* Наприклад: */
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+/* Стилі для кнопки відкриття модалки */
+.about-team-btn {
+  /* Ваші стилі для кнопки відкриття модалки */
+  /* Наприклад: */
+  cursor: pointer;
+}
