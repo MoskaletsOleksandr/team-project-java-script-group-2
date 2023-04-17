@@ -6,11 +6,8 @@ a {
 .header {
   background-color: #ffffff;
   width: 100%;
-  position: fixed;
-  z-index: 1;
   padding-top: 32px;
-  padding-bottom: 32px;
-  //top: 0;
+  //padding-bottom: 32px;
 }
 
 .header-container {
@@ -86,13 +83,11 @@ a {
   gap: 8px;
 
   @media screen and (min-width: 768px) {
-    // flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
   }
 
   @media screen and (min-width: 768px) {
-    //flex-wrap: nowrap;
     gap: 4px;
     left: 16px;
     align-items: center;
@@ -163,10 +158,6 @@ a {
     scale: 1.5;
   }
 }
-
-// .icon-film {
-//   fill: red;
-// }
 
 //кнопки Home та My library
 .navigation {
@@ -265,6 +256,54 @@ a {
   }
 }
 
+// .navigation {
+//   margin-right: 450px;
+// }
+
+// btn-theme
+.btn-theme {
+  position: absolute;
+  top: 5px;
+  left: 235px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--buttons-header-bg-color);
+  border: var(--buttons-header-bg-color);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--buttons-header-hover-bg-color);
+    border: 2px solid var(--buttons-header-hover-bg-color);
+  }
+
+  @include tablet {
+    left: 398px;
+    top: 16px;
+  }
+
+  @include desktop {
+    left: 480px;
+    top: 16px;
+  }
+}
+
+.btn-theme-icon {
+  fill: var(--buttons-header-text-color);
+  width: 40px;
+  height: 40px;
+
+  .btn-theme:hover & {
+    fill: var(--buttons-header-hover-text-color);
+  }
+}
+
+.btn-icon-hidden {
+  display: none;
+}
 .icon-film {
   @include tablet {
     width: 40px;
@@ -277,13 +316,94 @@ a {
   }
 }
 
-.gallery-fixed {
-  padding-top: 500px;
-  @include tablet {
-    padding-top: 286px;
+.fixed {
+  //клас що додається до хедера при скролі
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.fixed-header {
+  height: 100px;
+  width: 100%;
+  background-image: none;
+
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.05),
+      rgba(0, 0, 0, 0.05)
+    ),
+    url(/src/images/header/header-tablet.jpg);
+  @include retina {
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header/header-tablet-2x.jpg);
   }
 
   @include desktop {
-    padding-top: 380px;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header/header-desktop.jpg);
+    @include retina {
+      background-image: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.05)
+        ),
+        url(/src/images/header/header-desktop-2x.jpg);
+    }
+  }
+}
+
+.is-hidden {
+  display: none;
+}
+
+.fixed-logo {
+  top: 16px;
+  display: none;
+
+  @include tablet {
+    display: block;
+    top: 60px;
+    margin-left: 150px;
+  }
+
+  @include desktop {
+    top: 16px;
+    margin-left: 505px;
+  }
+}
+
+.text-logo-fixed {
+  font-weight: 500;
+  color: var(--logo-text-color);
+
+  @include tablet {
+    font-size: 20px;
+  }
+  @include desktop {
+    font-size: 32px;
+  }
+}
+
+.icon-film-fixed {
+  @include tablet {
+    width: 30px;
+    height: 30px;
+  }
+
+  @include desktop {
+    width: 40px;
+    height: 40px;
   }
 }
