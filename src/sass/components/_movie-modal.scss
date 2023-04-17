@@ -196,14 +196,15 @@ body::-webkit-scrollbar {
 .js-film-info__btns {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 4px;
   @include tablet {
-    justify-content: flex-start;
     gap: 8px;
   }
 }
 .js-film-info__btn {
+  width: 118px;
+  height: 48px;
   padding: 10px 10px;
   font-weight: 500;
   font-size: 12px;
@@ -216,10 +217,14 @@ body::-webkit-scrollbar {
   cursor: pointer;
   transition: color var(--animation), background-color var(--animation);
   @include tablet {
-    padding: 12px 14px;
+    width: 128px;
+    height: 52px;
+    padding: 12px 12px;
   }
   @include desktop {
-    padding: 14px 24px;
+    width: 153px;
+    height: 56px;
+    padding: 14px 16px;
   }
   &:hover,
   &:focus {
