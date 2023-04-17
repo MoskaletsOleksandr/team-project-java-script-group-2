@@ -97,13 +97,28 @@
   color: var(--logo-text-color);
   background-color: var(--buttons-library-text-color);
 
+  &:hover,
+  &:focus {
+    background-color: rgba(250, 209, 5, 0.5);
+    transition: 500ms;
+    }
+
   @media screen and (min-width: 768px) {
       left: 150px;
+      &:hover,
+      &:focus {
+        background-color: rgba(250, 209, 5, 0.5);
+        transition: 500ms;
+        }
     }
   
     @media screen and (min-width: 1280px) {
       left: 200px;
-
+      &:hover,
+      &:focus {
+        background-color: rgba(250, 209, 5, 0.5);
+        transition: 500ms;
+        }
     }
 }
 
