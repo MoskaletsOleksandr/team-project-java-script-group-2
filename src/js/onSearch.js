@@ -41,14 +41,14 @@ function onSearchByKeyword(event) {
       );
     spinnerStop();
       renderMarkup(data);
-      renderTrailerMarkup(data);
+      renderTrailerMarkup();
       const pagination = createPagination(data.total_results, data.total_pages);
       pagination.on('beforeMove', ({ page }) => {
         refs.galleryListEl.innerHTML = '';
         // showHideLoader(refs.loader);
         getByKeyword(query, page).then(data => {
           renderMarkup(data);
-          renderTrailerMarkup(data);
+          renderTrailerMarkup();
         });
       });
     })
@@ -57,26 +57,3 @@ function onSearchByKeyword(event) {
     console.log(error)
   });
 }
-
-// refs.searchFormEl.addEventListener('submit', handleClickSearchButton);
-// function handleClickSearchButton(e) {
-//     e.preventDefault();
-//     const inputData = refs.searchInputEl.value;
-//     if (inputData === '') {
-//       Notify.failure('Input is empty');
-//       return;
-//     }
-//     fetchMovesByKeyword(inputData.trim())
-//       .then(data => {
-//         if (data.results.length === 0) {
-//           Notify.failure('No results for your search');
-//           return;
-//         }
-//         createTrailerIdAndKeysArray(data);
-//         setTimeout(() => {
-//           renderMarkup(data);
-//         }, 300);
-//         scrollUp();
-//       })
-//       .catch(error => console.log(error));
-//   }

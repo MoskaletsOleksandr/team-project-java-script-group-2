@@ -9,7 +9,7 @@ export function renderMarkup(array) {
   refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
 }
 
-export function renderTrailerMarkup(array) {
+export function renderTrailerMarkup() {
   const galleryCardElArray = document.querySelectorAll('.gallery-card');
   for (const galleryCardEl of galleryCardElArray) {
     fetchTrailer(galleryCardEl.dataset.id)
@@ -23,7 +23,7 @@ export function renderTrailerMarkup(array) {
 fetchTrendMoves()
   .then(data => {
     renderMarkup(data);
-    renderTrailerMarkup(data);
+    renderTrailerMarkup();
 
     const pagination = createPagination(data.total_results, data.total_pages);
     pagination.on('beforeMove', ({ page }) => {
@@ -31,7 +31,7 @@ fetchTrendMoves()
       // showHideLoader(refs.loader);
       fetchTrendMoves(page).then(data => {
         renderMarkup(data);
-        renderTrailerMarkup(data);
+        renderTrailerMarkup();
       });
     });
   })

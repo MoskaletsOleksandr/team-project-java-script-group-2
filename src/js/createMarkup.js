@@ -1,5 +1,4 @@
 import noimage from '../images/noimage.jpg';
-let BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
 const GENRES = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },
