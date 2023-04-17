@@ -1,6 +1,6 @@
 import { saveLocalStorage } from "./localStorage";
 import { loadLocalStorage } from "./localStorage";
-
+import { dataForModalMarkup } from "..";
 const keyQueue = 'queue';
 export function handleMakeBtnAddRemoveQueue(event) {
   if (event.target.dataset.queueBtn === 'add-to-queue') {

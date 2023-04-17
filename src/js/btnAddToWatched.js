@@ -1,6 +1,6 @@
 import { saveLocalStorage } from "./localStorage";
 import { loadLocalStorage } from "./localStorage";
-
+import { dataForModalMarkup } from "..";
 
 const keyWatched = 'watched'; 
 
