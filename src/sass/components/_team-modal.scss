@@ -9,7 +9,7 @@
 
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--backdrop-team);
   overflow: auto;
 }
 
@@ -25,177 +25,145 @@
 }
 
 .team-list-photo {
-  width: 250px;
+  width: 120px;
+  border: 1px solid var(--team-border);
+  border-radius: 4px;
+}
+
+.team-list-social {
+  display: inline-flex;
+  gap: 30px;
+  flex-wrap: wrap;
+margin-left: auto;
+margin-right: auto;
 }
 
 .modal-team {
-  width: 80%;
+  position: absolute;
+  width: 90%;
   // max-width: 800px;
-  background-color: #fff;
+  transform: translate(-50%, -50%) scale(1);
+    transition: transform 250ms linear;
+    top: 50%;
+    left: 50%;
+    border-radius: 4px;
+  background-color: var(--bg-modal-team);
   padding: 20px;
   border-radius: 5px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.modal-close {
+.modal-team-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  top: 15px;
+  right: 15px;
   cursor: pointer;
+  border: 1px solid #000;
+  border-radius: 50px;
+  transition: transform 0.3s ease-in-out;
+  &:hover,
+  &:focus {
+    background-color: var(--color-focus-team);
+    transform: scale(1.05);
+  }
+}
+
+.modal-team-close {
+
 }
 
 .team-list {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 30px;
 }
 
-// // .backdrop-team {
-// //   display: none;
-// // }
+.team-list-info {
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+}
+.team-item {
 
-// /* Стили для отображения модального окна */
-// .backdrop-team{
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   opacity: 1;
-//   transition: opacity var(--animation), visibility var(--animation);
-
-//   z-index: 2;
-
-//   width: 100%;
-//   height: 100%;
-//   background-color: rgba(0, 0, 0, 0.2);
-//   overflow: auto;
-// }
-
-// .is-hidden-team {
-//     visibility: hidden;
-//     opacity: 0;
-//     pointer-events: none;
-//     .modal-team {
-//       transform: translate(-50%, -50%) scale(0.3);
-//       opacity: 0;
-//     }
-// }
-// // .modal-team {
-// //   display: flex;
-// //   gap: 30px;
-// // }
-
-// .team-list-photo {
-//   width: 50px;
-// }
-// .team-social-link {
-//   display: flex;
-// }
-// .team-list-icon {
-//   width: 20px;
-// }
-// // .modal-team-close {
-// //   /* Стили для кнопки закрытия модального окна */
-// // }
-
-// // .modal-team {
-// //   position: fixed;
-// //   top: 0;
-// //   left: 0;
-// //   right: 0;
-// //   bottom: 0;
-// //   background-color: rgba(0, 0, 0, 0.5);
-// //   display: flex;
-// //   justify-content: center;
-// //   align-items: center;
-// //   z-index: 100;
-// //   // opacity: 0;
-// //   // visibility: hidden;
-// //   transition: opacity 0.3s ease, visibility 0.3s ease;
-// // }
-
-// // .modal-team {
-// //   /* Ваші стилі для модалки команди */
-// //   /* Наприклад: */
-// //   width: 80%;
-// //   max-width: 800px;
-// //   background-color: #fff;
-// //   padding: 20px;
-// //   border-radius: 5px;
-// // }
-
-// // /* Стилі для затемненого фону за модалкою (бекдропу) */
-// // .backdrop {
-// //   position: fixed;
-// //   top: 0;
-// //   left: 0;
-// //   right: 0;
-// //   bottom: 0;
-// //   background-color: rgba(0, 0, 0, 0.5);
-// //   z-index: 99;
-// // }
-
-
-// .modal-close {
-//   position: absolute;
-//   top: 10px;
-//   right: 10px;
-//   cursor: pointer;
-// }
-
-// // /* Стилі для вмісту модалки */
-// // .team-item {
-// //   /* Ваші стилі для елементів команди */
-// //   /* Наприклад: */
-// //   display: flex;
-// //   align-items: center;
-// //   margin-bottom: 10px;
-// // }
-
-// // .team-img {
-// //   /* Ваші стилі для фото команди */
-// //   /* Наприклад: */
-// //   margin-right: 10px;
-// //   border-radius: 50%;
-// // }
-
-// // .team-desc-container {
-// //   /* Ваші стилі для контейнера з описом команди */
-// //   /* Наприклад: */
-// //   flex-grow: 1;
-// // }
-
-// // .team-position {
-// //   /* Ваші стилі для посади команди */
-// //   /* Наприклад: */
-// //   margin: 0;
-// //   font-weight: bold;
-// // }
-
-// // .team-name {
-// //   /* Ваші стилі для імені команди */
-// //   /* Наприклад: */
-// //   margin: 0;
-// // }
-
-.github-link,
-.linkedin-link {
-
-  display: inline-block;
-  margin-top: 5px;
-  color: #000;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.github-link svg,
-.linkedin-link svg {
- 
+.team-list-item {
+  border: 1px solid var(--team-border);
+  padding: 4px;
+  box-shadow: 10px 7px 5px var(--team-shedov);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  background-color: var(--accent-text-color);
+  border-radius: 4px;
+  color: var(--footer-text-color);
+  transition: transform 0.3s ease-in-out;
+  &:hover,
+  &:focus {
+    background-color: var(--color-focus-team);
+    transform: scale(1.05);
+  }
+}
+
+
+.team-img {
+
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.team-desc-container {
+
+  flex-grow: 1;
+}
+
+.team-list-position {
+
+  margin-bottom: 5px;
+  font-size: 14;
+  color: var(--position-team);
+}
+
+.team-list-name {
+  margin-bottom: 5px;
+  font-size: 14;
+  font-weight: 500;
+}
+
+
+.team-list-icon {
   width: 20px;
   height: 20px;
-  margin-right: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  fill: #1e193a;
+  transition: transform 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+      transform: scale(1.2);
+    }
+}
+
+.about-team-btn {
+ 
+  cursor: pointer;
+  border: transparent;
+  background-color: transparent;
 }
 
 
-// // /* Стилі для кнопки відкриття модалки */
-// // .about-team-btn {
-// //   /* Ваші стилі для кнопки відкриття модалки */
-// //   /* Наприклад: */
-// //   cursor: pointer;
-// // }

@@ -1,9 +1,13 @@
 //імпортуємо бібліотеки та інші файли
 import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
-import { createTrendMovesMarkup } from './js/createMarkup';
+import {
+  createTrendMovesMarkup,
+  createTrailerIdAndKeysArray,
+} from './js/createMarkup';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 import { createMoveModalMarkup } from './js/create-modal-markup';
-//
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 //
 //
 //
@@ -25,17 +29,17 @@ const refs = {
   galleryListEl: document.querySelector('.gallery-list'),
   aboutTeamBtn: document.querySelector('.about-team'),
   btnUpEl: document.querySelector('.btn-up'),
+  bodyEl: document.querySelector('body'),
   backdropMovieModal: document.querySelector('.backdrop'),
   movieModalEl: document.querySelector('div[data-movie-modal]'),
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
-  // addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+  //   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
 };
-//
 //
 //
 let movieIdForModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
@@ -44,9 +48,6 @@ let dataForModalMarkup = null; //Об'єкт із повною інформац�
 //який ми отримуємо після натискання на картку фільму на головній сторінці.
 // Цей об'єкт перезаписується щоразу після натискання на картку
 
-//
-//
-//
 //Аліна присяжнюк
 //
 const headerEl = document.querySelector('.header');
@@ -346,9 +347,6 @@ if (localStorage.theme === 'dark') {
 //
 //
 //
-//
-//
-//
 //Ірина Петренко
 //
 //
@@ -533,39 +531,6 @@ function handleMakeBtnAddRemoveQueue(event) {
   return;
 }
 
-function checkLocalStorage() {
-  if (!localStorage.watched && !localStorage.queue) {
-    let localStorageArray = [];
-    localStorage.setItem('watched', JSON.stringify(localStorageArray));
-    localStorage.setItem('queue', JSON.stringify(localStorageArray));
-    // refs.addToWatchedBtn.textContent = 'Add to watch';
-    // refs.addToQueueBtn.textContent = 'Add to Queue';
-  } else {
-    const getLocalStorageWatched = localStorage.getItem('watched');
-    const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
-    parseLocalStorageWatched.map(el => {
-      const { id } = el;
-      if (id === Number(movieIdForModalMarkup)) {
-        refs.addToWatchedBtn.textContent = 'Remove from watch';
-      } else {
-        refs.addToWatchedBtn.textContent = 'Add to watch';
-      }
-    });
-    const getLocalStorageQueue = localStorage.getItem('queue');
-    const parseLocalStorageQueue = JSON.parse(getLocalStorageQueue);
-
-    parseLocalStorageQueue.map(el => {
-      const { id } = el;
-      if (id === Number(movieIdForModalMarkup)) {
-        refs.addToQueueBtn.textContent = 'Add to Queue';
-      } else {
-        refs.addToQueueBtn.textContent = 'Remove from Queue';
-      }
-    });
-  }
-}
-//
-//
 //
 //
 //
@@ -670,6 +635,18 @@ function checkLocalStorage() {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //Денис
 function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
@@ -678,7 +655,10 @@ function renderMarkup(array) {
 }
 fetchTrendMoves()
   .then(data => {
-    renderMarkup(data);
+    createTrailerIdAndKeysArray(data);
+    setTimeout(() => {
+      renderMarkup(data);
+    }, 300);
   })
   .catch(error => console.log(error));
 
@@ -688,26 +668,23 @@ function handleClickSearchButton(e) {
   e.preventDefault();
   const inputData = refs.searchInputEl.value;
   if (inputData === '') {
-    alert('Please try again');
+    Notify.failure('Input is empty');
     return;
   }
   fetchMovesByKeyword(inputData.trim())
     .then(data => {
-      console.log(data);
       if (data.results.length === 0) {
-        alert('Please try again');
+        Notify.failure('No results for your search');
         return;
       }
-      renderMarkup(data);
+      createTrailerIdAndKeysArray(data);
+      setTimeout(() => {
+        renderMarkup(data);
+      }, 300);
       scrollUp();
     })
     .catch(error => console.log(error));
 }
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1081,13 +1058,14 @@ refs.galleryContainerEl.addEventListener('click', handleMovieCard);
 function onCloseMovieModal(e) {
   if (
     e.target.className === 'backdrop' ||
-    e.target.classList[0] === 'modal__close' ||
+    e.target.classList[0] === 'modal__close-btn' ||
     e.target.classList[0] === 'icon-close' ||
     e.target.classList[0] === 'svg-icon-close' ||
     e.code === 'Escape'
   ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
+    refs.bodyEl.style.overflow = 'scroll';
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
   }
@@ -1119,46 +1097,14 @@ function handleMovieCard(event) {
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
       window.addEventListener('keydown', onCloseMovieModal);
 
-      const markup = createMoveModalMarkup(data);
+      const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
+
       refs.movieModalFilmInfoEl.innerHTML = markup;
+      refs.bodyEl.style.overflow = 'hidden';
       return data;
     })
     .catch(error => console.log(error));
-  checkLocalStorage();
 }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //

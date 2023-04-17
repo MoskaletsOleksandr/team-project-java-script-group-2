@@ -7,31 +7,58 @@
   margin-right: 10px;
 }
 
-.team-link {
+.team-btn {
   text-decoration: none;
-  color: inherit;
   align-items: center;
   display: flex;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  color: var(--footer-text-color);
 }
 
 
 .footer {
   display: flex;
   align-items: center;
-  margin-bottom: 50px;
-}
+ }
 
 .footer-text {
   display: block;
+  
 }
 
 .footer-container {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
   display: flex;
  text-align: center;
  align-items: center;
+ font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  color: var(--footer-text-color);
 }
+
 
 @keyframes heartScale {
   0% {
@@ -48,63 +75,3 @@
 
 
 
-/* Стилі для вмісту модалки */
-.team-item {
-  /* Ваші стилі для елементів команди */
-  /* Наприклад: */
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.team-img {
-  /* Ваші стилі для фото команди */
-  /* Наприклад: */
-  margin-right: 10px;
-  border-radius: 50%;
-}
-
-.team-desc-container {
-  /* Ваші стилі для контейнера з описом команди */
-  /* Наприклад: */
-  flex-grow: 1;
-}
-
-.team-position {
-  /* Ваші стилі для посади команди */
-  /* Наприклад: */
-  margin: 0;
-  font-weight: bold;
-}
-
-.team-name {
-  /* Ваші стилі для імені команди */
-  /* Наприклад: */
-  margin: 0;
-}
-
-.github-link,
-.linkedin-link {
-  /* Ваші стилі для посилань на GitHub та LinkedIn команди */
-  /* Наприклад: */
-  display: inline-block;
-  margin-top: 5px;
-  color: #000;
-}
-
-.team-list-icon {
-  /* Ваші стилі для іконок GitHub та LinkedIn команди */
-  /* Наприклад: */
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-}
-
-/* Стилі для кнопки відкриття модалки */
-.about-team-btn {
-  /* Ваші стилі для кнопки відкриття модалки */
-  /* Наприклад: */
-  cursor: pointer;
-  border: transparent;
-  background-color: transparent;
-}
