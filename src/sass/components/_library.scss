@@ -39,13 +39,13 @@
     align-items: center;
 }
 
-.library-container{
-    @include tablet {
-        padding-top: 270px;}
+// .library-container{
+//     @include tablet {
+//         padding-top: 270px;}
 
-    @include desktop{
-    padding-top: 350px;}
-}
+//     @include desktop{
+//     padding-top: 350px;}
+// }
 
 .search--lib {
     display: flex;
