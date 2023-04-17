@@ -88,18 +88,20 @@ window.addEventListener('scroll', onScrollHeader);
 //
 //
 //
-const infinity = document.querySelector('.infitity-scroll');
+// export const infinity = document.querySelector('.infitity-scroll');
 
-function spinnerPlay() {
-  refs.body.classList.add('loading');
+export function spinnerPlay() {
+  refs.bodyEl.classList.add('loading');
 }
 
-function spinnerStop() {
+export function spinnerStop() {
   setTimeout(function () {
-    refs.body.classList.remove('loading');
-    refs.body.classList.add('loaded');
-  }, 1000);
+    refs.bodyEl.classList.remove('loading');
+    refs.bodyEl.classList.add('loaded');
+  }, 500);
 }
+spinnerPlay();
+spinnerStop();
 //
 //
 //
