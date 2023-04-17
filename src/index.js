@@ -56,7 +56,7 @@ const headerContainer = document.querySelector('.header-container');
 const logoHeader = document.querySelector('.header-logo');
 const logoTextHeader = document.querySelector('.header-text-logo');
 const iconFilmHeader = document.querySelector('.icon-film');
-//const searchBox = document.querySelector('.search');
+//const galle = document.querySelector('.search');
 let positionHeader = headerEl.offsetTop;
 function onScrollHeader() {
   if (window.pageYOffset > positionHeader) {
@@ -65,13 +65,14 @@ function onScrollHeader() {
     logoHeader.classList.add('fixed-logo');
     logoTextHeader.classList.add('text-logo-fixed');
     iconFilmHeader.classList.add('icon-film-fixed');
-    //searchBox.classList.add('fixed-search');
+    // refs.galleryContainerEl.classList.add('gallery-fixed');
   } else {
     headerEl.classList.remove('fixed');
     headerContainer.classList.remove('fixed-header');
     logoHeader.classList.remove('fixed-logo');
     logoTextHeader.classList.remove('text-logo-fixed');
     iconFilmHeader.classList.remove('icon-film-fixed');
+    // refs.galleryContainerEl.classList.remove('gallery-fixed');
   }
 }
 
@@ -595,7 +596,7 @@ fetchTrendMoves()
     createTrailerIdAndKeysArray(data);
     setTimeout(() => {
       renderMarkup(data);
-    }, 300);
+    }, 500);
   })
   .catch(error => console.log(error));
 
@@ -623,7 +624,7 @@ function handleClickSearchButton(e) {
       setTimeout(() => {
         spinnerPlay();
         renderMarkup(data);
-      }, 300);
+      }, 500);
       scrollUp();
       spinnerStop();
       // observer.unobserve(infinity);
