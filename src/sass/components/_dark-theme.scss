@@ -11,16 +11,24 @@ body {
 body.dark {
   --second-text-color: #b92f2c;
   --buttons-library-text-color: #b92f2c;
-  --buttons-modal-text-color: #b92f2c;
+  
   --btn-up-fill-color: #ffffff;
   --btn-up-bg-color: #b92f2c;
   --btn-up-hover-fill-color: #b92f2c;
   --btn-up-hover-bg-color: #ffffff;
   --btn-up-border-color: #b92f2c;
-  --vote-bg-color: #b92f2c;
-  --buttons-library-text-color: #b92f2c;
+  
   --buttons-library-hover-bg-color: #b92f2c;
   --body-bg-color: #c47c7cf5;
+
+  --buttons-modal-bg-color: #efecec;
+  --modal-accent-color: #b92f2c;
+
+  //modal-tem
+    --bg-modal-team: #efecec;
+    --color-focus-team: #c47c7cf5;
+    --position-team: #b92f2c;
+    // --team-shedov: #000000;
 }
 
 .header {

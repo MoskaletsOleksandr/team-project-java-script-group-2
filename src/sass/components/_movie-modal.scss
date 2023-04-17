@@ -1,12 +1,12 @@
 // ВІЗУАЛЬНО ПРИХОВУЮ СКРОЛ НА body
-body {
-  // scrollbar-width: none;  // Firefox //
-  // -ms-overflow-style: none;  // IE и Edge //
-}
+// body {
+//   // scrollbar-width: none;  // Firefox //
+//   // -ms-overflow-style: none;  // IE и Edge //
+// }
 //візуально приховую scrollbar для Chrome, Safari и Opera //
-body::-webkit-scrollbar {
-  // display: none;
-}
+// body::-webkit-scrollbar {
+//   // display: none;
+// }
 .backdrop {
   position: fixed;
   top: 0;
