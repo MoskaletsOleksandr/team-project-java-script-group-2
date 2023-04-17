@@ -3,10 +3,12 @@ import { loadLocalStorage } from "./localStorage";
 import { dataForModalMarkup } from "..";
 
 const keyWatched = 'watched'; 
+const btnEl = document.querySelector('.js-film-info__btns');
 
+console.log(btnEl);
 export function handleMakeBtnAddRemoveWatched(event) {
   if (event.target.dataset.watchedBtn === 'add-to-watched') {
-    console.log(event.target.dataset);
+    // console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
         const watchedArray = loadLocalStorage(keyWatched);                      
@@ -14,6 +16,7 @@ export function handleMakeBtnAddRemoveWatched(event) {
         saveLocalStorage(keyWatched, watchedArray);
         event.target.textContent = 'Remove from watched';
         event.target.dataset.watchedBtn = 'remove-from-watched';
+        event.target.classList.add('active-btn')
       })
       .catch(err => {
         console.log(err);
@@ -29,6 +32,7 @@ export function handleMakeBtnAddRemoveWatched(event) {
         saveLocalStorage(keyWatched, watchedArray); 
         event.target.textContent = 'Add to watched';
         event.target.dataset.watchedBtn = 'add-to-watched';
+        event.target.classList.add('active-btn')
       })
       .catch(err => {
         console.log(err);

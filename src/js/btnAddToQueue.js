@@ -4,7 +4,7 @@ import { dataForModalMarkup } from "..";
 const keyQueue = 'queue';
 export function handleMakeBtnAddRemoveQueue(event) {
   if (event.target.dataset.queueBtn === 'add-to-queue') {
-    console.log(event.target.dataset);
+    // console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
         const queuedArray = loadLocalStorage(keyQueue);
@@ -12,6 +12,8 @@ export function handleMakeBtnAddRemoveQueue(event) {
         saveLocalStorage(keyQueue, queuedArray);
         event.target.textContent = 'Remove from queue';
         event.target.dataset.queueBtn = 'remove-from-queue';
+        event.target.classList.add('active-btn');
+        event.target.classList.add('active-btn')
       })
       .catch(err => {
         console.log(err);
