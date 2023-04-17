@@ -1,9 +1,13 @@
 //імпортуємо бібліотеки та інші файли
 import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
-import { createTrendMovesMarkup } from './js/createMarkup';
+import {
+  createTrendMovesMarkup,
+  createTrailerIdAndKeysArray,
+} from './js/createMarkup';
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
 import { createMoveModalMarkup } from './js/create-modal-markup';
-//
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 //
 //
 //
@@ -31,12 +35,11 @@ const refs = {
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
-  // addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+//   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
 };
-//
 //
 //
 let movieIdForModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
@@ -45,9 +48,6 @@ let dataForModalMarkup = null; //Об'єкт із повною інформац�
 //який ми отримуємо після натискання на картку фільму на головній сторінці.
 // Цей об'єкт перезаписується щоразу після натискання на картку
 
-//
-//
-//
 //Аліна присяжнюк
 //
 const headerEl = document.querySelector('.header');
@@ -347,9 +347,6 @@ if (localStorage.theme === 'dark') {
 //
 //
 //
-//
-//
-//
 //Ірина Петренко
 //
 //
@@ -534,55 +531,6 @@ function handleMakeBtnAddRemoveQueue(event) {
   return;
 }
 
-// function checkLocalStorage(event) {
-//   if (!localStorage.watched && !localStorage.queue) {
-//     let localStorageArray = [];
-//     localStorage.setItem('watched', JSON.stringify(localStorageArray));
-//     localStorage.setItem('queue', JSON.stringify(localStorageArray));
-//   } else {
-//     const getLocalStorageWatched = localStorage.getItem('watched');
-//     const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
-//     const result = [];
-//     parseLocalStorageWatched.map(el => {
-//       const { id } = el;
-//       result.push(id);
-//     });
-//     console.log(result);
-//     const found = result.find(
-//       element => element === Number(movieIdForModalMarkup)
-//     );
-//     console.log(found);
-//     if (found) {
-//       const x = refs.movieModalEl.querySelectorAll('button');
-
-//       console.log(
-//         x
-//         // refs.movieModalEl.querySelector('.js-film-info')
-//         // refs.movieModalEl.children[1].children[1].children[4].children js-film-info__content
-//       );
-//       // event.target.dataset.watchedBtn.textContent = 'fsggdss';
-//       console.log('is in watched');
-//     } else {
-//       console.log('is out of watched');
-//     }
-
-//     const getLocalStorageQueue = localStorage.getItem('queue');
-//     const parseLocalStorageQueue = JSON.parse(getLocalStorageQueue);
-
-//     parseLocalStorageQueue.map(el => {
-//       const { id } = el;
-//       if (id === Number(movieIdForModalMarkup)) {
-//         console.log('in queue');
-//         // refs.addToQueueBtn.textContent = 'Add to Queue';
-//       } else {
-//         console.log('out of queue');
-//         // refs.addToQueueBtn.textContent = 'Remove from Queue';
-//       }
-//     });
-//   }
-// }
-//
-//
 //
 //
 //
@@ -687,6 +635,18 @@ function handleMakeBtnAddRemoveQueue(event) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //Денис
 function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
@@ -695,7 +655,10 @@ function renderMarkup(array) {
 }
 fetchTrendMoves()
   .then(data => {
-    renderMarkup(data);
+    createTrailerIdAndKeysArray(data);
+    setTimeout(() => {
+      renderMarkup(data);
+    }, 100);
   })
   .catch(error => console.log(error));
 
@@ -705,26 +668,23 @@ function handleClickSearchButton(e) {
   e.preventDefault();
   const inputData = refs.searchInputEl.value;
   if (inputData === '') {
-    alert('Please try again');
+    Notify.failure('Input is empty');
     return;
   }
   fetchMovesByKeyword(inputData.trim())
     .then(data => {
-      console.log(data);
       if (data.results.length === 0) {
-        alert('Please try again');
+        Notify.failure('No results for your search');
         return;
       }
-      renderMarkup(data);
+      createTrailerIdAndKeysArray(data);
+      setTimeout(() => {
+        renderMarkup(data);
+      }, 100);
       scrollUp();
     })
     .catch(error => console.log(error));
 }
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1144,7 +1104,6 @@ function handleMovieCard(event) {
       return data;
     })
     .catch(error => console.log(error));
-  // checkLocalStorage(event);
 }
 //
 //
