@@ -1,4 +1,4 @@
-export function createMoveModalMarkup(data) {
+export function createMoveModalMarkup(data, movieIdForModalMarkup) {
   const BASE_IMG_URL = 'https://image.tmdb.org/t/p/original';
 
   const {
@@ -13,6 +13,30 @@ export function createMoveModalMarkup(data) {
   } = data;
 
   const listOfGenres = genres.map(genre => genre.name).join(', ');
+
+  let addToWatchedAtr = 'add-to-watched';
+  let addToWatchedText = 'add to watched';
+
+  if (!localStorage.watched && !localStorage.queue) {
+    let localStorageArray = [];
+    localStorage.setItem('watched', JSON.stringify(localStorageArray));
+    localStorage.setItem('queue', JSON.stringify(localStorageArray));
+  } else {
+    const getLocalStorageWatched = localStorage.getItem('watched');
+    const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
+    const result = [];
+    parseLocalStorageWatched.map(el => {
+      const { id } = el;
+      result.push(id);
+    });
+    const found = result.find(
+      element => element === Number(movieIdForModalMarkup)
+    );
+    if (found) {
+      addToWatchedAtr = 'remove-from-watched';
+      addToWatchedText = 'remove from watched';
+    }
+  }
 
   return `
                    <div class="js-film-info__thumb">
@@ -53,10 +77,10 @@ export function createMoveModalMarkup(data) {
                     <div class="js-film-info__btns">
                       <button
                         type="button"
-                        class="js-film-info__btn"
-                        data-watched-btn=add-to-watched
+                        class="js-film-info__btn active-btn"
+                        data-watched-btn=${addToWatchedAtr}
                       >
-                        add to Watched
+                        ${addToWatchedText}
                       </button>
                       <button type="button" class="js-film-info__btn active-btn" data-queue-btn=add-to-queue>
                         add to queue
