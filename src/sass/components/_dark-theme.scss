@@ -1,3 +1,8 @@
+body {
+  background-color: var(--body-bg-color);
+  transition: background-color var(--animation);
+}
+
 body.dark {
   --second-text-color: #b92f2c;
   --buttons-library-text-color: #b92f2c;
@@ -10,11 +15,15 @@ body.dark {
   --vote-bg-color: #b92f2c;
   --buttons-library-text-color: #b92f2c;
   --buttons-library-hover-bg-color: #b92f2c;
+  --body-bg-color: #f96a6ac5;
+}
+
+.header {
+  background-color: var(--body-bg-color);
+  transition: background-color var(--animation);
 }
 
 .header-container-dark {
-  animation: anim 0.5s;
-  transition: opacity var(--animation);
   position: relative;
   height: 460px;
   width: 280px;
@@ -118,4 +127,13 @@ body.dark {
         url(/src/images/header-dark/header-desktop-dark-2x.jpg);
     }
   }
+}
+
+.trailer-button {
+  transition: background-color var(--animation);
+}
+
+.film-genres,
+.film-year {
+  transition: color var(--animation);
 }

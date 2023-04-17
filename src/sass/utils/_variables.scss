@@ -1,6 +1,6 @@
 :root {
   --primary-text-color: #000000;
-  --second-text-color: #fad105; // Колір тексту жанрів фільмів. В макеті #B92F2C.
+  --second-text-color: #ffee02; // Колір тексту жанрів фільмів. В макеті #B92F2C.
   --accent-text-color: #ffffff; // Hover, focus, avtive button
   --logo-text-color: #ffffff; // Filmoteka
   --footer-text-color: #545454;
@@ -45,5 +45,7 @@
   --box-shadow-card: 0px 5px 10px 0px rgba(250, 209, 5, 0.5); // Просто добавив "Щоб було"
 
   --main-font-family: Roboto, sans-serif;
-  --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1); // З минулого проєкту
+  --animation: 1000ms cubic-bezier(0.4, 0, 0.2, 1); // З минулого проєкту
+  
+  --body-bg-color: #ffffff;
 }
