@@ -17,6 +17,7 @@ function onSearchByKeyword(event) {
     Notiflix.Notify.failure(
       'Oops.The seach is empty.Enter Movie name that you want to find'
     );
+    spinnerStop();
     return;
   }
   //   showHideLoader(refs.loader);
@@ -32,11 +33,13 @@ function onSearchByKeyword(event) {
         Notiflix.Notify.failure(
           'Oops. We cancot find your film. Please try again'
         );
+        spinnerPlay();
         return;
       }
       Notiflix.Notify.success(
         ` Hooray! We found ${data.total_results} movies.`
       );
+    spinnerStop();
       renderMarkup(data);
       renderTrailerMarkup(data);
       const pagination = createPagination(data.total_results, data.total_pages);
@@ -49,7 +52,10 @@ function onSearchByKeyword(event) {
         });
       });
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+    spinnerStop();
+    console.log(error)
+  });
 }
 
 // refs.searchFormEl.addEventListener('submit', handleClickSearchButton);
