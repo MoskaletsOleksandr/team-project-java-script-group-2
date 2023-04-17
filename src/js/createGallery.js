@@ -5,6 +5,7 @@ import {
   createTrailerIdAndKeysArray,
 } from './createMarkup';
 import refs from './refs';
+import { spinnerPlay } from '..';
 
 function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);

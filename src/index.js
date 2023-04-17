@@ -98,7 +98,7 @@ export function spinnerStop() {
   setTimeout(function () {
     refs.bodyEl.classList.remove('loading');
     refs.bodyEl.classList.add('loaded');
-  }, 500);
+  }, 1000);
 }
 spinnerPlay();
 spinnerStop();

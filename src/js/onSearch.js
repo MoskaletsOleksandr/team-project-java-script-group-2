@@ -54,6 +54,7 @@ function onSearchByKeyword(event) {
       setTimeout(() => {
         renderMarkup(data);
       }, 1000);
+      //spinnerPlay();
       const pagination = createPagination(data.total_results, data.total_pages);
       pagination.on('beforeMove', ({ page }) => {
         refs.galleryListEl.innerHTML = '';
