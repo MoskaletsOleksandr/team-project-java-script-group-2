@@ -14,22 +14,21 @@ a {
   position: relative;
   height: 460px;
   width: 280px;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.4) 65.37%
-    ),
+  transform: translate3d(0);
+  transition: transform 700ms ease-in-out;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)),
     url(/src/images/header/header-bg-mob.jpg);
   @include retina {
     background-image: linear-gradient(
         0deg,
-        rgba(0, 0, 0, 0.05),
-        rgba(0, 0, 0, 0.05)
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.4)
       ),
       url(/src/images/header/header-bg-mob-2x.jpg);
   }
@@ -256,10 +255,6 @@ a {
   }
 }
 
-// .navigation {
-//   margin-right: 450px;
-// }
-
 // btn-theme
 .btn-theme {
   position: absolute;
@@ -321,7 +316,6 @@ a {
   position: fixed;
   z-index: 1;
   top: 0;
-  width: 100%;
   padding-top: 32px;
   padding-bottom: 32px;
 }
@@ -329,8 +323,10 @@ a {
 .fixed-header {
   height: 100px;
   width: 100%;
-  background-image: none;
-
+  transform: scale(1.01);
+  transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  transition: transform 800ms ease-out;
   background-image: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.05),

@@ -39,6 +39,7 @@ const refs = {
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
+  body: document.querySelector('body'),
 };
 //
 //
@@ -69,6 +70,8 @@ function onScrollHeader() {
     headerEl.classList.remove('fixed');
     headerContainer.classList.remove('fixed-header');
     logoHeader.classList.remove('fixed-logo');
+    logoTextHeader.classList.remove('text-logo-fixed');
+    iconFilmHeader.classList.remove('icon-film-fixed');
   }
 }
 
@@ -76,21 +79,18 @@ window.addEventListener('scroll', onScrollHeader);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+const infinity = document.querySelector('.infitity-scroll');
+
+function spinnerPlay() {
+  refs.body.classList.add('loading');
+}
+
+function spinnerStop() {
+  setTimeout(function () {
+    refs.body.classList.remove('loading');
+    refs.body.classList.add('loaded');
+  }, 1000);
+}
 //
 //
 //
@@ -455,78 +455,16 @@ document.addEventListener('keydown', function (event) {
 //
 //Мар'яна Собашевська
 
-// import { handleMakeBtnAddRemoveWatched } from './js/btnAddToWatched';
-// import { handleMakeBtnAddRemoveQueue } from './js/btnAddToQueue';
+import { handleMakeBtnAddRemoveWatched } from './js/btnAddToWatched';
+import { handleMakeBtnAddRemoveQueue } from './js/btnAddToQueue';
 import { saveLocalStorage } from './js/localStorage';
 import { loadLocalStorage } from './js/localStorage';
 const keyQueue = 'queue';
-const keyWatched = 'watched'; 
+const keyWatched = 'watched';
 
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched); //обробник для кнопки AddRemoveTo Watched
-function handleMakeBtnAddRemoveWatched(event) {
-  if (event.target.dataset.watchedBtn === 'add-to-watched') {
-    dataForModalMarkup
-      .then(data => {
-        const watchedArray = loadLocalStorage(keyWatched);                      
-        watchedArray.push(data);
-        saveLocalStorage(keyWatched, watchedArray);
-        event.target.textContent = 'Remove from Watched';
-        event.target.dataset.watchedBtn = 'remove-from-watched';
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  } else if (event.target.dataset.watchedBtn === 'remove-from-watched') {
-    dataForModalMarkup
-      .then(data => {
-       const watchedArray = loadLocalStorage(keyWatched);
-        const index = watchedArray.findIndex(el => Number(el.id) === Number(data.id));
-        watchedArray.splice(index, 1);
-        localStorage.removeItem(keyWatched);
-        saveLocalStorage(keyWatched, watchedArray); 
-        event.target.textContent = 'Add to Watched';
-        event.target.dataset.watchedBtn = 'add-to-watched';
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-  return;
-}
-
 
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
-function handleMakeBtnAddRemoveQueue(event) {                          //обробник для кнопки AddRemoveToQueue
-  if (event.target.dataset.queueBtn === 'add-to-queue') {
-    dataForModalMarkup
-      .then(data => {
-        const queuedArray = loadLocalStorage(keyQueue);
-        queuedArray.push(data);
-        saveLocalStorage(keyQueue, queuedArray);
-        event.target.textContent = 'Remove from Queue';
-        event.target.dataset.queueBtn = 'remove-from-queue';
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  } else if (event.target.dataset.queueBtn === 'remove-from-queue') {
-    dataForModalMarkup
-      .then(data => {
-        const queuedArray = loadLocalStorage(keyQueue);
-        const index = queuedArray.findIndex(el => Number(el.id) === Number(data.id));
-        queuedArray.splice(index, 1);
-        localStorage.removeItem(keyQueue);
-        saveLocalStorage(keyQueue, queuedArray);
-        event.target.textContent = 'Add to Queue';
-        event.target.dataset.queueBtn = 'add-to-queue';
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-  return;
-}
-
 
 //
 //
@@ -644,6 +582,8 @@ function handleMakeBtnAddRemoveQueue(event) {                          //обр�
 //
 //
 //
+//
+//
 //Денис
 function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
@@ -661,26 +601,37 @@ fetchTrendMoves()
 
 refs.searchFormEl.addEventListener('submit', handleClickSearchButton);
 
+spinnerPlay();
+spinnerStop();
+
 function handleClickSearchButton(e) {
   e.preventDefault();
   const inputData = refs.searchInputEl.value;
   if (inputData === '') {
     Notify.failure('Input is empty');
+    spinnerStop();
     return;
   }
   fetchMovesByKeyword(inputData.trim())
     .then(data => {
       if (data.results.length === 0) {
         Notify.failure('No results for your search');
+        spinnerStop();
         return;
       }
       createTrailerIdAndKeysArray(data);
       setTimeout(() => {
+        spinnerPlay();
         renderMarkup(data);
       }, 300);
       scrollUp();
+      spinnerStop();
+      // observer.unobserve(infinity);
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      spinnerStop();
+      // console.log(error);
+    });
 }
 //
 //
