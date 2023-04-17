@@ -27,7 +27,7 @@ const refs = {
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
-  removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'),  // <--- цієї кнопки більше немає в розмітці
+  removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'), // <--- цієї кнопки більше немає в розмітці
   removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'), // <--- цієї кнопки більше немає в розмітці
   btnUpEl: document.querySelector('.btn-up'),
 };
@@ -847,9 +847,54 @@ if (localStorage.theme === 'dark') {
 //
 //
 //
-//
-//
 //Ірина
+import { createLibraryMarkup } from "./js/createLibraryMarkup.js";
+
+const watchedBtn = document.querySelector('.watched-btn');
+const queueBtn = document.querySelector('.queue-btn');
+const galleryContainerEl = document.querySelector('.gallery-lib-list');
+const nothingContainer = document.querySelector('.library-container');
+
+watchedBtn.addEventListener('click', handleWatchedBtn);
+queueBtn.addEventListener('click', handleQueueBtn);
+
+let watchedFilms = [];
+let queueFilms = [];
+
+function handleWatchedBtn() {
+
+  nothingContainer.style.display = 'none';
+
+  watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
+  console.log(watchedFilms);
+
+  if (watchedFilms.length <= 0) {
+    nothingContainer.style.display = 'block';
+    galleryContainerEl.innerHTML = "";
+    return;
+  }
+
+  const markup = createLibraryMarkup(watchedFilms);
+  galleryContainerEl.innerHTML = markup;
+}
+
+function handleQueueBtn() {
+
+  queueFilms = JSON.parse(localStorage.getItem('queue')) || [];
+
+  nothingContainer.style.display = 'none';
+
+  if (queueFilms.length <= 0) {
+    nothingContainer.style.display = 'block';
+     galleryContainerEl.innerHTML = "";
+    return;
+  }
+  const markup = createLibraryMarkup(queueFilms);
+  galleryContainerEl.innerHTML = markup;;
+}
+
+handleWatchedBtn();
+
 //
 //
 //

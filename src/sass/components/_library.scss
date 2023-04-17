@@ -7,18 +7,29 @@
 .library-buttons-link {
     border: none;
     text-align: center;
-    background-color: var(--buttons-library-bg-color);
+    background-color: var(--buttons-header-bg-color);
     font-weight: 500;
     font-size: 12px;
     line-height: 1.17;
     text-transform: uppercase;
-    padding: 14px 32px;
+    padding: 10px 26px;
     border-radius: 100px;
-    color: var(--buttons-library-text-color);
+    color: var(--buttons-header-text-color);
+    cursor: pointer;
+    transition: color var(--animation);
+    transition: background-color var(--animation);
+
+    @include tablet {
+        padding: 12px 24px;
+    }
+
+    @include desktop {
+        padding: 14px 32px;
+    }
 }
 
 .library-buttons-link:hover {
-    color: var(--buttons-library-hover-text-color);
+    color: var(--buttons-header-text-color);
     background-color: var(--buttons-library-hover-bg-color);
 }
 
@@ -26,4 +37,51 @@
     display: flex;
     margin-left: auto;
     align-items: center;
+}
+
+// .library-container{
+//     @include tablet {
+//         padding-top: 270px;}
+
+//     @include desktop{
+//     padding-top: 350px;}
+// }
+
+.search--lib {
+    display: flex;
+    align-items: baseline;
+}
+
+.navigation--lib {
+    @include tablet {
+            margin-right: 217px;
+            margin-left: 18px;
+        }
+    @include desktop {
+            margin-right: 650;
+            margin-left: 0px;
+        }
+}
+
+.gallery-lib-list {
+    margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        row-gap: 20px;
+        align-items: center;
+    
+        @media screen and (min-width: 768px) {
+            margin-top: 32px;
+            flex-direction: row;
+            align-items: unset;
+            row-gap: 32px;
+            column-gap: 32px;
+        }
+    
+        @media screen and (min-width: 1280px) {
+            margin-top: 32px;
+            row-gap: 32px;
+            column-gap: 16px;
+        }
 }

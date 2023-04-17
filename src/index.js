@@ -462,35 +462,37 @@ document.addEventListener('keydown', function (event) {
 //
 //
 //Мар'яна Собашевська
-refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched);
+
+// import { handleMakeBtnAddRemoveWatched } from './js/btnAddToWatched';
+// import { handleMakeBtnAddRemoveQueue } from './js/btnAddToQueue';
+import { saveLocalStorage } from './js/localStorage';
+import { loadLocalStorage } from './js/localStorage';
+const keyQueue = 'queue';
+const keyWatched = 'watched'; 
+
+refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched); //обробник для кнопки AddRemoveTo Watched
 function handleMakeBtnAddRemoveWatched(event) {
   if (event.target.dataset.watchedBtn === 'add-to-watched') {
-    console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
-        const getLocalStorage = localStorage.getItem('watched');
-        const parseLocalStorage = JSON.parse(getLocalStorage);
-        parseLocalStorage.push(data);
-
-        localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
-
-        event.target.textContent = 'Remove from watched';
+        const watchedArray = loadLocalStorage(keyWatched);                      
+        watchedArray.push(data);
+        saveLocalStorage(keyWatched, watchedArray);
+        event.target.textContent = 'Remove from Watched';
         event.target.dataset.watchedBtn = 'remove-from-watched';
       })
       .catch(err => {
         console.log(err);
       });
   } else if (event.target.dataset.watchedBtn === 'remove-from-watched') {
-    console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
-        const getLocalStorage = localStorage.getItem('watched');
-        const parseLocalStorage = JSON.parse(getLocalStorage);
-        parseLocalStorage.push(data);
-
-        localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
-
-        event.target.textContent = 'Add to watched';
+       const watchedArray = loadLocalStorage(keyWatched);
+        const index = watchedArray.findIndex(el => Number(el.id) === Number(data.id));
+        watchedArray.splice(index, 1);
+        localStorage.removeItem(keyWatched);
+        saveLocalStorage(keyWatched, watchedArray); 
+        event.target.textContent = 'Add to Watched';
         event.target.dataset.watchedBtn = 'add-to-watched';
       })
       .catch(err => {
@@ -500,36 +502,30 @@ function handleMakeBtnAddRemoveWatched(event) {
   return;
 }
 
-refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
 
-function handleMakeBtnAddRemoveQueue(event) {
+refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
+function handleMakeBtnAddRemoveQueue(event) {                          //обробник для кнопки AddRemoveToQueue
   if (event.target.dataset.queueBtn === 'add-to-queue') {
-    console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
-        const getLocalStorage = localStorage.getItem('queue');
-        const parseLocalStorage = JSON.parse(getLocalStorage);
-        parseLocalStorage.push(data);
-
-        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
-
-        event.target.textContent = 'Remove from queue';
+        const queuedArray = loadLocalStorage(keyQueue);
+        queuedArray.push(data);
+        saveLocalStorage(keyQueue, queuedArray);
+        event.target.textContent = 'Remove from Queue';
         event.target.dataset.queueBtn = 'remove-from-queue';
       })
       .catch(err => {
         console.log(err);
       });
   } else if (event.target.dataset.queueBtn === 'remove-from-queue') {
-    console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
-        const getLocalStorage = localStorage.getItem('queue');
-        const parseLocalStorage = JSON.parse(getLocalStorage);
-        parseLocalStorage.push(data);
-
-        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
-
-        event.target.textContent = 'Add to queue';
+        const queuedArray = loadLocalStorage(keyQueue);
+        const index = queuedArray.findIndex(el => Number(el.id) === Number(data.id));
+        queuedArray.splice(index, 1);
+        localStorage.removeItem(keyQueue);
+        saveLocalStorage(keyQueue, queuedArray);
+        event.target.textContent = 'Add to Queue';
         event.target.dataset.queueBtn = 'add-to-queue';
       })
       .catch(err => {
@@ -538,6 +534,7 @@ function handleMakeBtnAddRemoveQueue(event) {
   }
   return;
 }
+
 
 //
 //
@@ -1088,7 +1085,7 @@ function idRewriter(event) {
   return;
 }
 
-function handleMovieCard(event) {
+export function handleMovieCard(event) {
   idRewriter(event); //ця функція перезаписує значення movieIdForModalMarkup
   if (
     event.target.nodeName !== 'IMG' &&
