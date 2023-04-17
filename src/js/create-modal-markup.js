@@ -1,3 +1,5 @@
+import { saveLocalStorage } from "./localStorage";
+import { loadLocalStorage } from "./localStorage";
 export function createMoveModalMarkup(data, movieIdForModalMarkup) {
   const BASE_IMG_URL = 'https://image.tmdb.org/t/p/original';
 
@@ -13,28 +15,30 @@ export function createMoveModalMarkup(data, movieIdForModalMarkup) {
   } = data;
 
   const listOfGenres = genres.map(genre => genre.name).join(', ');
-
+  // ------------ ls---------------------------------------
   let addToWatchedAtr = 'add-to-watched';
   let addToWatchedText = 'add to watched';
+  let addToQueueAtr = 'add-to-queue';
+  let addToQueueText = 'add to queue';
+  const keyWatched = 'watched';
+  const keyQueue = 'queue';
 
   if (!localStorage.watched && !localStorage.queue) {
-    let localStorageArray = [];
-    localStorage.setItem('watched', JSON.stringify(localStorageArray));
-    localStorage.setItem('queue', JSON.stringify(localStorageArray));
+    let objectArray = [];
+    saveLocalStorage(keyWatched, objectArray);
+    saveLocalStorage(keyQueue, objectArray);
+   
   } else {
-    const getLocalStorageWatched = localStorage.getItem('watched');
-    const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
-    const result = [];
-    parseLocalStorageWatched.map(el => {
-      const { id } = el;
-      result.push(id);
-    });
-    const found = result.find(
-      element => element === Number(movieIdForModalMarkup)
-    );
-    if (found) {
+    const watchedArray = loadLocalStorage(keyWatched);
+    const queueArray = loadLocalStorage(keyQueue);
+    
+    if (watchedArray.some(el => Number(el.id) === Number(data.id))) {
       addToWatchedAtr = 'remove-from-watched';
-      addToWatchedText = 'remove from watched';
+      addToWatchedText = 'remove from watched';      
+    }
+    if (queueArray.some(el => Number(el.id) === Number(data.id))) {
+      addToQueueAtr = 'remove-from-queue';
+      addToQueueText = 'remove from queue';     
     }
   }
 
@@ -82,8 +86,9 @@ export function createMoveModalMarkup(data, movieIdForModalMarkup) {
                       >
                         ${addToWatchedText}
                       </button>
-                      <button type="button" class="js-film-info__btn active-btn" data-queue-btn=add-to-queue>
-                        add to queue
+                      <button type="button" class="js-film-info__btn active-btn" data-queue-btn=${addToQueueAtr}>
+                        ${addToQueueText}
+
                       </button>
                     </div>
                   </div>`;
