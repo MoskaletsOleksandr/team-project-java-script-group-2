@@ -1,7 +1,7 @@
 //імпортуємо бібліотеки та інші файли
 import './js/createGallery';
 import './js/onSearch';
-import './js/pagination'
+import './js/pagination';
 import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
 import {
   createTrendMovesMarkup,
@@ -59,7 +59,7 @@ const headerContainer = document.querySelector('.header-container');
 const logoHeader = document.querySelector('.header-logo');
 const logoTextHeader = document.querySelector('.header-text-logo');
 const iconFilmHeader = document.querySelector('.icon-film');
-//const searchBox = document.querySelector('.search');
+//const galle = document.querySelector('.search');
 let positionHeader = headerEl.offsetTop;
 function onScrollHeader() {
   if (window.pageYOffset > positionHeader) {
@@ -68,12 +68,15 @@ function onScrollHeader() {
     logoHeader.classList.add('fixed-logo');
     logoTextHeader.classList.add('text-logo-fixed');
     iconFilmHeader.classList.add('icon-film-fixed');
-    //searchBox.classList.add('fixed-search');
+    // refs.galleryContainerEl.classList.add('gallery-fixed');
   } else {
     headerEl.classList.remove('fixed');
     headerContainer.classList.remove('fixed-header');
     headerContainer.classList.remove('fixed-header-dark');
     logoHeader.classList.remove('fixed-logo');
+    logoTextHeader.classList.remove('text-logo-fixed');
+    iconFilmHeader.classList.remove('icon-film-fixed');
+    // refs.galleryContainerEl.classList.remove('gallery-fixed');
   }
 
   if (window.pageYOffset > positionHeader && localStorage.theme === 'dark') {
@@ -82,19 +85,21 @@ function onScrollHeader() {
 }
 
 window.addEventListener('scroll', onScrollHeader);
+//
+//
+//
+const infinity = document.querySelector('.infitity-scroll');
 
+function spinnerPlay() {
+  refs.body.classList.add('loading');
+}
 
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function spinnerStop() {
+  setTimeout(function () {
+    refs.body.classList.remove('loading');
+    refs.body.classList.add('loaded');
+  }, 1000);
+}
 //
 //
 //
@@ -317,10 +322,10 @@ btnThemeEl.addEventListener('click', () => {
   }
 
   if (localStorage.theme === 'dark' && window.pageYOffset > positionHeader) {
-        headerContainer.classList.add('fixed-header-dark');
+    headerContainer.classList.add('fixed-header-dark');
   } else {
     headerContainer.classList.remove('fixed-header-dark');
-      }
+  }
 });
 
 if (localStorage.theme === 'dark') {
@@ -464,13 +469,11 @@ import { handleMakeBtnAddRemoveQueue } from './js/btnAddToQueue';
 import { saveLocalStorage } from './js/localStorage';
 import { loadLocalStorage } from './js/localStorage';
 const keyQueue = 'queue';
-const keyWatched = 'watched'; 
+const keyWatched = 'watched';
 
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched); //обробник для кнопки AddRemoveTo Watched
 
-
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
-
 
 //
 //
