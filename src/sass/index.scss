@@ -4,13 +4,14 @@
 @import './base/common';
 @import './base/reset';
 
-@import './components/movie-modal';
 @import './components/example';
+@import './components/movie-modal';
 
 @import './components/container';
 @import './components/header';
 @import './components/gallery';
 @import './components/library';
+@import './components/pagination';
 
 @import './components/btn-up';
 @import './components/dark-theme';

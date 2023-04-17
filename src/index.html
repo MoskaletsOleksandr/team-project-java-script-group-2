@@ -3,6 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./images/favicon/site.webmanifest">
+    <link rel="mask-icon" href="./images/favicon/safari-pinned-tab.svg" color="#fad105">
+    <link rel="shortcut icon" href="./images/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#b92f2c">
+    <meta name="msapplication-config" content="./images/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
     <title>Filmoteka</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,7 +20,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./sass/index.scss" />
-    
+    <link rel="stylesheet" href="/src/videotube/videotube.min.css" />
   </head>
   <body>
     <include src="./partials/index/header.html"></include>
@@ -26,5 +35,6 @@
 
     <include src="./partials/common/footer.html"></include>
     <script type="module" src="./index.js"></script>
+    <script type="module" src="/src/videotube/videotube.min.js"></script>
   </body>
 </html>

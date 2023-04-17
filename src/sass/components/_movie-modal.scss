@@ -1,3 +1,13 @@
+// ВІЗУАЛЬНО ПРИХОВУЮ СКРОЛ НА body
+body {
+  scrollbar-width: none;  // Firefox //
+  -ms-overflow-style: none;  // IE и Edge //
+}
+//візуально приховую scrollbar для Chrome, Safari и Opera //
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -10,23 +20,21 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  overflow: auto;
 }
 
-.is-hidden {
+.backdrop.is-hidden {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
 
   .modal {
-    transform: translate(-50%, -50%) scale(0.3);
     opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
   }
 }
-
 .modal {
   position: absolute;
-  top: 100px;
+  top: 10px;
   left: 50%;
   transform: translate(-50%) scale(1);
   opacity: 1;
@@ -35,7 +43,7 @@
   margin-left: auto;
   margin-right: auto;
   max-width: 100%;
-  width: 440px;
+  width: 280px;
   padding: 48px 20px 40px;
   font-family: var(--main-font-family);
   font-weight: 500;
@@ -43,8 +51,14 @@
   line-height: calc(14 / 12);
   color: var(--primary-text-color);
   background-color: var(--buttons-modal-bg-color);
-  
+  height: 100%;
+  overflow: auto;
+                               // Візуально приховую скрол на модалці
+  scrollbar-width: none;  // Firefox //
+  -ms-overflow-style: none;  // IE и Edge //
   @include tablet {
+    top: 150px;
+    height: auto;
     width: 704px;
     padding: 40px 72px 64px 36px;
   }
@@ -53,8 +67,11 @@
     padding: 40px 12px;
   }
 }
-
-.modal__close {
+// для моб версії візуально приховую scrollbar для Chrome, Safari и Opera на МОДАЛЦІ//
+.modal::-webkit-scrollbar {
+  display: none;
+}
+.modal__close-btn {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -71,11 +88,11 @@
   transition: fill var(--animation), background-color var(--animation);
   &:hover,
   &:focus {
-    background-color: var(--buttons-modal-text-color);
-    fill: var(--accent-text-color);
+    background-color: var(--modal-accent-color);
+    fill: var(--buttons-modal-accent-fill-color);
   }
   &:active {
-    fill: var(--primary-text-color);
+    fill: var(--buttons-modal-active-fill-color);
   }
 }
 .js-film-info {
@@ -89,7 +106,8 @@
 }
 .js-film-info__thumb {
   margin-bottom: 20px;
-  object-fit: cover;
+  width: 240px;
+  height: 357px;
   @include tablet {
     margin-bottom: 0;
     width: 264px;
@@ -102,6 +120,7 @@
 }
 
 .js-film-info__poster {
+  object-fit: cover;
   width: 100%;
   height: 100%;
   border-radius: 5px;
@@ -141,20 +160,20 @@
 .slash {
   width: 108px;
   line-height: calc(16 / 12);
-  color: var(--description-film-text-color);
+  color: var(--modal-second-text-color);
 }
 .js-film-info__vote {
   padding: 1px 9px;
   text-transform: uppercase;
   border-radius: 5px;
   color: var(--accent-text-color);
-  background-color: var(--vote-bg-color);
+  background-color: var(--modal-accent-color);
 }
 .js-film-info__votes {
   padding: 1px 4px;
   text-transform: uppercase;
   border-radius: 5px;
-  background-color: var(--votes-bg-color);
+  background-color: var(--modal-votes-bg-color);
 }
 .js-film-info__original-title {
   line-height: calc(16 / 12);
@@ -178,39 +197,47 @@
 .js-film-info__btns {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 4px;
   @include tablet {
-    justify-content: flex-start;
     gap: 8px;
   }
 }
 .js-film-info__btn {
+  width: 118px;
+  height: 48px;
   padding: 10px 10px;
-
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(14 / 12);
   text-transform: uppercase;
   border-radius: 100px;
-  border: var(--buttons-modal-border);
+  color: var(--second-text-color);
   background-color: var(--buttons-modal-bg-color);
-  color: var(--buttons-modal-text-color);
+  border: var(--buttons-modal-border);
   cursor: pointer;
   transition: color var(--animation), background-color var(--animation);
   @include tablet {
-    padding: 12px 14px;
+    width: 128px;
+    height: 52px;
+    padding: 12px 12px;
   }
   @include desktop {
-    padding: 14px 24px;
+    width: 153px;
+    height: 56px;
+    padding: 14px 16px;
   }
   &:hover,
   &:focus {
-    color: var(--buttons-modal-bg-color);
-    background-color: var(--buttons-modal-text-color);
+    border-color: transparent;
+    color: var(--accent-text-color);
+    background-color: var(--modal-accent-color);
   }
 }
 .active-btn {
   border-radius: 100px;
   border-color: transparent;
+  color: var(--accent-text-color);
+  background-color: var(--modal-accent-color);
   box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
-  color: var(--buttons-modal-bg-color);
-  background-color: var(--buttons-modal-text-color);
 }
