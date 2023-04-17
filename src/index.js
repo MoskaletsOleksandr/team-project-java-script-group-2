@@ -44,7 +44,7 @@ const refs = {
 //
 let movieIdForModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
 // фільму і за цим id відбувається запит на бекенд
-let dataForModalMarkup = null; //Об'єкт із повною інформацією про фільм,
+export let dataForModalMarkup = null; //Об'єкт із повною інформацією про фільм,
 //який ми отримуємо після натискання на картку фільму на головній сторінці.
 // Цей об'єкт перезаписується щоразу після натискання на картку
 
@@ -455,77 +455,17 @@ document.addEventListener('keydown', function (event) {
 //
 //Мар'яна Собашевська
 
-// import { handleMakeBtnAddRemoveWatched } from './js/btnAddToWatched';
-// import { handleMakeBtnAddRemoveQueue } from './js/btnAddToQueue';
+import { handleMakeBtnAddRemoveWatched } from './js/btnAddToWatched';
+import { handleMakeBtnAddRemoveQueue } from './js/btnAddToQueue';
 import { saveLocalStorage } from './js/localStorage';
 import { loadLocalStorage } from './js/localStorage';
 const keyQueue = 'queue';
 const keyWatched = 'watched'; 
 
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched); //обробник для кнопки AddRemoveTo Watched
-function handleMakeBtnAddRemoveWatched(event) {
-  if (event.target.dataset.watchedBtn === 'add-to-watched') {
-    dataForModalMarkup
-      .then(data => {
-        const watchedArray = loadLocalStorage(keyWatched);                      
-        watchedArray.push(data);
-        saveLocalStorage(keyWatched, watchedArray);
-        event.target.textContent = 'Remove from Watched';
-        event.target.dataset.watchedBtn = 'remove-from-watched';
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  } else if (event.target.dataset.watchedBtn === 'remove-from-watched') {
-    dataForModalMarkup
-      .then(data => {
-       const watchedArray = loadLocalStorage(keyWatched);
-        const index = watchedArray.findIndex(el => Number(el.id) === Number(data.id));
-        watchedArray.splice(index, 1);
-        localStorage.removeItem(keyWatched);
-        saveLocalStorage(keyWatched, watchedArray); 
-        event.target.textContent = 'Add to Watched';
-        event.target.dataset.watchedBtn = 'add-to-watched';
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-  return;
-}
 
 
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
-function handleMakeBtnAddRemoveQueue(event) {                          //обробник для кнопки AddRemoveToQueue
-  if (event.target.dataset.queueBtn === 'add-to-queue') {
-    dataForModalMarkup
-      .then(data => {
-        const queuedArray = loadLocalStorage(keyQueue);
-        queuedArray.push(data);
-        saveLocalStorage(keyQueue, queuedArray);
-        event.target.textContent = 'Remove from Queue';
-        event.target.dataset.queueBtn = 'remove-from-queue';
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  } else if (event.target.dataset.queueBtn === 'remove-from-queue') {
-    dataForModalMarkup
-      .then(data => {
-        const queuedArray = loadLocalStorage(keyQueue);
-        const index = queuedArray.findIndex(el => Number(el.id) === Number(data.id));
-        queuedArray.splice(index, 1);
-        localStorage.removeItem(keyQueue);
-        saveLocalStorage(keyQueue, queuedArray);
-        event.target.textContent = 'Add to Queue';
-        event.target.dataset.queueBtn = 'add-to-queue';
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-  return;
-}
 
 
 //
