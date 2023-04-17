@@ -1082,54 +1082,57 @@ refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
 window.addEventListener('keydown', onCloseMovieModal);
 refs.galleryContainerEl.addEventListener('click', handleMovieCard);
 
+
 function onCloseMovieModal(e) {
-  if (
-    e.target.className === 'backdrop' ||
-    e.target.classList[0] === 'modal__close' ||
-    e.target.classList[0] === 'icon-close' ||
-    e.target.classList[0] === 'svg-icon-close' ||
-    e.code === 'Escape'
-  ) {
-    refs.backdropMovieModal.classList.add('is-hidden');
-    refs.movieModalEl.classList.add('is-hidden');
-    refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
-    window.removeEventListener('keydown', onCloseMovieModal);
-  }
+ if (
+   e.target.className === 'backdrop' ||
+   e.target.classList[0] === 'modal__close' ||
+   e.target.classList[0] === 'icon-close' ||
+   e.target.classList[0] === 'svg-icon-close' ||
+   e.code === 'Escape'
+ ) {
+   refs.backdropMovieModal.classList.add('is-hidden');
+   refs.movieModalEl.classList.add('is-hidden');
+   refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
+   window.removeEventListener('keydown', onCloseMovieModal);
+ }
 }
+
 
 function idRewriter(event) {
-  if (event.target.nodeName === 'DIV') {
-    movieIdForModalMarkup = event.target.dataset.id;
-    return;
-  }
-  movieIdForModalMarkup = event.target.parentElement.dataset.id;
-  return;
+ if (event.target.nodeName === 'DIV') {
+   movieIdForModalMarkup = event.target.dataset.movie;
+   return;
+ }
+ movieIdForModalMarkup = event.target.parentElement.dataset.movie;
+ return;
 }
-
 function handleMovieCard(event) {
-  idRewriter(event); //ця функція перезаписує значення movieIdForModalMarkup
-  if (
-    event.target.nodeName !== 'IMG' &&
-    event.target.nodeName !== 'DIV' &&
-    event.target.nodeName !== 'H3' &&
-    event.target.nodeName !== 'SPAN'
-  ) {
-    return;
-  }
-  dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
-    .then(data => {
-      refs.backdropMovieModal.classList.remove('is-hidden');
-      refs.movieModalEl.classList.remove('is-hidden');
-      refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
-      window.addEventListener('keydown', onCloseMovieModal);
+ idRewriter(event); //ця функція перезаписує значення movieIdForModalMarkup
+ if (
+   event.target.nodeName !== 'IMG' &&
+   event.target.nodeName !== 'DIV' &&
+   event.target.nodeName !== 'H3' &&
+   event.target.nodeName !== 'P'
+ ) {
+   return;
+ }
+ dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
+   .then(data => {
+     refs.backdropMovieModal.classList.remove('is-hidden');
+     refs.movieModalEl.classList.remove('is-hidden');
+     refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
+     window.addEventListener('keydown', onCloseMovieModal);
 
-      const markup = createMoveModalMarkup(data);
-      refs.movieModalFilmInfoEl.innerHTML = markup;
-      return data;
-    })
-    .catch(error => console.log(error));
-  checkLocalStorage();
+
+     const markup = createMoveModalMarkup(data);
+     refs.movieModalFilmInfoEl.innerHTML = markup;
+     return data;
+   })
+   .catch(error => console.log(error));
+ checkLocalStorage();
 }
+
 //
 //
 //
