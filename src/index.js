@@ -68,7 +68,12 @@ function onScrollHeader() {
   } else {
     headerEl.classList.remove('fixed');
     headerContainer.classList.remove('fixed-header');
+    headerContainer.classList.remove('fixed-header-dark');
     logoHeader.classList.remove('fixed-logo');
+  }
+
+  if (window.pageYOffset > positionHeader && localStorage.theme === 'dark') {
+    headerContainer.classList.add('fixed-header-dark');
   }
 }
 
@@ -76,11 +81,6 @@ window.addEventListener('scroll', onScrollHeader);
 
 
 
-//
-//
-//
-//
-//
 //
 //
 //
@@ -247,7 +247,6 @@ window.addEventListener('scroll', onScrollHeader);
 //
 //
 //
-//
 //Ігор
 //
 // ------- btnUp -------
@@ -291,6 +290,7 @@ function setDarkTheme() {
 
   btnIconSunEl.classList.remove('btn-icon-hidden');
   btnIconMoonEl.classList.add('btn-icon-hidden');
+  headerContainerEl.classList.remove('header-container');
   headerContainerEl.classList.add('header-container-dark');
   localStorage.theme = 'dark';
 }
@@ -301,6 +301,7 @@ function setLightTheme() {
   btnIconMoonEl.classList.remove('btn-icon-hidden');
   btnIconSunEl.classList.add('btn-icon-hidden');
   headerContainerEl.classList.remove('header-container-dark');
+  headerContainerEl.classList.add('header-container');
   localStorage.theme = 'light';
 }
 
@@ -310,18 +311,17 @@ btnThemeEl.addEventListener('click', () => {
   } else {
     setDarkTheme();
   }
+
+  if (localStorage.theme === 'dark' && window.pageYOffset > positionHeader) {
+        headerContainer.classList.add('fixed-header-dark');
+  } else {
+    headerContainer.classList.remove('fixed-header-dark');
+      }
 });
 
 if (localStorage.theme === 'dark') {
   setDarkTheme();
 }
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
