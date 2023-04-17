@@ -35,7 +35,7 @@ const refs = {
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
-//   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+  //   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
@@ -658,7 +658,7 @@ fetchTrendMoves()
     createTrailerIdAndKeysArray(data);
     setTimeout(() => {
       renderMarkup(data);
-    }, 100);
+    }, 300);
   })
   .catch(error => console.log(error));
 
@@ -680,7 +680,7 @@ function handleClickSearchButton(e) {
       createTrailerIdAndKeysArray(data);
       setTimeout(() => {
         renderMarkup(data);
-      }, 100);
+      }, 300);
       scrollUp();
     })
     .catch(error => console.log(error));
@@ -1065,7 +1065,7 @@ function onCloseMovieModal(e) {
   ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
-    refs.bodyEl.style.overflow = "scroll";
+    refs.bodyEl.style.overflow = 'scroll';
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
   }
@@ -1100,7 +1100,7 @@ function handleMovieCard(event) {
       const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
 
       refs.movieModalFilmInfoEl.innerHTML = markup;
-      refs.bodyEl.style.overflow = "hidden";
+      refs.bodyEl.style.overflow = 'hidden';
       return data;
     })
     .catch(error => console.log(error));
