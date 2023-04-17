@@ -25,6 +25,7 @@ const refs = {
   galleryListEl: document.querySelector('.gallery-list'),
   aboutTeamBtn: document.querySelector('.about-team'),
   btnUpEl: document.querySelector('.btn-up'),
+  bodyEl: document.querySelector('body'),
   backdropMovieModal: document.querySelector('.backdrop'),
   movieModalEl: document.querySelector('div[data-movie-modal]'),
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
@@ -1097,13 +1098,14 @@ refs.galleryContainerEl.addEventListener('click', handleMovieCard);
 function onCloseMovieModal(e) {
   if (
     e.target.className === 'backdrop' ||
-    e.target.classList[0] === 'modal__close' ||
+    e.target.classList[0] === 'modal__close-btn' ||
     e.target.classList[0] === 'icon-close' ||
     e.target.classList[0] === 'svg-icon-close' ||
     e.code === 'Escape'
   ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
+    refs.bodyEl.style.overflow = "scroll";
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
   }
@@ -1136,45 +1138,14 @@ function handleMovieCard(event) {
       window.addEventListener('keydown', onCloseMovieModal);
 
       const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
+
       refs.movieModalFilmInfoEl.innerHTML = markup;
+      refs.bodyEl.style.overflow = "hidden";
       return data;
     })
     .catch(error => console.log(error));
   // checkLocalStorage(event);
 }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //

@@ -82,7 +82,7 @@ export function createMoveModalMarkup(data, movieIdForModalMarkup) {
                       >
                         ${addToWatchedText}
                       </button>
-                      <button type="button" class="js-film-info__btn" data-queue-btn=add-to-queue>
+                      <button type="button" class="js-film-info__btn active-btn" data-queue-btn=add-to-queue>
                         add to queue
                       </button>
                     </div>

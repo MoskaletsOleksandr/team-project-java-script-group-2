@@ -1,70 +1,59 @@
 <div class="backdrop is-hidden">
   <div class="modal is-hidden" data-movie-modal>
-    <button type="button" class="modal__close" data-movie-modal-close>
+    <button type="button" class="modal__close-btn" data-movie-modal-close>
       <svg width="14" height="14" class="svg-icon-close">
         <use href="/src/images/svg-sprite.svg#close" class="icon-close"></use>
       </svg>
     </button>
     <div class="js-film-info">
-      <!-- <div class="wrap"></div> -->
-
       <!-- <div class="js-film-info__thumb">
-      <img
-        src="./images/test-mobile.jpg"
-        alt="XXXXXXXXXXXXXXXXXX"
-        width="240"
-        class="js-film-info__poster"
-      />
-    </div>
-    <div class="js-film-info__content">
-      <h2 class="js-film-info__name">A FISTFUL OF LEAD</h2>
-      <table class="js-film-info__table-thumb">
-        <tr class="js-film-info__item">
-          <td class="js-film-info__title">Vote / Votes</td>
-          <td>
-            <span class="js-film-info__vote">7.3</span>
-            <span class="slash">/</span>
-            <span class="js-film-info__votes">1260</span>
-          </td>
-        </tr>
-        <tr class="js-film-info__item">
-          <td class="js-film-info__title">Popularity</td>
-          <td class="js-film-info__popularity">100.2</td>
-        </tr>
-        <tr class="js-film-info__item">
-          <td class="js-film-info__title">Original Title</td>
-          <td class="js-film-info__original-title">A FISTFUL OF LEAD</td>
-        </tr>
-        <tr class="js-film-info__item">
-          <td class="js-film-info__title">Genre</td>
-          <td class="js-film-info__genre">Western</td>
-        </tr>
-      </table>
-      <h3 class="js-film-info__description-title">About</h3>
-      <p class="js-film-info__description-text">
-        Four of the West’s most infamous outlaws assemble to steal a huge stash
-        of gold from the most corrupt settlement of the gold rush towns. But not
-        all goes to plan one is killed and the other three escapes with bags of
-        gold hide out in the abandoned gold mine where they happen across
-        another gang of three – who themselves were planning to hit the very
-        same bank! As tensions rise, things go from bad to worse as they realise
-        the bags of gold are filled with lead... they’ve been double crossed –
-        but by who and how?
-      </p> -->
-      <!-- </div>
-      <div class="js-film-info__btns">
-        <button
-          type="button"
-          class="js-film-info__btn active-btn"
-          data-btn-to-watched
-        >
-          add to Watched
-        </button>
-        <button type="button" class="js-film-info__btn" data-btn-to-queue>
-          add to queue
-        </button>
-      </div>
-    </div> -->
+                     <img
+                       src="${BASE_IMG_URL}${poster_path}"
+                       alt="${title}"
+                       width="240"
+                       class="js-film-info__poster"
+                     />
+                  </div>
+                  <div class="js-film-info__content">
+                    <h2 class="js-film-info__name">${title}</h2>
+                    <table class="js-film-info__table-thumb">
+                      <tr class="js-film-info__item">
+                        <td class="js-film-info__title">Vote / Votes</td>
+                        <td>
+                          <span class="js-film-info__vote">${vote_average}</span>
+                          <span class="slash">/</span>
+                          <span class="js-film-info__votes">${vote_count}</span>
+                        </td>
+                      </tr>
+                      <tr class="js-film-info__item">
+                        <td class="js-film-info__title">Popularity</td>
+                        <td class="js-film-info__popularity">${popularity}</td>
+                      </tr>
+                      <tr class="js-film-info__item">
+                        <td class="js-film-info__title">Original Title</td>
+                        <td class="js-film-info__original-title">${original_title}</td>
+                      </tr>
+                      <tr class="js-film-info__item">
+                        <td class="js-film-info__title">Genre</td>
+                        <td class="js-film-info__genre">${listOfGenres}</td>
+                      </tr>
+                    </table>
+                    <h3 class="js-film-info__description-title">About</h3>
+                    <p class="js-film-info__description-text">${overview}
+                    </p>
+                    <div class="js-film-info__btns">
+                      <button
+                        type="button"
+                        class="js-film-info__btn active-btn"
+                        data-btn-add-to-watched
+                      >
+                        add to Watched
+                      </button>
+                      <button type="button" class="js-film-info__btn" data-btn-to-queue>
+                        add to queue
+                      </button>
+                    </div>
+                  </div> -->
     </div>
   </div>
 </div>
