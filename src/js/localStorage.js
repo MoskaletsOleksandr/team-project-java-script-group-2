@@ -9,7 +9,9 @@ export function saveLocalStorage(key, value) {
 export function loadLocalStorage(key) {
   try {
     const get = localStorage.getItem(key);
-    return (parse = JSON.parse(get));
+    let parse = '';
+    parse = JSON.parse(get);
+    return parse;
   } catch (error) {
     console.log(error);
   }
