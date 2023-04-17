@@ -1150,7 +1150,6 @@ export function handleMovieCard(event) {
 
       const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
 
-
       refs.movieModalFilmInfoEl.innerHTML = markup;
       refs.bodyEl.style.overflow = 'hidden';
       return data;
