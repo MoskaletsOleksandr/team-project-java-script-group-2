@@ -49,7 +49,7 @@ export let dataForModalMarkup = null; //Об'єкт із повною інфор
 // Цей об'єкт перезаписується щоразу після натискання на картку
 
 //Аліна присяжнюк
-//
+
 const headerEl = document.querySelector('.header');
 const headerContainer = document.querySelector('.header-container');
 const logoHeader = document.querySelector('.header-logo');
@@ -78,9 +78,9 @@ function onScrollHeader() {
 }
 
 window.addEventListener('scroll', onScrollHeader);
-//
-//
-//
+
+
+
 //
 //
 //
