@@ -43,7 +43,7 @@ export function createLibraryMarkup(results) {
                     <div class="gallery-container-img" data-id='${id}'>
                     <div class="gallery-card" data-id='${id}'>
                         <img class="gallery-img" src="${BASE_IMG_URL}${poster_path}" alt="${title}">
-                        <button class="trailer-button" type="button">Trailer</button>
+                        <a class="trailer-link tube" href="https://www.youtube.com/watch?v=${videoKey}">Trailer</a>
                         </div>
                         <div class="gallery-film" data-id='${id}'>
                         <h3 class="film-title">${title}
