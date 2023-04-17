@@ -995,8 +995,7 @@ refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
 //
 //Олександр
 //
-//
-//
+
 refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
 window.addEventListener('keydown', onCloseMovieModal);
 refs.galleryContainerEl.addEventListener('click', handleMovieCard);
@@ -1008,21 +1007,22 @@ function onCloseMovieModal(e) {
     e.target.classList[0] === 'icon-close' ||
     e.target.classList[0] === 'svg-icon-close' ||
     e.code === 'Escape'
-  ) {
-    refs.backdropMovieModal.classList.add('is-hidden');
-    refs.movieModalEl.classList.add('is-hidden');
-    refs.bodyEl.style.overflow = 'scroll';
-    refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
-    window.removeEventListener('keydown', onCloseMovieModal);
+    ) {
+      refs.backdropMovieModal.classList.add('is-hidden');
+      refs.movieModalEl.classList.add('is-hidden');
+      refs.bodyEl.style.overflow = 'scroll';
+      refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
+      window.removeEventListener('keydown', onCloseMovieModal);
+    }
   }
-}
-
-function idRewriter(event) {
-  if (event.target.nodeName === 'DIV') {
-    movieIdForModalMarkup = event.target.dataset.id;
-    return;
-  }
-  movieIdForModalMarkup = event.target.parentElement.dataset.id;
+  
+  function idRewriter(event) {
+    if (event.target.nodeName === 'DIV') {
+      movieIdForModalMarkup = event.target.dataset.id;
+      return;
+    }
+    movieIdForModalMarkup = event.target.parentElement.dataset.id;
+    console.log(movieIdForModalMarkup);
   return;
 }
 
@@ -1051,7 +1051,4 @@ export function handleMovieCard(event) {
     })
     .catch(error => console.log(error));
 }
-//
-//
-//
-//
+
