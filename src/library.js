@@ -1,5 +1,7 @@
 //імпортуємо бібліотеки та інші файли
 import throttle from 'lodash.throttle'; // npm i lodash.throttle
+import { renderTrailerMarkup } from './js/createGallery';
+
 //
 //
 //
@@ -863,7 +865,7 @@ function handleWatchedBtn() {
   nothingContainer.style.display = 'none';
 
   watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
-  console.log(watchedFilms);
+  // console.log(watchedFilms);
 
   if (watchedFilms.length <= 0) {
     nothingContainer.style.display = 'block';
@@ -872,7 +874,9 @@ function handleWatchedBtn() {
   }
 
   const markup = createLibraryMarkup(watchedFilms);
+  console.log(watchedFilms);
   galleryContainerEl.innerHTML = markup;
+  renderTrailerMarkup(watchedFilms);
 }
 
 function handleQueueBtn() {
@@ -887,6 +891,7 @@ function handleQueueBtn() {
   }
   const markup = createLibraryMarkup(queueFilms);
   galleryContainerEl.innerHTML = markup;
+  renderTrailerMarkup(watchedFilms);
 }
 
 handleWatchedBtn();

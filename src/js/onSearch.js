@@ -1,9 +1,6 @@
 import { createPagination } from './pagination';
 import { getByKeyword } from './api';
-import {
-  createTrendMovesMarkup,
-  createTrailerIdAndKeysArray,
-} from './createMarkup';
+import { renderMarkup, renderTrailerMarkup } from './createGallery';
 import refs from './refs';
 import Notiflix from 'notiflix';
 import { spinnerPlay } from '..';
@@ -11,12 +8,6 @@ import { spinnerStop } from '..';
 
 refs.searchFormEl.addEventListener('submit', onSearchByKeyword);
 let query;
-
-function renderMarkup(array) {
-  const markup = createTrendMovesMarkup(array);
-  refs.galleryListEl.innerHTML = '';
-  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
-}
 
 function onSearchByKeyword(event) {
   event.preventDefault();
@@ -26,7 +17,6 @@ function onSearchByKeyword(event) {
     Notiflix.Notify.failure(
       'Oops.The seach is empty.Enter Movie name that you want to find'
     );
-    spinnerStop();
     return;
   }
   //   showHideLoader(refs.loader);
@@ -42,34 +32,24 @@ function onSearchByKeyword(event) {
         Notiflix.Notify.failure(
           'Oops. We cancot find your film. Please try again'
         );
-        spinnerStop();
         return;
       }
-      spinnerPlay();
       Notiflix.Notify.success(
         ` Hooray! We found ${data.total_results} movies.`
       );
-      spinnerStop();
-      createTrailerIdAndKeysArray(data);
-      setTimeout(() => {
-        renderMarkup(data);
-      }, 1000);
-      //spinnerPlay();
+      renderMarkup(data);
+      renderTrailerMarkup(data);
       const pagination = createPagination(data.total_results, data.total_pages);
       pagination.on('beforeMove', ({ page }) => {
         refs.galleryListEl.innerHTML = '';
         // showHideLoader(refs.loader);
         getByKeyword(query, page).then(data => {
-          setTimeout(() => {
-            renderMarkup(data);
-          }, 1000);
+          renderMarkup(data);
+          renderTrailerMarkup(data);
         });
       });
     })
-    .catch(error => {
-      spinnerStop();
-      console.log(error);
-    });
+    .catch(error => console.log(error));
 }
 
 // refs.searchFormEl.addEventListener('submit', handleClickSearchButton);
