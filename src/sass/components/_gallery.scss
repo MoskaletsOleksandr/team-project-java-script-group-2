@@ -63,16 +63,31 @@
   width: 280px;
   height: 402px;
   border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  max-width:280px;
+  max-height:298px;
+  object-fit: contain;
   @media screen and (min-width: 768px) {
       width: 336px;
       height: 455px;
       border-radius: 5px;
+      width: 100%;
+      height: 100%;
+      max-width:336px;
+      max-height:455px;
+      object-fit: contain;
     }
   
     @media screen and (min-width: 1280px) {
       width: 395px;
       height: 574px;
       border-radius: 5px;
+      width: 100%;
+      height: 100%;
+      max-width:395px;
+      max-height:574px;
+      object-fit: contain;
     }
 }
 
