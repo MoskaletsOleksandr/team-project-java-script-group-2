@@ -63,7 +63,7 @@ function onScrollHeader() {
     headerContainer.classList.add('fixed-header');
     logoHeader.classList.add('fixed-logo');
     logoTextHeader.classList.add('text-logo-fixed');
-    iconFilmHeader.classList.add('icon-film-fixed');
+    // iconFilmHeader.classList.add('icon-film-fixed');
     //searchBox.classList.add('fixed-search');
   } else {
     headerEl.classList.remove('fixed');
@@ -313,10 +313,10 @@ btnThemeEl.addEventListener('click', () => {
   }
 
   if (localStorage.theme === 'dark' && window.pageYOffset > positionHeader) {
-        headerContainer.classList.add('fixed-header-dark');
+    headerContainer.classList.add('fixed-header-dark');
   } else {
     headerContainer.classList.remove('fixed-header-dark');
-      }
+  }
 });
 
 if (localStorage.theme === 'dark') {
@@ -846,7 +846,7 @@ if (localStorage.theme === 'dark') {
 //
 //
 //Ірина
-import { createLibraryMarkup } from "./js/createLibraryMarkup.js";
+import { createLibraryMarkup } from './js/createLibraryMarkup.js';
 
 const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
@@ -860,7 +860,6 @@ let watchedFilms = [];
 let queueFilms = [];
 
 function handleWatchedBtn() {
-
   nothingContainer.style.display = 'none';
 
   watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
@@ -868,7 +867,7 @@ function handleWatchedBtn() {
 
   if (watchedFilms.length <= 0) {
     nothingContainer.style.display = 'block';
-    galleryContainerEl.innerHTML = "";
+    galleryContainerEl.innerHTML = '';
     return;
   }
 
@@ -877,18 +876,17 @@ function handleWatchedBtn() {
 }
 
 function handleQueueBtn() {
-
   queueFilms = JSON.parse(localStorage.getItem('queue')) || [];
 
   nothingContainer.style.display = 'none';
 
   if (queueFilms.length <= 0) {
     nothingContainer.style.display = 'block';
-     galleryContainerEl.innerHTML = "";
+    galleryContainerEl.innerHTML = '';
     return;
   }
   const markup = createLibraryMarkup(queueFilms);
-  galleryContainerEl.innerHTML = markup;;
+  galleryContainerEl.innerHTML = markup;
 }
 
 handleWatchedBtn();
