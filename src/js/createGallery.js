@@ -1,33 +1,37 @@
 import { createPagination } from './pagination';
-import { fetchTrendMoves } from './api';
-import {
-  createTrendMovesMarkup,
-  createTrailerIdAndKeysArray,
-} from './createMarkup';
+import { fetchTrendMoves, fetchTrailer } from './api';
+import { createTrendMovesMarkup, createTrailerMarkup } from './createMarkup';
 import refs from './refs';
-import { spinnerPlay } from '..';
 
-function renderMarkup(array) {
+export function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
   refs.galleryListEl.innerHTML = '';
   refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
 }
 
+export function renderTrailerMarkup() {
+  const galleryCardElArray = document.querySelectorAll('.gallery-card');
+  for (const galleryCardEl of galleryCardElArray) {
+    fetchTrailer(galleryCardEl.dataset.id)
+      .then(data => {
+        createTrailerMarkup(galleryCardEl, data.results[0].key);
+      })
+      .catch(error => console.log(error));
+  }
+}
+
 fetchTrendMoves()
   .then(data => {
-    createTrailerIdAndKeysArray(data);
-    setTimeout(() => {
-      renderMarkup(data);
-    }, 1000);
+    renderMarkup(data);
+    renderTrailerMarkup();
 
     const pagination = createPagination(data.total_results, data.total_pages);
     pagination.on('beforeMove', ({ page }) => {
       refs.galleryListEl.innerHTML = '';
       // showHideLoader(refs.loader);
       fetchTrendMoves(page).then(data => {
-        setTimeout(() => {
-          renderMarkup(data);
-        }, 1000);
+        renderMarkup(data);
+        renderTrailerMarkup();
       });
     });
   })

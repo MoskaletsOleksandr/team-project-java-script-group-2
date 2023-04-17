@@ -1,9 +1,6 @@
 import { createPagination } from './pagination';
 import { getByKeyword } from './api';
-import {
-  createTrendMovesMarkup,
-  createTrailerIdAndKeysArray,
-} from './createMarkup';
+import { renderMarkup, renderTrailerMarkup } from './createGallery';
 import refs from './refs';
 import Notiflix from 'notiflix';
 import { spinnerPlay } from '..';
@@ -11,12 +8,6 @@ import { spinnerStop } from '..';
 
 refs.searchFormEl.addEventListener('submit', onSearchByKeyword);
 let query;
-
-function renderMarkup(array) {
-  const markup = createTrendMovesMarkup(array);
-  refs.galleryListEl.innerHTML = '';
-  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
-}
 
 function onSearchByKeyword(event) {
   event.preventDefault();
@@ -42,55 +33,27 @@ function onSearchByKeyword(event) {
         Notiflix.Notify.failure(
           'Oops. We cancot find your film. Please try again'
         );
-        spinnerStop();
+        spinnerPlay();
         return;
       }
-      spinnerPlay();
       Notiflix.Notify.success(
         ` Hooray! We found ${data.total_results} movies.`
       );
-      spinnerStop();
-      createTrailerIdAndKeysArray(data);
-      setTimeout(() => {
-        renderMarkup(data);
-      }, 1000);
-      //spinnerPlay();
+    spinnerStop();
+      renderMarkup(data);
+      renderTrailerMarkup();
       const pagination = createPagination(data.total_results, data.total_pages);
       pagination.on('beforeMove', ({ page }) => {
         refs.galleryListEl.innerHTML = '';
         // showHideLoader(refs.loader);
         getByKeyword(query, page).then(data => {
-          setTimeout(() => {
-            renderMarkup(data);
-          }, 1000);
+          renderMarkup(data);
+          renderTrailerMarkup();
         });
       });
     })
     .catch(error => {
-      spinnerStop();
-      console.log(error);
-    });
+    spinnerStop();
+    console.log(error)
+  });
 }
-
-// refs.searchFormEl.addEventListener('submit', handleClickSearchButton);
-// function handleClickSearchButton(e) {
-//     e.preventDefault();
-//     const inputData = refs.searchInputEl.value;
-//     if (inputData === '') {
-//       Notify.failure('Input is empty');
-//       return;
-//     }
-//     fetchMovesByKeyword(inputData.trim())
-//       .then(data => {
-//         if (data.results.length === 0) {
-//           Notify.failure('No results for your search');
-//           return;
-//         }
-//         createTrailerIdAndKeysArray(data);
-//         setTimeout(() => {
-//           renderMarkup(data);
-//         }, 300);
-//         scrollUp();
-//       })
-//       .catch(error => console.log(error));
-//   }
