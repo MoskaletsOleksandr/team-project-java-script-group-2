@@ -1,6 +1,11 @@
 body {
   background-color: var(--body-bg-color);
   transition: background-color var(--animation);
+
+  animation-duration: 2s;
+    animation-name: slidein-light;
+    animation-iteration-count: 1;
+    animation-direction: normal;
 }
 
 body.dark {
@@ -23,10 +28,35 @@ body.dark {
   transition: background-color var(--animation);
 }
 
+.header-container {
+  animation-duration: 2s;
+  animation-name: slidein-light;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+}
+
+@keyframes slidein-light {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
 .header-container-dark {
   position: relative;
   height: 460px;
   width: 280px;
+
+animation-duration: 2s;
+  animation-name: slidein-dark;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -86,6 +116,18 @@ body.dark {
         ),
         url(/src/images/header-dark/header-desktop-dark-2x.jpg);
     }
+  }
+}
+
+@keyframes slidein-dark {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
   }
 }
 
