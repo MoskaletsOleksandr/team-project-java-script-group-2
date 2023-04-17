@@ -2,33 +2,32 @@ body {
   background-color: var(--body-bg-color);
   transition: background-color var(--animation);
 
-  animation-duration: 2s;
-    animation-name: slidein-light;
-    animation-iteration-count: 1;
-    animation-direction: normal;
+  // animation-duration: 2s;
+  // animation-name: slidein-light;
+  // animation-iteration-count: 1;
+  // animation-direction: normal;
 }
 
 body.dark {
   --second-text-color: #b92f2c;
   --buttons-library-text-color: #b92f2c;
-  
+
   --btn-up-fill-color: #ffffff;
   --btn-up-bg-color: #b92f2c;
   --btn-up-hover-fill-color: #b92f2c;
   --btn-up-hover-bg-color: #ffffff;
   --btn-up-border-color: #b92f2c;
-  
+
   --buttons-library-hover-bg-color: #b92f2c;
   --body-bg-color: #c47c7cf5;
 
   --buttons-modal-bg-color: #efecec;
   --modal-accent-color: #b92f2c;
 
-  //modal-tem
-    --bg-modal-team: #efecec;
-    --color-focus-team: #c47c7cf5;
-    --position-team: #b92f2c;
-    // --team-shedov: #000000;
+  // ---------------modal-tem-------------
+  --bg-modal-team: #efecec;
+  --color-focus-team: #c47c7cf5;
+  --position-team: #b92f2c;
 }
 
 .header {
@@ -36,34 +35,34 @@ body.dark {
   transition: background-color var(--animation);
 }
 
-.header-container {
-  animation-duration: 2s;
-  animation-name: slidein-light;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-}
+// .header-container {
+//   animation-duration: 2s;
+//   animation-name: slidein-light;
+//   animation-iteration-count: 1;
+//   animation-direction: normal;
+// }
 
-@keyframes slidein-light {
-  from {
-    margin-left: 100%;
-    width: 300%;
-  }
+// @keyframes slidein-light {
+//   from {
+//     margin-left: 100%;
+//     width: 300%;
+//   }
 
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-}
+//   to {
+//     margin-left: 0%;
+//     width: 100%;
+//   }
+// }
 
 .header-container-dark {
   position: relative;
   height: 460px;
   width: 280px;
 
-animation-duration: 2s;
-  animation-name: slidein-dark;
-  animation-iteration-count: 1;
-  animation-direction: normal;
+  // animation-duration: 2s;
+  // animation-name: slidein-dark;
+  // animation-iteration-count: 1;
+  // animation-direction: normal;
 
   background-repeat: no-repeat;
   background-position: center;
@@ -127,17 +126,17 @@ animation-duration: 2s;
   }
 }
 
-@keyframes slidein-dark {
-  from {
-    margin-left: 100%;
-    width: 300%;
-  }
+// @keyframes slidein-dark {
+//   from {
+//     margin-left: 100%;
+//     width: 300%;
+//   }
 
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-}
+//   to {
+//     margin-left: 0%;
+//     width: 100%;
+//   }
+// }
 
 .fixed-header-dark {
   height: 100px;
