@@ -2,8 +2,8 @@ import { fetchTrailer } from './api';
 
 const videoKeysArray = [];
 
-let BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
-const GENRES = [
+export let BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
+export const GENRES = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },
   { id: 16, name: 'Animation' },
