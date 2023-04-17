@@ -1,4 +1,6 @@
-export function createMoveModalMarkup(data) {
+import { saveLocalStorage } from "./localStorage";
+import { loadLocalStorage } from "./localStorage";
+export function createMoveModalMarkup(data, movieIdForModalMarkup) {
   const BASE_IMG_URL = 'https://image.tmdb.org/t/p/original';
 
   const {
@@ -13,6 +15,32 @@ export function createMoveModalMarkup(data) {
   } = data;
 
   const listOfGenres = genres.map(genre => genre.name).join(', ');
+  // ------------ ls---------------------------------------
+  let addToWatchedAtr = 'add-to-watched';
+  let addToWatchedText = 'add to watched';
+  let addToQueueAtr = 'add-to-queue';
+  let addToQueueText = 'add to queue';
+  const keyWatched = 'watched';
+  const keyQueue = 'queue';
+
+  if (!localStorage.watched && !localStorage.queue) {
+    let objectArray = [];
+    saveLocalStorage(keyWatched, objectArray);
+    saveLocalStorage(keyQueue, objectArray);
+   
+  } else {
+    const watchedArray = loadLocalStorage(keyWatched);
+    const queueArray = loadLocalStorage(keyQueue);
+    
+    if (watchedArray.some(el => Number(el.id) === Number(data.id))) {
+      addToWatchedAtr = 'remove-from-watched';
+      addToWatchedText = 'remove from watched';      
+    }
+    if (queueArray.some(el => Number(el.id) === Number(data.id))) {
+      addToQueueAtr = 'remove-from-queue';
+      addToQueueText = 'remove from queue';     
+    }
+  }
 
   return `
                    <div class="js-film-info__thumb">
@@ -54,12 +82,13 @@ export function createMoveModalMarkup(data) {
                       <button
                         type="button"
                         class="js-film-info__btn active-btn"
-                        data-watched-btn=add-to-watched
+                        data-watched-btn=${addToWatchedAtr}
                       >
-                        add to Watched
+                        ${addToWatchedText}
                       </button>
-                      <button type="button" class="js-film-info__btn" data-queue-btn=add-to-queue>
-                        add to queue
+                      <button type="button" class="js-film-info__btn active-btn" data-queue-btn=${addToQueueAtr}>
+                        ${addToQueueText}
+
                       </button>
                     </div>
                   </div>`;
