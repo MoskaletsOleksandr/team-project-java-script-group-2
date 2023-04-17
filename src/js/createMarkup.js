@@ -1,3 +1,7 @@
+import { fetchTrailer } from './api';
+
+const videoKeysArray = [];
+
 let BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
 const GENRES = [
   { id: 28, name: 'Action' },
@@ -20,6 +24,16 @@ const GENRES = [
   { id: 10752, name: 'War' },
   { id: 37, name: 'Western' },
 ];
+
+function searchVideoKeyById(id, array) {
+  let videoKey = '';
+  array.forEach(item => {
+    if (item.id === id) {
+      videoKey = item.key;
+    }
+  });
+  return videoKey;
+}
 
 function createGenresArray(array) {
   const newArray = [];
@@ -59,14 +73,31 @@ export function createTrendMovesMarkup({ results }) {
       genresArray = cutGenresArray(genresArray);
 
       if (genresArray.length === 0) {
-        genresArray = 'Unknown genres';
+        genresArray = 'Other';
       }
 
+      const videoKey = searchVideoKeyById(id, videoKeysArray);
+      if (videoKey === '') {
+        return `<li class="gallery-item">
+                    <div class="gallery-container-img" data-id='${id}'>
+                    <div class="gallery-card" data-id='${id}'>
+                        <img class="gallery-img" src="${BASE_IMG_URL}${poster_path}" alt="${title}">
+                        </div>
+                        <div class="gallery-film" data-id='${id}'>
+                        <h3 class="film-title">${title}
+                        </h3>
+                        <span class="film-genres">${genresArray}</span><span class="film-year"> | ${release_date.slice(
+          0,
+          4
+        )}</span></div>
+                    </div>
+                </li>`;
+      }
       return `<li class="gallery-item">
                     <div class="gallery-container-img" data-id='${id}'>
                     <div class="gallery-card" data-id='${id}'>
                         <img class="gallery-img" src="${BASE_IMG_URL}${poster_path}" alt="${title}">
-                        <button class="trailer-button" type="button">Trailer</button> 
+                        <a class="trailer-link tube" href="https://www.youtube.com/watch?v=${videoKey}">Trailer</a>
                         </div>
                         <div class="gallery-film" data-id='${id}'>
                         <h3 class="film-title">${title}
@@ -79,4 +110,17 @@ export function createTrendMovesMarkup({ results }) {
                 </li>`;
     })
     .join('');
+}
+
+export function createTrailerIdAndKeysArray({ results }) {
+  for (const item of results) {
+    fetchTrailer(item.id)
+      .then(data => {
+        const videoKeys = {};
+        videoKeys.id = item.id;
+        videoKeys.key = data.results[0].key;
+        videoKeysArray.push(videoKeys);
+      })
+      .catch(error => console.log(error));
+  }
 }

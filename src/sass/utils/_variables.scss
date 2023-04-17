@@ -4,48 +4,59 @@
   --accent-text-color: #ffffff; // Hover, focus, avtive button
   --logo-text-color: #ffffff; // Filmoteka
   --footer-text-color: #545454;
-  --description-film-text-color: #8c8c8c; // В модальному вікні "Vote / Votes, Popularity, Original Title, Genre"
-
+  
   --input-border: 1px solid #ffffff;
-
+  
   // Кнопки Home і My Library
   --buttons-header-text-color: #000000;
   --buttons-header-hover-text-color: #ffffff;
   --buttons-header-bg-color: #ffffff;
   --buttons-header-hover-bg-color: #000000;
-
+  
   // Кнопки Watched і queue в My Library
   --buttons-library-text-color: #fad105;
   --buttons-library-bg-color: #ffffff;
   --buttons-library-hover-text-color: #ffffff;
   --buttons-library-hover-bg-color: #fad105;
 
-  // Кнопки модального вікна
-  --buttons-modal-text-color: #fad105;
-  --buttons-modal-bg-color: #ffffff;
-  --buttons-modal-hover-bg-color: #fad105;
-  --buttons-modal-border: 1px solid #000000;
-
+  
   // Кнопка btnUp
   --btn-up-fill-color: #ffffff;
   --btn-up-bg-color: #fad105;
   --btn-up-hover-fill-color: #fad105;
   --btn-up-hover-bg-color: #ffffff;
   --btn-up-border-color: #fad105;
-
+  
   // Пагінація
   --pagination-arrow-bg-color: #f7f7f7; // Фон стрілок
   --pagination-number-bg-color: #fad105; // Фон номеру сторінки
-
-  // Модальне вікно
   
-  --vote-bg-color: #fad105;
-  --votes-bg-color: #f7f7f7;
-
+  // Модальне вікно
+  --modal-second-text-color: #8c8c8c; // В модальному вікні "Vote / Votes, Popularity, Original Title, Genre"
+  --modal-accent-color: #fad105;
+  --modal-votes-bg-color: #f7f7f7;
+  --buttons-modal-bg-color: #ffffff;
+  --buttons-modal-border: 1px solid #000000;
+  --buttons-modal-accent-fill-color: #ffffff;
+  --buttons-modal-active-fill-color: #000000;
+  
   --box-shadow-card: 0px 5px 10px 0px rgba(250, 209, 5, 0.5); // Просто добавив "Щоб було"
-
+  
   --main-font-family: Roboto, sans-serif;
   --animation: 1000ms cubic-bezier(0.4, 0, 0.2, 1); // З минулого проєкту
   
   --body-bg-color: #ffffff;
+  --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1); // З минулого проєкту
+
+  //modal-tem
+  --bg-modal-team: #efecec;
+  --color-focus-team: #aff1ba;
+  --team-shedov: #7a7979;
+  --team-border: rgba(138, 136, 136, 0.6);
+  --position-team: #ff6b08;
+  --backdrop-team: rgba(0, 0, 0, 0.2);
+
+  //footer
+  
+
 }
