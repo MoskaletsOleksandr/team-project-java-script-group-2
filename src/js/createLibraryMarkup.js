@@ -1,13 +1,14 @@
-import {BASE_IMG_URL, GENRES} from './createMarkup'
+import { BASE_IMG_URL, GENRES } from './createMarkup';
+// import { BASE_IMG_URL } from './createMarkup';
+// import { GENRES } from './createMarkup';
 
+export function createLibraryMarkup(results) {
+  const genreNames = GENRES.slice(0, 2).map(genre => ` ${genre.name}`);
 
-export function createLibraryMarkup( results ) {
-    const genreNames = GENRES.slice(0, 2).map(genre => ` ${genre.name}`);
-
-    if (GENRES.length > 2) {
+  if (GENRES.length > 2) {
     genreNames.push('...other');
-    }
-    
+  }
+
   return results
     .map(({ poster_path, release_date, title, id }) => {
       BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
@@ -29,9 +30,9 @@ export function createLibraryMarkup( results ) {
                         <h3 class="film-title">${title}
                         </h3>
                         <span class="film-genres">${genreNames}</span><span class="film-year"> | ${release_date.slice(
-                          0,
-                          4
-                        )}</span></div>
+        0,
+        4
+      )}</span></div>
                     </div>
                 </li>`;
     })
