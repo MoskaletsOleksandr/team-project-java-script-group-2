@@ -247,7 +247,6 @@ window.addEventListener('scroll', onScrollHeader);
 //
 //
 //
-//
 //Ігор
 //
 // ------- btnUp -------
@@ -323,13 +322,6 @@ btnThemeEl.addEventListener('click', () => {
 if (localStorage.theme === 'dark') {
   setDarkTheme();
 }
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
