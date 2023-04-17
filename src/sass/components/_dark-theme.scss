@@ -1,21 +1,121 @@
-body {
-    transition: var(--animation);
-}
-
 body.dark {
+  --second-text-color: #b92f2c;
+  --buttons-library-text-color: #b92f2c;
+  --buttons-modal-text-color: #b92f2c;
   --btn-up-fill-color: #ffffff;
-  --btn-up-bg-color: #B92F2C;
-  --btn-up-hover-fill-color: #B92F2C;
+  --btn-up-bg-color: #b92f2c;
+  --btn-up-hover-fill-color: #b92f2c;
   --btn-up-hover-bg-color: #ffffff;
-  --btn-up-border-color: #B92F2C;
+  --btn-up-border-color: #b92f2c;
+  --vote-bg-color: #b92f2c;
+  --buttons-library-text-color: #b92f2c;
+  --buttons-library-hover-bg-color: #b92f2c;
 }
 
 .header-container-dark {
-    position: relative;
+  animation: anim 0.5s;
+  transition: opacity var(--animation);
+  position: relative;
+  height: 460px;
+  width: 280px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.4) 65.37%
+    ),
+    url(/src/images/header-dark/header-bg-mob-dark.jpg);
+
+  @include retina {
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header-dark/header-bg-mob-dark-2x.jpg);
+  }
+
+  @include tablet {
+    height: 222px;
+    width: 704px;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header-dark/header-tablet-dark.jpg);
+
+    @include retina {
+      background-image: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.05)
+        ),
+        url(/src/images/header-dark/header-tablet-dark-2x.jpg);
+    }
+  }
+
+  @include desktop {
     height: 316px;
-    background-image: url(/src/images/header/header-desktop-dark.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    //background-size: cover;
-    border-radius: 15px;
+    width: 1216px;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header-dark/header-desktop-dark.jpg);
+
+    @include retina {
+      background-image: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.05)
+        ),
+        url(/src/images/header-dark/header-desktop-dark-2x.jpg);
+    }
+  }
+}
+
+.fixed-header-dark {
+  height: 100px;
+  width: 100%;
+  background-image: none;
+
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.05),
+      rgba(0, 0, 0, 0.05)
+    ),
+    url(/src/images/header-dark/header-tablet-dark.jpg);
+
+  @include retina {
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header-dark/header-tablet-dark-2x.jpg);
+  }
+
+  @include desktop {
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05)
+      ),
+      url(/src/images/header-dark/header-desktop-dark.jpg);
+
+    @include retina {
+      background-image: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.05),
+          rgba(0, 0, 0, 0.05)
+        ),
+        url(/src/images/header-dark/header-desktop-dark-2x.jpg);
+    }
+  }
 }

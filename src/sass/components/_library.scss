@@ -7,19 +7,19 @@
 .library-buttons-link {
     border: none;
     text-align: center;
-    background-color: #FFFFFF;
+    background-color: var(--buttons-library-bg-color);
     font-weight: 500;
     font-size: 12px;
     line-height: 1.17;
     text-transform: uppercase;
     padding: 14px 32px;
     border-radius: 100px;
-    color: #000000;
+    color: var(--buttons-library-text-color);
 }
 
 .library-buttons-link:hover {
-    color: #FFFFFF;
-    background-color: rgb(247, 213, 23);
+    color: var(--buttons-library-hover-text-color);
+    background-color: var(--buttons-library-hover-bg-color);
 }
 
 .library-buttons {

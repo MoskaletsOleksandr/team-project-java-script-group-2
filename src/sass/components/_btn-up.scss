@@ -46,15 +46,15 @@
   width: 40px;
   height: 40px;
 
-  @include tablet {      
-      width: 50px;
-      height: 50px;
-    }
-  
-    @include desktop {
-      width: 75px;
-      height: 75px;
-    }
+  @include tablet {
+    width: 50px;
+    height: 50px;
+  }
+
+  @include desktop {
+    width: 75px;
+    height: 75px;
+  }
 
   .btn-up:hover & {
     fill: var(--btn-up-hover-fill-color);
