@@ -22,7 +22,7 @@
 }
 
 .gallery-item {
-  width: 280px;
+  // width: 280px;
   cursor: pointer;
   border-radius: 5px;
   display: flex;
@@ -60,13 +60,34 @@
 }
 
 .gallery-img {
+  width: 280px;
+  height: 402px;
   border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  max-width:280px;
+  max-height:298px;
+  object-fit: contain;
   @media screen and (min-width: 768px) {
+      width: 336px;
+      height: 455px;
       border-radius: 5px;
+      width: 100%;
+      height: 100%;
+      max-width:336px;
+      max-height:455px;
+      object-fit: contain;
     }
   
     @media screen and (min-width: 1280px) {
+      width: 395px;
+      height: 574px;
       border-radius: 5px;
+      width: 100%;
+      height: 100%;
+      max-width:395px;
+      max-height:574px;
+      object-fit: contain;
     }
 }
 
@@ -74,7 +95,7 @@
   position: relative;
 }
 
-.trailer-button { //заміни ось цей клас на trailer-link
+.trailer-link { //заміни ось цей клас на trailer-link
   width: 35%;
   height: 30px;
   position: absolute;
@@ -87,16 +108,32 @@
   font-size: 20px;
   line-height: 1.2;
   font-weight: 600;
+  text-align: center;
   color: var(--logo-text-color);
   background-color: var(--buttons-library-text-color);
 
+  &:hover,
+  &:focus {
+    background-color: rgba(250, 209, 5, 0.5);
+    transition: 500ms;
+    }
+
   @media screen and (min-width: 768px) {
       left: 150px;
+      &:hover,
+      &:focus {
+        background-color: rgba(250, 209, 5, 0.5);
+        transition: 500ms;
+        }
     }
   
     @media screen and (min-width: 1280px) {
       left: 200px;
-
+      &:hover,
+      &:focus {
+        background-color: rgba(250, 209, 5, 0.5);
+        transition: 500ms;
+        }
     }
 }
 
@@ -133,7 +170,7 @@
   font-size: 12px;
   line-height: 14px;
   font-weight: 500;
-  color: #b92f2c;
+  color: var(--second-text-color);
   font-size: 12px;
   @media screen and (min-width: 768px) {
       font-size: 12px;
