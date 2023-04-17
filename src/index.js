@@ -34,12 +34,11 @@ const refs = {
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
   // addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
-  addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+//   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
 };
-//
 //
 //
 let movieIdForModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
@@ -48,9 +47,6 @@ let dataForModalMarkup = null; //Об'єкт із повною інформац�
 //який ми отримуємо після натискання на картку фільму на головній сторінці.
 // Цей об'єкт перезаписується щоразу після натискання на картку
 
-//
-//
-//
 //Аліна присяжнюк
 //
 const headerEl = document.querySelector('.header');
@@ -253,7 +249,7 @@ window.addEventListener('scroll', onScrollHeader);
 //
 //Ігор
 //
-//
+// ------- btnUp -------
 
 refs.btnUpEl.addEventListener('click', scrollUp);
 
@@ -282,43 +278,42 @@ function scrollUp() {
   });
 }
 //
+//------- btnTheme -------
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+const btnThemeEl = document.querySelector('.btn-theme');
+const headerContainerEl = document.querySelector('.header-container');
+const btnIconMoonEl = document.querySelector('.btn-icon-moon');
+const btnIconSunEl = document.querySelector('.btn-icon-sun');
+
+function setDarkTheme() {
+  document.body.classList.add('dark');
+
+  btnIconSunEl.classList.remove('btn-icon-hidden');
+  btnIconMoonEl.classList.add('btn-icon-hidden');
+  headerContainerEl.classList.add('header-container-dark');
+  localStorage.theme = 'dark';
+}
+
+function setLightTheme() {
+  document.body.classList.remove('dark');
+
+  btnIconMoonEl.classList.remove('btn-icon-hidden');
+  btnIconSunEl.classList.add('btn-icon-hidden');
+  headerContainerEl.classList.remove('header-container-dark');
+  localStorage.theme = 'light';
+}
+
+btnThemeEl.addEventListener('click', () => {
+  if (document.body.classList.contains('dark')) {
+    setLightTheme();
+  } else {
+    setDarkTheme();
+  }
+});
+
+if (localStorage.theme === 'dark') {
+  setDarkTheme();
+}
 //
 //
 //
@@ -460,7 +455,7 @@ document.addEventListener('keydown', function (event) {
 //Мар'яна Собашевська
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched);
 function handleMakeBtnAddRemoveWatched(event) {
-  if (event.target.dataset.btn === 'add-to-watched') {
+  if (event.target.dataset.watchedBtn === 'add-to-watched') {
     console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
@@ -471,12 +466,12 @@ function handleMakeBtnAddRemoveWatched(event) {
         localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
         event.target.textContent = 'Remove from watched';
-        event.target.dataset.btn = 'remove-from-watched';
+        event.target.dataset.watchedBtn = 'remove-from-watched';
       })
       .catch(err => {
         console.log(err);
       });
-  } else if (event.target.dataset.btn === 'remove-from-watched') {
+  } else if (event.target.dataset.watchedBtn === 'remove-from-watched') {
     console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
@@ -487,7 +482,7 @@ function handleMakeBtnAddRemoveWatched(event) {
         localStorage.setItem('watched', JSON.stringify(parseLocalStorage));
 
         event.target.textContent = 'Add to watched';
-        event.target.dataset.btn = 'add-to-watched';
+        event.target.dataset.watchedBtn = 'add-to-watched';
       })
       .catch(err => {
         console.log(err);
@@ -496,54 +491,43 @@ function handleMakeBtnAddRemoveWatched(event) {
   return;
 }
 
-// refs.addToQueueBtn.addEventListener('click', handleMakeBtnAddQueue);
+refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
 
-function handleMakeBtnAddQueue() {
-  dataForModalMarkup
-    .then(data => {
-      const getLocalStorage = localStorage.getItem('queue');
-      const parseLocalStorage = JSON.parse(getLocalStorage);
-      parseLocalStorage.push(data);
+function handleMakeBtnAddRemoveQueue(event) {
+  if (event.target.dataset.queueBtn === 'add-to-queue') {
+    console.log(event.target.dataset);
+    dataForModalMarkup
+      .then(data => {
+        const getLocalStorage = localStorage.getItem('queue');
+        const parseLocalStorage = JSON.parse(getLocalStorage);
+        parseLocalStorage.push(data);
 
-      localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
+        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
 
-      refs.addToQueueBtn.textContent = 'Remove from queue';
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
+        event.target.textContent = 'Remove from queue';
+        event.target.dataset.queueBtn = 'remove-from-queue';
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } else if (event.target.dataset.queueBtn === 'remove-from-queue') {
+    console.log(event.target.dataset);
+    dataForModalMarkup
+      .then(data => {
+        const getLocalStorage = localStorage.getItem('queue');
+        const parseLocalStorage = JSON.parse(getLocalStorage);
+        parseLocalStorage.push(data);
 
-function checkLocalStorage() {
-  if (!localStorage.watched && !localStorage.queue) {
-    let localStorageArray = [];
-    localStorage.setItem('watched', JSON.stringify(localStorageArray));
-    localStorage.setItem('queue', JSON.stringify(localStorageArray));
-    // refs.addToWatchedBtn.textContent = 'Add to watch';
-    // refs.addToQueueBtn.textContent = 'Add to Queue';
-  } else {
-    const getLocalStorageWatched = localStorage.getItem('watched');
-    const parseLocalStorageWatched = JSON.parse(getLocalStorageWatched);
-    parseLocalStorageWatched.map(el => {
-      const { id } = el;
-      if (id === Number(movieIdForModalMarkup)) {
-        refs.addToWatchedBtn.textContent = 'Remove from watch';
-      } else {
-        refs.addToWatchedBtn.textContent = 'Add to watch';
-      }
-    });
-    const getLocalStorageQueue = localStorage.getItem('queue');
-    const parseLocalStorageQueue = JSON.parse(getLocalStorageQueue);
+        localStorage.setItem('queue', JSON.stringify(parseLocalStorage));
 
-    parseLocalStorageQueue.map(el => {
-      const { id } = el;
-      if (id === Number(movieIdForModalMarkup)) {
-        refs.addToQueueBtn.textContent = 'Add to Queue';
-      } else {
-        refs.addToQueueBtn.textContent = 'Remove from Queue';
-      }
-    });
+        event.target.textContent = 'Add to queue';
+        event.target.dataset.queueBtn = 'add-to-queue';
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
+  return;
 }
 //
 //
@@ -564,6 +548,22 @@ function checkLocalStorage() {
 //
 //
 //Сергій Трефель
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -685,11 +685,6 @@ function handleClickSearchButton(e) {
     })
     .catch(error => console.log(error));
 }
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1070,6 +1065,7 @@ function onCloseMovieModal(e) {
   ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
+        refs.bodyEl.style.overflow = "scroll";
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
   }
@@ -1101,12 +1097,13 @@ function handleMovieCard(event) {
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
       window.addEventListener('keydown', onCloseMovieModal);
 
-      const markup = createMoveModalMarkup(data);
+      const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
+    
       refs.movieModalFilmInfoEl.innerHTML = markup;
+          refs.bodyEl.style.overflow = "hidden";
       return data;
     })
     .catch(error => console.log(error));
-  checkLocalStorage();
 }
 //
 //
