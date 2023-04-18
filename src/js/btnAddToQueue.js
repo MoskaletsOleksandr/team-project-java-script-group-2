@@ -19,7 +19,6 @@ export function handleMakeBtnAddRemoveQueue(event) {
         console.log(err);
       });
   } else if (event.target.dataset.queueBtn === 'remove-from-queue') {
-    console.log(event.target.dataset);
     dataForModalMarkup
       .then(data => {
         const queuedArray = loadLocalStorage(keyQueue);
