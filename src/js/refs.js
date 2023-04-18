@@ -16,6 +16,5 @@ const refs = {
     teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
     teamModal: document.querySelector('div[data-team-modal]'),
     pagination: document.querySelector('#pagination'),
-    // galleryLibListEl: document.querySelector(".gallery-lib-list"),
 };
 export default refs;

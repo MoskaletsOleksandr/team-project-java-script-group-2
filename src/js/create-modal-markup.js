@@ -2,6 +2,7 @@ import { saveLocalStorage } from "./localStorage";
 import { loadLocalStorage } from "./localStorage";
 import noimage from '../images/noimage.jpg';
 export function createMoveModalMarkup(data, movieIdForModalMarkup) {
+
   const {
     poster_path,
     title,
@@ -13,7 +14,7 @@ export function createMoveModalMarkup(data, movieIdForModalMarkup) {
     overview,
   } = data;
   const poster = poster_path
-  ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+  ? `https://image.tmdb.org/t/p/w400/${poster_path}`
   : noimage;
   const listOfGenres = genres.map(genre => genre.name).join(', ');
   // ------------ ls---------------------------------------
