@@ -39,20 +39,3 @@ export async function fetchTrailer(id) {
   }
   return await response.json();
 }
-// export async function fetchTrendMoves() {
-//   const trendMovesUrl = `${BASE_URL}trending/movie/day?api_key=${API_KEY}`;
-//   const response = await fetch(trendMovesUrl);
-//   if (!response.ok) {
-//     throw new Error(response.statusText);
-//   }
-//   return await response.json();
-// }
-
-// export async function fetchMovesByKeyword(keyword) {
-//   const movesByKeywordUrl = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${keyword}`;
-//   const response = await fetch(movesByKeywordUrl);
-//   if (!response.ok) {
-//     throw new Error(response.statusText);
-//   }
-//   return await response.json();
-// }

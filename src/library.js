@@ -34,6 +34,7 @@ const refs = {
   removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'), // <--- цієї кнопки більше немає в розмітці
   btnUpEl: document.querySelector('.btn-up'),
 
+  bodyLibEl: document.querySelector(".body-lib"),
   galleryLibListEl: document.querySelector(".gallery-lib-list"),
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
   bodyLibEl: document.querySelector(".body-lib")
@@ -1129,7 +1130,7 @@ function onCloseMovieModal(e) {
   ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
-    refs.bodyEl.style.overflow = 'scroll';
+    refs.bodyLibEl.style.overflow = 'scroll';
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
   }
@@ -1162,9 +1163,7 @@ export function handleMovieCard(event) {
       const markup = createMoveModalMarkup(data, movieIdForLibModalMarkup);
       refs.movieModalFilmInfoEl.innerHTML = markup;
       refs.bodyLibEl.style.overflow = 'hidden';
-      console.log(`це dataForLibModalMarkup перед виходом з функції:`, dataForLibModalMarkup);
-      console.log(`це movieIdForLibModalMarkup перед виходом з функції:`, movieIdForLibModalMarkup);
-      console.log(`це data перед виходом з функції:`, data);
+
       return data;
     })
     .catch(error => console.log(error));
