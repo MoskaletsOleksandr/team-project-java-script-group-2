@@ -16,7 +16,7 @@ window.addEventListener(
   throttle(() => {
     const scrollY = window.scrollY || document.documentElement.scrollTop;
 
-    scrollY > 400 ? show() : hide();
+    scrollY > refs.headerEl.offsetTop ? show() : hide();
   }, 500)
 );
 

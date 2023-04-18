@@ -1,5 +1,8 @@
 //імпортуємо бібліотеки та інші файли
+import refs from './js/refs';
+import './js/onScrollHeader';
 import './js/btnUp';
+import './js/btnTheme';
 //
 //
 //
@@ -18,24 +21,19 @@ import './js/btnUp';
 //
 //
 // refs
-const refs = {
-  searchFormEl: document.querySelector('.form-search'),
-  galleryContainerEl: document.querySelector('.gallery-container'),
-  aboutTeamBtn: document.querySelector('.about-team'),
-  backdropMovieModal: document.querySelector('.backdrop'),
-  movieModalEl: document.querySelector('div[data-movie-modal]'),
-  modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
-  addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
-  addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
-  removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'), // <--- цієї кнопки більше немає в розмітці
-  removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'), // <--- цієї кнопки більше немає в розмітці
-  btnUpEl: document.querySelector('.btn-up'),
-};
-//
-//
-//
-//
-//
+// const refs = {
+//   searchFormEl: document.querySelector('.form-search'),
+//   galleryContainerEl: document.querySelector('.gallery-container'),
+//   aboutTeamBtn: document.querySelector('.about-team'),
+//   backdropMovieModal: document.querySelector('.backdrop'),
+//   movieModalEl: document.querySelector('div[data-movie-modal]'),
+//   modalCloseBtn: document.querySelector('button[data-movie-modal-close]'),
+//   addToWatchedBtn: document.querySelector('button[data-btn-to-watched]'),
+//   addToQueueBtn: document.querySelector('button[data-btn-to-queue]'),
+//   removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'), // <--- цієї кнопки більше немає в розмітці
+//   removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'), // <--- цієї кнопки більше немає в розмітці
+//   btnUpEl: document.querySelector('.btn-up'),
+// };
 //
 //
 //
@@ -50,38 +48,40 @@ const refs = {
 //
 //
 //Аліна присяжнюк дещо сплутала
-const headerEl = document.querySelector('.header');
-const headerContainer = document.querySelector('.header-container');
-const logoHeader = document.querySelector('.header-logo');
-const logoTextHeader = document.querySelector('.header-text-logo');
-const iconFilmHeader = document.querySelector('.icon-film');
-//const searchBox = document.querySelector('.search');
-let positionHeader = headerEl.offsetTop;
-function onScrollHeader() {
-  if (window.pageYOffset > positionHeader) {
-    headerEl.classList.add('fixed');
-    headerContainer.classList.add('fixed-header');
-    logoHeader.classList.add('fixed-logo');
-    logoTextHeader.classList.add('text-logo-fixed');
-    // iconFilmHeader.classList.add('icon-film-fixed');
-    //searchBox.classList.add('fixed-search');
-  } else {
-    headerEl.classList.remove('fixed');
-    headerContainer.classList.remove('fixed-header');
-    headerContainer.classList.remove('fixed-header-dark');
-    logoHeader.classList.remove('fixed-logo');
-  }
+// const headerEl = document.querySelector('.header');
+// const headerContainer = document.querySelector('.header-container');
+// const logoHeader = document.querySelector('.header-logo');
+// const logoTextHeader = document.querySelector('.header-text-logo');
+// const iconFilmHeader = document.querySelector('.icon-film');
+// //const galle = document.querySelector('.search');
+// let positionHeader = headerEl.offsetTop;
+// function onScrollHeader() {
+//   if (window.pageYOffset > positionHeader) {
+//     headerEl.classList.add('fixed');
+//     headerContainer.classList.add('fixed-header');
+//     logoHeader.classList.add('fixed-logo');
+//     logoTextHeader.classList.add('text-logo-fixed');
+//     iconFilmHeader.classList.add('icon-film-fixed');
+//     localStorage.setItem('pageYOffset', JSON.stringify(window.pageYOffset));
+//     // refs.galleryContainerEl.classList.add('gallery-fixed');
+//   } else {
+//     headerEl.classList.remove('fixed');
+//     headerContainer.classList.remove('fixed-header');
+//     headerContainer.classList.remove('fixed-header-dark');
+//     logoHeader.classList.remove('fixed-logo');
+//     logoTextHeader.classList.remove('text-logo-fixed');
+//     iconFilmHeader.classList.remove('icon-film-fixed');
+//     localStorage.removeItem('pageYOffset');
+//     // refs.galleryContainerEl.classList.remove('gallery-fixed');
+//   }
 
-  if (window.pageYOffset > positionHeader && localStorage.theme === 'dark') {
-    headerContainer.classList.add('fixed-header-dark');
-  }
-}
+//   if (window.pageYOffset > positionHeader && localStorage.theme === 'dark') {
+//     headerContainer.classList.add('fixed-header-dark');
+//     localStorage.setItem('pageYOffset', JSON.stringify(window.pageYOffset));
+//   }
+// }
 
-window.addEventListener('scroll', onScrollHeader);
-//
-//
-//
-//
+// window.addEventListener('scroll', onScrollHeader);
 //
 //
 //
@@ -280,48 +280,48 @@ window.addEventListener('scroll', onScrollHeader);
 //
 //------- btnTheme -------
 //
-const btnThemeEl = document.querySelector('.btn-theme');
-const headerContainerEl = document.querySelector('.header-container');
-const btnIconMoonEl = document.querySelector('.btn-icon-moon');
-const btnIconSunEl = document.querySelector('.btn-icon-sun');
+// const btnThemeEl = document.querySelector('.btn-theme');
+// const headerContainerEl = document.querySelector('.header-container');
+// const btnIconMoonEl = document.querySelector('.btn-icon-moon');
+// const btnIconSunEl = document.querySelector('.btn-icon-sun');
 
-function setDarkTheme() {
-  document.body.classList.add('dark');
+// function setDarkTheme() {
+//   document.body.classList.add('dark');
 
-  btnIconSunEl.classList.remove('btn-icon-hidden');
-  btnIconMoonEl.classList.add('btn-icon-hidden');
-  headerContainerEl.classList.remove('header-container');
-  headerContainerEl.classList.add('header-container-dark');
-  localStorage.theme = 'dark';
-}
+//   btnIconSunEl.classList.remove('btn-icon-hidden');
+//   btnIconMoonEl.classList.add('btn-icon-hidden');
+//   headerContainerEl.classList.remove('header-container');
+//   headerContainerEl.classList.add('header-container-dark');
+//   localStorage.theme = 'dark';
+// }
 
-function setLightTheme() {
-  document.body.classList.remove('dark');
+// function setLightTheme() {
+//   document.body.classList.remove('dark');
 
-  btnIconMoonEl.classList.remove('btn-icon-hidden');
-  btnIconSunEl.classList.add('btn-icon-hidden');
-  headerContainerEl.classList.remove('header-container-dark');
-  headerContainerEl.classList.add('header-container');
-  localStorage.theme = 'light';
-}
+//   btnIconMoonEl.classList.remove('btn-icon-hidden');
+//   btnIconSunEl.classList.add('btn-icon-hidden');
+//   headerContainerEl.classList.remove('header-container-dark');
+//   headerContainerEl.classList.add('header-container');
+//   localStorage.theme = 'light';
+// }
 
-btnThemeEl.addEventListener('click', () => {
-  if (document.body.classList.contains('dark')) {
-    setLightTheme();
-  } else {
-    setDarkTheme();
-  }
+// btnThemeEl.addEventListener('click', () => {
+//   if (document.body.classList.contains('dark')) {
+//     setLightTheme();
+//   } else {
+//     setDarkTheme();
+//   }
 
-  if (localStorage.theme === 'dark' && window.pageYOffset > positionHeader) {
-    headerContainer.classList.add('fixed-header-dark');
-  } else {
-    headerContainer.classList.remove('fixed-header-dark');
-  }
-});
+//   if (localStorage.theme === 'dark' && window.pageYOffset > positionHeader) {
+//     headerContainer.classList.add('fixed-header-dark');
+//   } else {
+//     headerContainer.classList.remove('fixed-header-dark');
+//   }
+// });
 
-if (localStorage.theme === 'dark') {
-  setDarkTheme();
-}
+// if (localStorage.theme === 'dark') {
+//   setDarkTheme();
+// }
 //
 //
 //

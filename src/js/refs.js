@@ -15,6 +15,15 @@ const refs = {
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
-  pagination: document.querySelector('#pagination'), 
+  pagination: document.querySelector('#pagination'),
+  headerEl: document.querySelector('.header'),
+  btnThemeEl: document.querySelector('.btn-theme'),  
+  btnIconMoonEl: document.querySelector('.btn-icon-moon'),
+  btnIconSunEl: document.querySelector('.btn-icon-sun'),
+
+  headerContainerEl: document.querySelector('.header-container'),
+  logoHeader: document.querySelector('.header-logo'),
+  logoTextHeader: document.querySelector('.header-text-logo'),
+  iconFilmHeader: document.querySelector('.icon-film'),
 };
 export default refs;

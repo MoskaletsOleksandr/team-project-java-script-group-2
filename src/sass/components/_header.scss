@@ -269,6 +269,7 @@ a {
   background-color: var(--buttons-header-bg-color);
   border: var(--buttons-header-bg-color);
   cursor: pointer;
+  transition: background-color var(--animation), border var(--animation);
 
   &:hover {
     background-color: var(--buttons-header-hover-bg-color);
@@ -286,6 +287,13 @@ a {
   }
 }
 
+@media (pointer: coarse) {
+  .btn-theme:hover {
+    background-color: var(--buttons-header-bg-color);
+    border: var(--buttons-header-bg-color);
+  }
+}
+
 .btn-theme-icon {
   fill: var(--buttons-header-text-color);
   width: 40px;
@@ -293,6 +301,12 @@ a {
 
   .btn-theme:hover & {
     fill: var(--buttons-header-hover-text-color);
+  }
+}
+
+@media (pointer: coarse) {
+  .btn-theme:hover .btn-theme-icon {
+    fill: var(--buttons-header-text-color);
   }
 }
 

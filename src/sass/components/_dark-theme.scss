@@ -1,11 +1,6 @@
 body {
   background-color: var(--body-bg-color);
-  transition: background-color var(--animation);
-
-  // animation-duration: 2s;
-  // animation-name: slidein-light;
-  // animation-iteration-count: 1;
-  // animation-direction: normal;
+  transition: background-color var(--animation); 
 }
 
 body.dark {
@@ -40,28 +35,28 @@ body.dark {
   transition: background-color var(--animation);
 }
 
-.header-container {
-  transform: translateY(-150%);
-  animation: light 1s forwards;
-}
+// .header-container {
+//   transform: translateY(-150%);
+//   animation: light 1s forwards;
+// }
 
-@keyframes light {
-  0% {
-    transform: translateY(-150%);
-  }
+// @keyframes light {
+//   0% {
+//     transform: translateY(-150%);
+//   }
 
-  100% {
-    transform: translateY(0);
-  }
-}
+//   100% {
+//     transform: translateY(0);
+//   }
+// }
 
 .header-container-dark {
   position: relative;
   height: 460px;
   width: 280px;
 
-  transform: translateY(-150%);
-  animation: dark 1s forwards;
+  // transform: translateY(-150%);
+  // animation: dark 1s forwards;
 
   background-repeat: no-repeat;
   background-position: center;
@@ -125,15 +120,15 @@ body.dark {
   }
 }
 
-@keyframes dark {
-  0% {
-    transform: translateY(-150%);
-  }
+// @keyframes dark {
+//   0% {
+//     transform: translateY(-150%);
+//   }
 
-  100% {
-    transform: translateY(0);
-  }
-}
+//   100% {
+//     transform: translateY(0);
+//   }
+// }
 
 .fixed-header-dark {
   height: 100px;
