@@ -1,11 +1,6 @@
 body {
   background-color: var(--body-bg-color);
-  transition: background-color var(--animation);
-
-  // animation-duration: 2s;
-  // animation-name: slidein-light;
-  // animation-iteration-count: 1;
-  // animation-direction: normal;
+  transition: background-color var(--animation); 
 }
 
 body.dark {
@@ -24,10 +19,15 @@ body.dark {
   --buttons-modal-bg-color: #efecec;
   --modal-accent-color: #b92f2c;
 
-  // ---------------modal-tem-------------
+  // ---------------modal-team-------------
   --bg-modal-team: #efecec;
   --color-focus-team: #c47c7cf5;
   --position-team: #b92f2c;
+
+  --pagination-number-bg-color: #b92f2c;
+
+  --spinner-border-top-color: #b92f2c;
+  --spinner-2-border-top-color: #b92f2c;
 }
 
 .header {
@@ -36,21 +36,17 @@ body.dark {
 }
 
 // .header-container {
-//   animation-duration: 2s;
-//   animation-name: slidein-light;
-//   animation-iteration-count: 1;
-//   animation-direction: normal;
+//   transform: translateY(-150%);
+//   animation: light 1s forwards;
 // }
 
-// @keyframes slidein-light {
-//   from {
-//     margin-left: 100%;
-//     width: 300%;
+// @keyframes light {
+//   0% {
+//     transform: translateY(-150%);
 //   }
 
-//   to {
-//     margin-left: 0%;
-//     width: 100%;
+//   100% {
+//     transform: translateY(0);
 //   }
 // }
 
@@ -59,10 +55,8 @@ body.dark {
   height: 460px;
   width: 280px;
 
-  // animation-duration: 2s;
-  // animation-name: slidein-dark;
-  // animation-iteration-count: 1;
-  // animation-direction: normal;
+  // transform: translateY(-150%);
+  // animation: dark 1s forwards;
 
   background-repeat: no-repeat;
   background-position: center;
@@ -126,15 +120,13 @@ body.dark {
   }
 }
 
-// @keyframes slidein-dark {
-//   from {
-//     margin-left: 100%;
-//     width: 300%;
+// @keyframes dark {
+//   0% {
+//     transform: translateY(-150%);
 //   }
 
-//   to {
-//     margin-left: 0%;
-//     width: 100%;
+//   100% {
+//     transform: translateY(0);
 //   }
 // }
 
