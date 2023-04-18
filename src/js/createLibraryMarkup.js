@@ -1,4 +1,4 @@
-let BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
+import noimage from '../images/noimage.jpg';
 const GENRES = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },
@@ -30,19 +30,16 @@ export function createLibraryMarkup(results) {
 
   return results
     .map(({ poster_path, release_date, title, id }) => {
-      BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
-      if (poster_path === null) {
-        BASE_IMG_URL = '';
-        poster_path =
-          'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg?w=1480';
-      }
+      const poster = poster_path
+      ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+      : noimage;
       if (release_date === '') {
         release_date = 'None';
       }
       return `<li class="gallery-item">
                     <div class="gallery-container-img" data-id='${id}'>
                     <div class="gallery-card" data-id='${id}'>
-                        <img class="gallery-img" src="${BASE_IMG_URL}${poster_path}" alt="${title}">
+                        <img class="gallery-img" src="${poster}" alt="${title}">
                         </div>
                         <div class="gallery-film" data-id='${id}'>
                         <h3 class="film-title">${title}

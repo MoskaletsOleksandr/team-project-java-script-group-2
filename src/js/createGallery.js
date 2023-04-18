@@ -2,6 +2,7 @@ import { createPagination } from './pagination';
 import { fetchTrendMoves, fetchTrailer } from './api';
 import { createTrendMovesMarkup, createTrailerMarkup } from './createMarkup';
 import refs from './refs';
+import {spinnerPlay, spinnerStop } from './spinner';
 
 export function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
@@ -28,10 +29,11 @@ fetchTrendMoves()
     const pagination = createPagination(data.total_results, data.total_pages);
     pagination.on('beforeMove', ({ page }) => {
       refs.galleryListEl.innerHTML = '';
-      // showHideLoader(refs.loader);
       fetchTrendMoves(page).then(data => {
         renderMarkup(data);
         renderTrailerMarkup();
+        spinnerPlay();
+        spinnerStop();
       });
     });
   })
