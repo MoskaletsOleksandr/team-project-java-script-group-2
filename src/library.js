@@ -450,7 +450,13 @@ if (localStorage.theme === 'dark') {
 //Мар'яна Собашевська
 //
 //
-//
+// import { handleMakeBtnAddRemoveWatched } from './js/btnAddToWatched';
+// import { handleMakeBtnAddRemoveQueue } from './js/btnAddToQueue';
+
+
+// refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched); //обробник для кнопки AddRemoveTo Watched
+
+// refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
 //
 //
 //

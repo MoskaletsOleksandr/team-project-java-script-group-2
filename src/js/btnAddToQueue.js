@@ -2,7 +2,9 @@ import { saveLocalStorage } from "./localStorage";
 import { loadLocalStorage } from "./localStorage";
 import { dataForModalMarkup } from "..";
 const keyQueue = 'queue';
+
 export function handleMakeBtnAddRemoveQueue(event) {
+  const btnEl = document.querySelector('.js-film-info__btns');
   if (event.target.dataset.queueBtn === 'add-to-queue') {
     // console.log(event.target.dataset);
     dataForModalMarkup
@@ -13,7 +15,11 @@ export function handleMakeBtnAddRemoveQueue(event) {
         event.target.textContent = 'Remove from queue';
         event.target.dataset.queueBtn = 'remove-from-queue';
         event.target.classList.add('active-btn');
+<<<<<<< Updated upstream
         event.target.classList.add('active-btn')
+=======
+        btnEl.children[0].classList.remove('active-btn');
+>>>>>>> Stashed changes
       })
       .catch(err => {
         console.log(err);
@@ -29,6 +35,8 @@ export function handleMakeBtnAddRemoveQueue(event) {
         saveLocalStorage(keyQueue, queuedArray);
         event.target.textContent = 'Add to queue';
         event.target.dataset.queueBtn = 'add-to-queue';
+        event.target.classList.add('active-btn');
+        btnEl.children[0].classList.remove('active-btn');
       })
       .catch(err => {
         console.log(err);
