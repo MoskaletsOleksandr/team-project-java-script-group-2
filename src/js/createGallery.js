@@ -2,12 +2,16 @@ import { createPagination } from './pagination';
 import { fetchTrendMoves, fetchTrailer } from './api';
 import { createTrendMovesMarkup, createTrailerMarkup } from './createMarkup';
 import refs from './refs';
-import {spinnerPlay, spinnerStop } from './spinner';
+import { spinnerPlay, spinnerStop } from './spinner';
 
 export function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
-  refs.galleryListEl.innerHTML = '';
-  refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
+  if (refs.galleryListEl === null) {
+    return;
+  } else {
+    refs.galleryListEl.innerHTML = '';
+    refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
+  }
 }
 
 export function renderTrailerMarkup() {
@@ -24,9 +28,9 @@ export function renderTrailerMarkup() {
 fetchTrendMoves()
   .then(data => {
     setTimeout(function () {
-    renderMarkup(data);
-    renderTrailerMarkup();  
-    },1000);
+      renderMarkup(data);
+      renderTrailerMarkup();
+    }, 1000);
 
     const pagination = createPagination(data.total_results, data.total_pages);
     pagination.on('beforeMove', ({ page }) => {
@@ -34,10 +38,10 @@ fetchTrendMoves()
       spinnerPlay();
       setTimeout(function () {
         fetchTrendMoves(page).then(data => {
-        renderMarkup(data);
-        renderTrailerMarkup();
-      });
-    },1000);
+          renderMarkup(data);
+          renderTrailerMarkup();
+        });
+      }, 1000);
       spinnerStop();
     });
   })
