@@ -9,10 +9,11 @@
     .tui-page-btn {
       border: none;
       line-height: 1.2px;
+      margin-right: 4px;
       font-weight: 500;
       color: #000;
       &:hover {
-        background-color: white;
+        background-color: var(--body-bg-color);
       }
       @media (min-width: 768px) {
         font-size: 14px;
@@ -22,7 +23,7 @@
       width: 25px;
       height: 25px;
       display: inline-flex;
-      background-color: gold;
+      background-color: var(  --btn-up-bg-color);
       color: white;
       border-radius: 5px;
       flex-direction: column;
@@ -30,7 +31,7 @@
       text-align: center;
       vertical-align: middle;
       &:hover {
-        background-color: gold;
+        background-color: var(  --btn-up-bg-color);
       }
       @media (min-width: 768px) {
         width: 40px;

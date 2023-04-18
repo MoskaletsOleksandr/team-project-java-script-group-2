@@ -2,6 +2,7 @@
 import './js/createGallery';
 import './js/onSearch';
 import './js/pagination';
+import './js/spinner';
 import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
 import {
   createTrendMovesMarkup,
@@ -90,18 +91,18 @@ window.addEventListener('scroll', onScrollHeader);
 //
 // export const infinity = document.querySelector('.infitity-scroll');
 
-export function spinnerPlay() {
-  refs.bodyEl.classList.add('loading');
-}
+// export function spinnerPlay() {
+//   refs.bodyEl.classList.add('loading');
+// }
 
-export function spinnerStop() {
-  setTimeout(function () {
-    refs.bodyEl.classList.remove('loading');
-    refs.bodyEl.classList.add('loaded');
-  }, 1000);
-}
-spinnerPlay();
-spinnerStop();
+// export function spinnerStop() {
+//   setTimeout(function () {
+//     refs.bodyEl.classList.remove('loading');
+//     refs.bodyEl.classList.add('loaded');
+//   }, 1000);
+// }
+// spinnerPlay();
+// spinnerStop();
 //
 //
 //
@@ -1022,7 +1023,6 @@ function onCloseMovieModal(e) {
       return;
     }
     movieIdForModalMarkup = event.target.parentElement.dataset.id;
-    console.log(movieIdForModalMarkup);
   return;
 }
 
@@ -1042,9 +1042,7 @@ export function handleMovieCard(event) {
       refs.movieModalEl.classList.remove('is-hidden');
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
       window.addEventListener('keydown', onCloseMovieModal);
-
       const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
-
       refs.movieModalFilmInfoEl.innerHTML = markup;
       refs.bodyEl.style.overflow = 'hidden';
       return data;

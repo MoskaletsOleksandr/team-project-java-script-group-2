@@ -1,7 +1,7 @@
 import { saveLocalStorage } from "./localStorage";
 import { loadLocalStorage } from "./localStorage";
+import noimage from '../images/noimage.jpg';
 export function createMoveModalMarkup(data, movieIdForModalMarkup) {
-  const BASE_IMG_URL = 'https://image.tmdb.org/t/p/original';
 
   const {
     poster_path,
@@ -13,7 +13,9 @@ export function createMoveModalMarkup(data, movieIdForModalMarkup) {
     genres,
     overview,
   } = data;
-
+  const poster = poster_path
+  ? `https://image.tmdb.org/t/p/w400/${poster_path}`
+  : noimage;
   const listOfGenres = genres.map(genre => genre.name).join(', ');
   // ------------ ls---------------------------------------
   let addToWatchedAtr = 'add-to-watched';
@@ -45,9 +47,8 @@ export function createMoveModalMarkup(data, movieIdForModalMarkup) {
   return `
                    <div class="js-film-info__thumb">
                      <img
-                       src="${BASE_IMG_URL}${poster_path}"
+                       src="${poster}"
                        alt="${title}"
-                       width="240"
                        class="js-film-info__poster"
                      />
                   </div>
@@ -81,12 +82,12 @@ export function createMoveModalMarkup(data, movieIdForModalMarkup) {
                     <div class="js-film-info__btns">
                       <button
                         type="button"
-                        class="js-film-info__btn active-btn"
+                        class="js-film-info__btn"
                         data-watched-btn=${addToWatchedAtr}
                       >
                         ${addToWatchedText}
                       </button>
-                      <button type="button" class="js-film-info__btn active-btn" data-queue-btn=${addToQueueAtr}>
+                      <button type="button" class="js-film-info__btn" data-queue-btn=${addToQueueAtr}>
                         ${addToQueueText}
 
                       </button>

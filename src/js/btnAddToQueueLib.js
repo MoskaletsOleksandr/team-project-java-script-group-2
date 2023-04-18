@@ -1,26 +1,30 @@
 import { saveLocalStorage } from "./localStorage";
 import { loadLocalStorage } from "./localStorage";
-import { dataForModalMarkup } from "..";
+import { dataForLibModalMarkup } from "../library";
+
 const keyQueue = 'queue';
-export function handleMakeBtnAddRemoveQueue(event) {
-    const btnEl = document.querySelector('.js-film-info__btns');
+
+export function handleMakeBtnAddRemoveQueueLib(event) {
+  const btnEl = document.querySelector('.js-film-info__btns');
+  const liEl = document.querySelector('.gallery-item');
+    
   if (event.target.dataset.queueBtn === 'add-to-queue') {
-    dataForModalMarkup
+    dataForLibModalMarkup
       .then(data => {
         const queuedArray = loadLocalStorage(keyQueue);
         queuedArray.push(data);
         saveLocalStorage(keyQueue, queuedArray);
         event.target.textContent = 'Remove from queue';
         event.target.dataset.queueBtn = 'remove-from-queue';
-         event.target.classList.add('active-btn');
+        event.target.classList.add('active-btn');
         btnEl.children[0].classList.remove('active-btn');
       })
       .catch(err => {
         console.log(err);
       });
   } else if (event.target.dataset.queueBtn === 'remove-from-queue') {
-    console.log(event.target.dataset);
-    dataForModalMarkup
+
+    dataForLibModalMarkup
       .then(data => {
         const queuedArray = loadLocalStorage(keyQueue);
         const index = queuedArray.findIndex(el => Number(el.id) === Number(data.id));
@@ -31,6 +35,7 @@ export function handleMakeBtnAddRemoveQueue(event) {
         event.target.dataset.queueBtn = 'add-to-queue';
         event.target.classList.add('active-btn');
         btnEl.children[0].classList.remove('active-btn');
+        
       })
       .catch(err => {
         console.log(err);

@@ -33,11 +33,15 @@ const refs = {
   removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'), // <--- цієї кнопки більше немає в розмітці
   removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'), // <--- цієї кнопки більше немає в розмітці
   btnUpEl: document.querySelector('.btn-up'),
-  galleryLibListEl: document.querySelector(".gallery-lib-list"),
-  movieModalFilmInfoEl: document.querySelector('.js-film-info'),
+ 
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('div[data-team-modal-close]'),
  teamModal: document.querySelector('div[data-team-modal]'),
+
+  bodyLibEl: document.querySelector(".body-lib"),
+  galleryLibListEl: document.querySelector(".gallery-lib-list"),
+  movieModalFilmInfoEl: document.querySelector('.js-film-info'),
+  bodyLibEl: document.querySelector(".body-lib")
 };
 //
 //
@@ -453,7 +457,13 @@ document.addEventListener('keydown', function (event) {
 //
 //
 //Мар'яна Собашевська
-//
+import { handleMakeBtnAddRemoveWatchedLib } from './js/btnAddToWatchedLib';
+import { handleMakeBtnAddRemoveQueueLib } from './js/btnAddToQueueLib';
+
+refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatchedLib); //обробник для кнопки AddRemoveTo Watched
+
+refs.movieModalEl.addEventListener('click',handleMakeBtnAddRemoveQueueLib);
+
 //
 //
 //
@@ -1100,9 +1110,9 @@ handleWatchedBtn();
 //
 //Олександр
 // 
-let movieIdForModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
+let movieIdForLibModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
 // фільму і за цим id відбувається запит на бекенд
-export let dataForModalMarkup = null; //Об'єкт із повною інформацією про фільм,
+export let dataForLibModalMarkup = null; //Об'єкт із повною інформацією про фільм,
 //який ми отримуємо після натискання на картку фільму на головній сторінці.
 // Цей об'єкт перезаписується щоразу після натискання на картку
 
@@ -1121,7 +1131,7 @@ function onCloseMovieModal(e) {
   ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
-    refs.bodyEl.style.overflow = 'scroll';
+    refs.bodyLibEl.style.overflow = 'scroll';
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
   }
@@ -1129,13 +1139,12 @@ function onCloseMovieModal(e) {
 
 function idRewriter(event) {
   if (event.target.nodeName === 'DIV') {
-    movieIdForModalMarkup = event.target.dataset.id;
+    movieIdForLibModalMarkup = event.target.dataset.id;
     return;
   }
-  movieIdForModalMarkup = event.target.parentElement.dataset.id;
+  movieIdForLibModalMarkup = event.target.parentElement.dataset.id;
   return;
 }
-
 export function handleMovieCard(event) {
   idRewriter(event); //ця функція перезаписує значення movieIdForModalMarkup
   if (
@@ -1146,18 +1155,16 @@ export function handleMovieCard(event) {
     ) {
       return;
     }
-    dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
+    dataForLibModalMarkup = fetchDataById(movieIdForLibModalMarkup)
     .then(data => {
       refs.backdropMovieModal.classList.remove('is-hidden');
       refs.movieModalEl.classList.remove('is-hidden');
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
       window.addEventListener('keydown', onCloseMovieModal);
-
-      const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
-
-
+      const markup = createMoveModalMarkup(data, movieIdForLibModalMarkup);
       refs.movieModalFilmInfoEl.innerHTML = markup;
-      refs.bodyEl.style.overflow = 'hidden';
+      refs.bodyLibEl.style.overflow = 'hidden';
+
       return data;
     })
     .catch(error => console.log(error));
