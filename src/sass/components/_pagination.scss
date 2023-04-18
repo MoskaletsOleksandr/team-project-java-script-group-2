@@ -23,7 +23,7 @@
       width: 25px;
       height: 25px;
       display: inline-flex;
-      background-color: var(  --btn-up-bg-color);
+      background-color: var(--pagination-number-bg-color);
       color: white;
       border-radius: 5px;
       flex-direction: column;
@@ -31,7 +31,7 @@
       text-align: center;
       vertical-align: middle;
       &:hover {
-        background-color: var(  --btn-up-bg-color);
+        background-color: var(--pagination-number-bg-color);
       }
       @media (min-width: 768px) {
         width: 40px;

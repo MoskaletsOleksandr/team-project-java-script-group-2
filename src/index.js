@@ -2,18 +2,19 @@
 import './js/createGallery';
 import './js/onSearch';
 import './js/pagination';
+import './js/onScrollHeader';
+import './js/btnUp';
+import './js/btnTheme';
 import './js/spinner';
 import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
 import {
   createTrendMovesMarkup,
   createTrailerIdAndKeysArray,
 } from './js/createMarkup';
-import throttle from 'lodash.throttle'; // npm i lodash.throttle
 import { createMoveModalMarkup } from './js/create-modal-markup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import refs from './js/refs';
 
-//
 //
 //
 //
@@ -55,37 +56,40 @@ export let dataForModalMarkup = null; //Об'єкт із повною інфор
 
 //Аліна присяжнюк
 
-const headerEl = document.querySelector('.header');
-const headerContainer = document.querySelector('.header-container');
-const logoHeader = document.querySelector('.header-logo');
-const logoTextHeader = document.querySelector('.header-text-logo');
-const iconFilmHeader = document.querySelector('.icon-film');
-//const galle = document.querySelector('.search');
-let positionHeader = headerEl.offsetTop;
-function onScrollHeader() {
-  if (window.pageYOffset > positionHeader) {
-    headerEl.classList.add('fixed');
-    headerContainer.classList.add('fixed-header');
-    logoHeader.classList.add('fixed-logo');
-    logoTextHeader.classList.add('text-logo-fixed');
-    iconFilmHeader.classList.add('icon-film-fixed');
-    // refs.galleryContainerEl.classList.add('gallery-fixed');
-  } else {
-    headerEl.classList.remove('fixed');
-    headerContainer.classList.remove('fixed-header');
-    headerContainer.classList.remove('fixed-header-dark');
-    logoHeader.classList.remove('fixed-logo');
-    logoTextHeader.classList.remove('text-logo-fixed');
-    iconFilmHeader.classList.remove('icon-film-fixed');
-    // refs.galleryContainerEl.classList.remove('gallery-fixed');
-  }
+// const headerEl = document.querySelector('.header');
+// const headerContainer = document.querySelector('.header-container');
+// const logoHeader = document.querySelector('.header-logo');
+// const logoTextHeader = document.querySelector('.header-text-logo');
+// const iconFilmHeader = document.querySelector('.icon-film');
+// //const galle = document.querySelector('.search');
+// let positionHeader = headerEl.offsetTop;
+// function onScrollHeader() {
+//   if (window.pageYOffset > positionHeader) {
+//     headerEl.classList.add('fixed');
+//     headerContainer.classList.add('fixed-header');
+//     logoHeader.classList.add('fixed-logo');
+//     logoTextHeader.classList.add('text-logo-fixed');
+//     iconFilmHeader.classList.add('icon-film-fixed');
+//     localStorage.setItem('pageYOffset', JSON.stringify(window.pageYOffset));
+//     // refs.galleryContainerEl.classList.add('gallery-fixed');
+//   } else {
+//     headerEl.classList.remove('fixed');
+//     headerContainer.classList.remove('fixed-header');
+//     headerContainer.classList.remove('fixed-header-dark');
+//     logoHeader.classList.remove('fixed-logo');
+//     logoTextHeader.classList.remove('text-logo-fixed');
+//     iconFilmHeader.classList.remove('icon-film-fixed');
+//     localStorage.removeItem('pageYOffset');
+//     // refs.galleryContainerEl.classList.remove('gallery-fixed');
+//   }
 
-  if (window.pageYOffset > positionHeader && localStorage.theme === 'dark') {
-    headerContainer.classList.add('fixed-header-dark');
-  }
-}
+//   if (window.pageYOffset > positionHeader && localStorage.theme === 'dark') {
+//     headerContainer.classList.add('fixed-header-dark');
+//     // localStorage.setItem('pageYOffset', JSON.stringify(window.pageYOffset));
+//   }
+// }
 
-window.addEventListener('scroll', onScrollHeader);
+// window.addEventListener('scroll', onScrollHeader);
 //
 //
 //
@@ -106,28 +110,12 @@ window.addEventListener('scroll', onScrollHeader);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// const headerEl = document.querySelector('.header');
+// const headerContainer = document.querySelector('.header-container');
+// const logoHeader = document.querySelector('.header-logo');
+// const logoTextHeader = document.querySelector('.header-text-logo');
+// const iconFilmHeader = document.querySelector('.icon-film');
+//const galle = document.querySelector('.search');
 //
 //
 //
@@ -259,81 +247,82 @@ window.addEventListener('scroll', onScrollHeader);
 //
 //
 //
+//
 //Ігор
 //
 // ------- btnUp -------
 
-refs.btnUpEl.addEventListener('click', scrollUp);
+// refs.btnUpEl.addEventListener('click', scrollUp);
 
-function show() {
-  refs.btnUpEl.classList.remove('btn-up_hide');
-}
+// function show() {
+//   refs.btnUpEl.classList.remove('btn-up_hide');
+// }
 
-function hide() {
-  refs.btnUpEl.classList.add('btn-up_hide');
-}
+// function hide() {
+//   refs.btnUpEl.classList.add('btn-up_hide');
+// }
 
-window.addEventListener(
-  'scroll',
-  throttle(() => {
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
+// window.addEventListener(
+//   'scroll',
+//   throttle(() => {
+//     const scrollY = window.scrollY || document.documentElement.scrollTop;
 
-    scrollY > 400 ? show() : hide();
-  }, 500)
-);
+//     scrollY > 400 ? show() : hide();
+//   }, 500)
+// );
 
-function scrollUp() {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth',
-  });
-}
+// function scrollUp() {
+//   window.scrollTo({
+//     top: 0,
+//     left: 0,
+//     behavior: 'smooth',
+//   });
+// }
 //
 //------- btnTheme -------
 //
-const btnThemeEl = document.querySelector('.btn-theme');
-const headerContainerEl = document.querySelector('.header-container');
-const btnIconMoonEl = document.querySelector('.btn-icon-moon');
-const btnIconSunEl = document.querySelector('.btn-icon-sun');
+// const btnThemeEl = document.querySelector('.btn-theme');
+// const headerContainerEl = document.querySelector('.header-container');
+// const btnIconMoonEl = document.querySelector('.btn-icon-moon');
+// const btnIconSunEl = document.querySelector('.btn-icon-sun');
 
-function setDarkTheme() {
-  document.body.classList.add('dark');
+// function setDarkTheme() {
+//   document.body.classList.add('dark');
 
-  btnIconSunEl.classList.remove('btn-icon-hidden');
-  btnIconMoonEl.classList.add('btn-icon-hidden');
-  headerContainerEl.classList.remove('header-container');
-  headerContainerEl.classList.add('header-container-dark');
-  localStorage.theme = 'dark';
-}
+//   btnIconSunEl.classList.remove('btn-icon-hidden');
+//   btnIconMoonEl.classList.add('btn-icon-hidden');
+//   headerContainerEl.classList.remove('header-container');  
+//   headerContainerEl.classList.add('header-container-dark');    
+//   localStorage.theme = 'dark';
+// }
 
-function setLightTheme() {
-  document.body.classList.remove('dark');
+// function setLightTheme() {
+//   document.body.classList.remove('dark');
 
-  btnIconMoonEl.classList.remove('btn-icon-hidden');
-  btnIconSunEl.classList.add('btn-icon-hidden');
-  headerContainerEl.classList.remove('header-container-dark');
-  headerContainerEl.classList.add('header-container');
-  localStorage.theme = 'light';
-}
+//   btnIconMoonEl.classList.remove('btn-icon-hidden');
+//   btnIconSunEl.classList.add('btn-icon-hidden');  
+//   headerContainerEl.classList.remove('header-container-dark');  
+//   headerContainerEl.classList.add('header-container');  
+//   localStorage.theme = 'light';
+// }
 
-btnThemeEl.addEventListener('click', () => {
-  if (document.body.classList.contains('dark')) {
-    setLightTheme();
-  } else {
-    setDarkTheme();
-  }
+// btnThemeEl.addEventListener('click', () => {
+//   if (document.body.classList.contains('dark')) {
+//     setLightTheme();
+//   } else {
+//     setDarkTheme();
+//   }
 
-  if (localStorage.theme === 'dark' && window.pageYOffset > positionHeader) {
-    headerContainer.classList.add('fixed-header-dark');
-  } else {
-    headerContainer.classList.remove('fixed-header-dark');
-  }
-});
+//   if (localStorage.theme === 'dark' && JSON.parse(localStorage.getItem('pageYOffset')) > refs.headerEl.offsetTop) {
+//     headerContainer.classList.add('fixed-header-dark');
+//   } else {
+//     headerContainer.classList.remove('fixed-header-dark');
+//   }
+// });
 
-if (localStorage.theme === 'dark') {
-  setDarkTheme();
-}
+// if (localStorage.theme === 'dark') {
+//   setDarkTheme();
+// }
 //
 //
 //
