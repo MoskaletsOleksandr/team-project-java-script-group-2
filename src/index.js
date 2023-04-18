@@ -2,12 +2,13 @@
 import './js/createGallery';
 import './js/onSearch';
 import './js/pagination';
+import './js/btnUp';
+
 import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
 import {
   createTrendMovesMarkup,
   createTrailerIdAndKeysArray,
 } from './js/createMarkup';
-import throttle from 'lodash.throttle'; // npm i lodash.throttle
 import { createMoveModalMarkup } from './js/create-modal-markup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import refs from './js/refs';
@@ -246,48 +247,36 @@ spinnerStop();
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //Ігор
 //
 // ------- btnUp -------
 
-refs.btnUpEl.addEventListener('click', scrollUp);
+// refs.btnUpEl.addEventListener('click', scrollUp);
 
-function show() {
-  refs.btnUpEl.classList.remove('btn-up_hide');
-}
+// function show() {
+//   refs.btnUpEl.classList.remove('btn-up_hide');
+// }
 
-function hide() {
-  refs.btnUpEl.classList.add('btn-up_hide');
-}
+// function hide() {
+//   refs.btnUpEl.classList.add('btn-up_hide');
+// }
 
-window.addEventListener(
-  'scroll',
-  throttle(() => {
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
+// window.addEventListener(
+//   'scroll',
+//   throttle(() => {
+//     const scrollY = window.scrollY || document.documentElement.scrollTop;
 
-    scrollY > 400 ? show() : hide();
-  }, 500)
-);
+//     scrollY > 400 ? show() : hide();
+//   }, 500)
+// );
 
-function scrollUp() {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth',
-  });
-}
+// function scrollUp() {
+//   window.scrollTo({
+//     top: 0,
+//     left: 0,
+//     behavior: 'smooth',
+//   });
+// }
 //
 //------- btnTheme -------
 //
@@ -301,8 +290,9 @@ function setDarkTheme() {
 
   btnIconSunEl.classList.remove('btn-icon-hidden');
   btnIconMoonEl.classList.add('btn-icon-hidden');
-  headerContainerEl.classList.remove('header-container');
+  headerContainerEl.classList.remove('header-container');  
   headerContainerEl.classList.add('header-container-dark');
+  headerContainerEl.classList.add('header-container-hidden');  
   localStorage.theme = 'dark';
 }
 
@@ -311,8 +301,9 @@ function setLightTheme() {
 
   btnIconMoonEl.classList.remove('btn-icon-hidden');
   btnIconSunEl.classList.add('btn-icon-hidden');
-  headerContainerEl.classList.remove('header-container-dark');
-  headerContainerEl.classList.add('header-container');
+  headerContainerEl.classList.add('header-container-hidden');
+  headerContainerEl.classList.remove('header-container-dark');  
+  headerContainerEl.classList.add('header-container');  
   localStorage.theme = 'light';
 }
 

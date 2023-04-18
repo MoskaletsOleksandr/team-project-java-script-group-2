@@ -15,6 +15,6 @@ const refs = {
   teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
   teamModalCloseBtn: document.querySelector('button[data-team-modal-close]'),
   teamModal: document.querySelector('div[data-team-modal]'),
-  pagination: document.querySelector('#pagination'),
+  pagination: document.querySelector('#pagination'), 
 };
 export default refs;

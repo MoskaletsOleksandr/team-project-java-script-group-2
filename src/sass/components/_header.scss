@@ -11,6 +11,10 @@ a {
 }
 
 .header-container {
+opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--animation), visibility 0s linear 0.3s;
+
   position: relative;
   height: 460px;
   width: 280px;
@@ -296,9 +300,16 @@ a {
   }
 }
 
-.btn-icon-hidden {
-  display: none;
+.btn-icon-moon,
+.btn-icon-sun {
+  opacity: 0;
+  transition: opacity var(--animation);
 }
+
+.btn-icon-hidden {
+  opacity: 1;
+}
+
 .icon-film {
   @include tablet {
     width: 40px;

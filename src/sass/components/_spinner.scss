@@ -38,7 +38,7 @@
   height: 80px;
   border-radius: 80%;
   display: inline-block;
-  border-top: 7px solid #fad105;
+  border-top: 7px solid var(--spinner-border-top-color);
   border-right: 7px solid transparent;
   animation: rotation 1s linear infinite;
 

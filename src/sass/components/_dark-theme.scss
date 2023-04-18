@@ -24,10 +24,15 @@ body.dark {
   --buttons-modal-bg-color: #efecec;
   --modal-accent-color: #b92f2c;
 
-  // ---------------modal-tem-------------
+  // ---------------modal-team-------------
   --bg-modal-team: #efecec;
   --color-focus-team: #c47c7cf5;
   --position-team: #b92f2c;
+
+  --pagination-number-bg-color: #b92f2c;
+
+  --spinner-border-top-color: #b92f2c;
+  --spinner-2-border-top-color: #b92f2c;
 }
 
 .header {
@@ -55,6 +60,10 @@ body.dark {
 // }
 
 .header-container-dark {
+  opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--animation), visibility 0s linear 0.3s;
+
   position: relative;
   height: 460px;
   width: 280px;
@@ -124,6 +133,12 @@ body.dark {
         url(/src/images/header-dark/header-desktop-dark-2x.jpg);
     }
   }
+}
+
+.header-container-hidden {
+  opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
 }
 
 // @keyframes slidein-dark {

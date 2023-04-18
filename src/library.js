@@ -1,5 +1,5 @@
 //імпортуємо бібліотеки та інші файли
-import throttle from 'lodash.throttle'; // npm i lodash.throttle
+import './js/btnUp';
 //
 //
 //
@@ -251,32 +251,32 @@ window.addEventListener('scroll', onScrollHeader);
 //
 // ------- btnUp -------
 //
-refs.btnUpEl.addEventListener('click', scrollUp);
+// refs.btnUpEl.addEventListener('click', scrollUp);
 
-function show() {
-  refs.btnUpEl.classList.remove('btn-up_hide');
-}
+// function show() {
+//   refs.btnUpEl.classList.remove('btn-up_hide');
+// }
 
-function hide() {
-  refs.btnUpEl.classList.add('btn-up_hide');
-}
+// function hide() {
+//   refs.btnUpEl.classList.add('btn-up_hide');
+// }
 
-window.addEventListener(
-  'scroll',
-  throttle(() => {
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
+// window.addEventListener(
+//   'scroll',
+//   throttle(() => {
+//     const scrollY = window.scrollY || document.documentElement.scrollTop;
 
-    scrollY > 400 ? show() : hide();
-  }, 500)
-);
+//     scrollY > 400 ? show() : hide();
+//   }, 500)
+// );
 
-function scrollUp() {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth',
-  });
-}
+// function scrollUp() {
+//   window.scrollTo({
+//     top: 0,
+//     left: 0,
+//     behavior: 'smooth',
+//   });
+// }
 //
 //------- btnTheme -------
 //
