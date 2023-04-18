@@ -893,7 +893,7 @@ function handleQueueBtn() {
   }
   const markup = createLibraryMarkup(queueFilms);
   galleryContainerEl.innerHTML = markup;
-  renderTrailerMarkup(watchedFilms);
+  renderTrailerMarkup(queueFilms);
 }
 
 handleWatchedBtn();
