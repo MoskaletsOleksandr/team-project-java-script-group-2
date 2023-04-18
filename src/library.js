@@ -37,6 +37,7 @@ const refs = {
   bodyLibEl: document.querySelector(".body-lib"),
   galleryLibListEl: document.querySelector(".gallery-lib-list"),
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
+  bodyLibEl: document.querySelector(".body-lib")
 };
 //
 //
@@ -455,7 +456,13 @@ if (localStorage.theme === 'dark') {
 //
 //
 //Мар'яна Собашевська
-//
+import { handleMakeBtnAddRemoveWatchedLib } from './js/btnAddToWatchedLib';
+import { handleMakeBtnAddRemoveQueueLib } from './js/btnAddToQueueLib';
+
+refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatchedLib); //обробник для кнопки AddRemoveTo Watched
+
+refs.movieModalEl.addEventListener('click',handleMakeBtnAddRemoveQueueLib);
+
 //
 //
 //
@@ -1104,7 +1111,7 @@ handleWatchedBtn();
 // 
 let movieIdForLibModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
 // фільму і за цим id відбувається запит на бекенд
-let dataForLibModalMarkup = null; //Об'єкт із повною інформацією про фільм,
+export let dataForLibModalMarkup = null; //Об'єкт із повною інформацією про фільм,
 //який ми отримуємо після натискання на картку фільму на головній сторінці.
 // Цей об'єкт перезаписується щоразу після натискання на картку
 
@@ -1137,7 +1144,6 @@ function idRewriter(event) {
   movieIdForLibModalMarkup = event.target.parentElement.dataset.id;
   return;
 }
-
 export function handleMovieCard(event) {
   idRewriter(event); //ця функція перезаписує значення movieIdForModalMarkup
   if (
@@ -1157,6 +1163,7 @@ export function handleMovieCard(event) {
       const markup = createMoveModalMarkup(data, movieIdForLibModalMarkup);
       refs.movieModalFilmInfoEl.innerHTML = markup;
       refs.bodyLibEl.style.overflow = 'hidden';
+
       return data;
     })
     .catch(error => console.log(error));
