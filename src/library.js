@@ -25,7 +25,11 @@ import { renderTrailerMarkup } from './js/createGallery';
 //
 //
 // refs
-//
+let movieIdForLibModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
+// фільму і за цим id відбувається запит на бекенд
+export let dataForLibModalMarkup = null; //Об'єкт із повною інформацією про фільм,
+//який ми отримуємо після натискання на картку фільму на головній сторінці.
+// Цей об'єкт перезаписується щоразу після натискання на картку
 //
 //
 //
@@ -453,7 +457,7 @@ import { handleMakeBtnAddRemoveQueueLib } from './js/btnAddToQueueLib';
 
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatchedLib); //обробник для кнопки AddRemoveTo Watched
 
-refs.movieModalEl.addEventListener('click',handleMakeBtnAddRemoveQueueLib);
+refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueueLib);
 
 //
 //
@@ -856,7 +860,7 @@ import { createLibraryMarkup } from './js/createLibraryMarkup.js';
 
 const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
-const galleryContainerEl = document.querySelector('.gallery-lib-list');
+const galleryContainerEl = document.querySelector('.gallery-list');
 const nothingContainer = document.querySelector('.library-container');
 
 watchedBtn.addEventListener('click', handleWatchedBtn);
@@ -1100,17 +1104,11 @@ handleWatchedBtn();
 //
 //
 //Олександр
-// 
-let movieIdForLibModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
-// фільму і за цим id відбувається запит на бекенд
-export let dataForLibModalMarkup = null; //Об'єкт із повною інформацією про фільм,
-//який ми отримуємо після натискання на картку фільму на головній сторінці.
-// Цей об'єкт перезаписується щоразу після натискання на картку
-
+//
 
 refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
 window.addEventListener('keydown', onCloseMovieModal);
-refs.galleryLibListEl.addEventListener('click', handleMovieCard);
+refs.galleryListEl.addEventListener('click', handleMovieCard);
 
 function onCloseMovieModal(e) {
   if (
@@ -1122,7 +1120,7 @@ function onCloseMovieModal(e) {
   ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
-    refs.bodyLibEl.style.overflow = 'scroll';
+    refs.bodyEl.style.overflow = 'scroll';
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
   }
@@ -1143,10 +1141,10 @@ export function handleMovieCard(event) {
     event.target.nodeName !== 'DIV' &&
     event.target.nodeName !== 'H3' &&
     event.target.nodeName !== 'SPAN'
-    ) {
-      return;
-    }
-    dataForLibModalMarkup = fetchDataById(movieIdForLibModalMarkup)
+  ) {
+    return;
+  }
+  dataForLibModalMarkup = fetchDataById(movieIdForLibModalMarkup)
     .then(data => {
       refs.backdropMovieModal.classList.remove('is-hidden');
       refs.movieModalEl.classList.remove('is-hidden');
@@ -1154,7 +1152,7 @@ export function handleMovieCard(event) {
       window.addEventListener('keydown', onCloseMovieModal);
       const markup = createMoveModalMarkup(data, movieIdForLibModalMarkup);
       refs.movieModalFilmInfoEl.innerHTML = markup;
-      refs.bodyLibEl.style.overflow = 'hidden';
+      refs.bodyEl.style.overflow = 'hidden';
 
       return data;
     })
