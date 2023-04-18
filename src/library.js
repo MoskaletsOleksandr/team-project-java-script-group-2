@@ -47,10 +47,6 @@ export let dataForLibModalMarkup = null; //Об'єкт із повною інф�
 //
 //
 //
-//
-//
-//
-//
 //Аліна присяжнюк дещо сплутала
 // const headerEl = document.querySelector('.header');
 // const headerContainer = document.querySelector('.header-container');
@@ -362,29 +358,29 @@ export let dataForLibModalMarkup = null; //Об'єкт із повною інф�
 //
 //
 //
+function openTeamModal() {
+  refs.teamModal.classList.remove('is-hidden-team');
+}
 //
+function closeTeamModal() {
+  refs.teamModal.classList.add('is-hidden-team');
+}
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+refs.teamModalOpenBtn.addEventListener('click', openTeamModal);
+
+refs.teamModalCloseBtn.addEventListener('click', closeTeamModal);
+
+refs.teamModal.addEventListener('click', function (event) {
+  if (event.target === refs.teamModal) {
+    closeTeamModal();
+  }
+});
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    closeTeamModal();
+  }
+});
 //
 //
 //
