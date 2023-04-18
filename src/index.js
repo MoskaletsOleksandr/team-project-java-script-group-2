@@ -461,14 +461,7 @@ document.addEventListener('keydown', function (event) {
 
 import { handleMakeBtnAddRemoveWatched } from './js/btnAddToWatched';
 import { handleMakeBtnAddRemoveQueue } from './js/btnAddToQueue';
-<<<<<<< Updated upstream
-import { saveLocalStorage } from './js/localStorage';
-import { loadLocalStorage } from './js/localStorage';
-const keyQueue = 'queue';
-const keyWatched = 'watched'; 
-=======
 
->>>>>>> Stashed changes
 
 refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveWatched); //обробник для кнопки AddRemoveTo Watched
 

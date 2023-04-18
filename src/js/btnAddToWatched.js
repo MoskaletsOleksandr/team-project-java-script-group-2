@@ -9,10 +9,6 @@ console.log(btnEl);
 export function handleMakeBtnAddRemoveWatched(event) {
   const btnEl = document.querySelector('.js-film-info__btns');
   if (event.target.dataset.watchedBtn === 'add-to-watched') {
-<<<<<<< Updated upstream
-    // console.log(event.target.dataset);
-=======
->>>>>>> Stashed changes
     dataForModalMarkup
       .then(data => {
         const watchedArray = loadLocalStorage(keyWatched);                      
@@ -20,12 +16,8 @@ export function handleMakeBtnAddRemoveWatched(event) {
         saveLocalStorage(keyWatched, watchedArray);
         event.target.textContent = 'Remove from watched';
         event.target.dataset.watchedBtn = 'remove-from-watched';
-<<<<<<< Updated upstream
-        event.target.classList.add('active-btn')
-=======
         event.target.classList.add('active-btn');
         btnEl.children[1].classList.remove('active-btn');
->>>>>>> Stashed changes
       })
       .catch(err => {
         console.log(err);
@@ -41,12 +33,8 @@ export function handleMakeBtnAddRemoveWatched(event) {
         saveLocalStorage(keyWatched, watchedArray); 
         event.target.textContent = 'Add to watched';
         event.target.dataset.watchedBtn = 'add-to-watched';
-<<<<<<< Updated upstream
-        event.target.classList.add('active-btn')
-=======
         event.target.classList.add('active-btn');
         btnEl.children[1].classList.remove('active-btn');
->>>>>>> Stashed changes
       })
       .catch(err => {
         console.log(err);

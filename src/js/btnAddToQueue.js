@@ -15,11 +15,7 @@ export function handleMakeBtnAddRemoveQueue(event) {
         event.target.textContent = 'Remove from queue';
         event.target.dataset.queueBtn = 'remove-from-queue';
         event.target.classList.add('active-btn');
-<<<<<<< Updated upstream
-        event.target.classList.add('active-btn')
-=======
         btnEl.children[0].classList.remove('active-btn');
->>>>>>> Stashed changes
       })
       .catch(err => {
         console.log(err);
