@@ -22,17 +22,10 @@
 }
 
 .gallery-item {
-  // width: 280px;
   cursor: pointer;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-
-  &:hover,
-  &:focus {
-    background-color: rgba(0, 0, 0, 0.25);
-    transition: 250ms;
-  }
 
   @media screen and (min-width: 768px) {
     width: calc((100% - 32px) / 2);
@@ -53,11 +46,13 @@
 
   &:hover,
   &:focus {
+    background-color: rgba(0, 0, 0, 0.1);
     box-shadow: 1px 8px 20px grey;
-    transition: box-shadow 0.3s ease-in;
+    transition: var(--animation);
     }
 
 }
+
 
 .gallery-img {
   width: 280px;
@@ -93,9 +88,10 @@
 
 .gallery-container-img {
   position: relative;
+  
 }
 
-.trailer-link { //заміни ось цей клас на trailer-link
+.trailer-link {
   width: 35%;
   height: 30px;
   position: absolute;
@@ -161,8 +157,8 @@
 
 .film-genres {
   padding-left: 5px;
-}
 
+}
 .film-genres,
 .film-year {
   font-family: var(--main-font-family);
@@ -170,7 +166,7 @@
   font-size: 12px;
   line-height: 14px;
   font-weight: 500;
-  color: var(--second-text-color);
+  color: var(--gallery-text);
   font-size: 12px;
   @media screen and (min-width: 768px) {
       font-size: 12px;
