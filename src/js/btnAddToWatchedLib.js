@@ -1,15 +1,19 @@
 import { saveLocalStorage } from "./localStorage";
 import { loadLocalStorage } from "./localStorage";
-import { dataForModalMarkup } from "..";
+import { dataForLibModalMarkup } from "../library";
 
 const keyWatched = 'watched'; 
 
-export function handleMakeBtnAddRemoveWatched(event) {
- const btnEl = document.querySelector('.js-film-info__btns');
+export function handleMakeBtnAddRemoveWatchedLib(event) {
+  const btnEl = document.querySelector('.js-film-info__btns');
+  const liEl = document.querySelector('.gallery-item');
+
   if (event.target.dataset.watchedBtn === 'add-to-watched') {
-    dataForModalMarkup
+     dataForLibModalMarkup 
       .then(data => {
-        const watchedArray = loadLocalStorage(keyWatched);                      
+        const watchedArray = loadLocalStorage(keyWatched);  
+        watchedArray.forEach(el => { 
+          if (Number(el.id) === Number(data.id)){ liEl.remove();}});                  
         watchedArray.push(data);
         saveLocalStorage(keyWatched, watchedArray);
         event.target.textContent = 'Remove from watched';
@@ -21,9 +25,10 @@ export function handleMakeBtnAddRemoveWatched(event) {
         console.log(err);
       });
   } else if (event.target.dataset.watchedBtn === 'remove-from-watched') {
-    dataForModalMarkup
+    
+    dataForLibModalMarkup 
       .then(data => {
-        const watchedArray = loadLocalStorage(keyWatched);
+       const watchedArray = loadLocalStorage(keyWatched);
         const index = watchedArray.findIndex(el => Number(el.id) === Number(data.id));
         watchedArray.splice(index, 1);
         localStorage.removeItem(keyWatched);

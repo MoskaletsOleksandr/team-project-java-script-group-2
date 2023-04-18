@@ -9,10 +9,11 @@
     .tui-page-btn {
       border: none;
       line-height: 1.2px;
+      margin-right: 4px;
       font-weight: 500;
       color: #000;
       &:hover {
-        background-color: white;
+        background-color: var(--body-bg-color);
       }
       @media (min-width: 768px) {
         font-size: 14px;

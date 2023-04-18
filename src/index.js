@@ -5,6 +5,7 @@ import './js/pagination';
 import './js/onScrollHeader';
 import './js/btnUp';
 import './js/btnTheme';
+import './js/spinner';
 import { fetchTrendMoves, fetchDataById, fetchMovesByKeyword } from './js/api';
 import {
   createTrendMovesMarkup,
@@ -94,18 +95,18 @@ export let dataForModalMarkup = null; //Об'єкт із повною інфор
 //
 // export const infinity = document.querySelector('.infitity-scroll');
 
-export function spinnerPlay() {
-  refs.bodyEl.classList.add('loading');
-}
+// export function spinnerPlay() {
+//   refs.bodyEl.classList.add('loading');
+// }
 
-export function spinnerStop() {
-  setTimeout(function () {
-    refs.bodyEl.classList.remove('loading');
-    refs.bodyEl.classList.add('loaded');
-  }, 1000);
-}
-spinnerPlay();
-spinnerStop();
+// export function spinnerStop() {
+//   setTimeout(function () {
+//     refs.bodyEl.classList.remove('loading');
+//     refs.bodyEl.classList.add('loaded');
+//   }, 1000);
+// }
+// spinnerPlay();
+// spinnerStop();
 //
 //
 //
@@ -984,8 +985,7 @@ refs.movieModalEl.addEventListener('click', handleMakeBtnAddRemoveQueue);
 //
 //Олександр
 //
-//
-//
+
 refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
 window.addEventListener('keydown', onCloseMovieModal);
 refs.galleryContainerEl.addEventListener('click', handleMovieCard);
@@ -997,21 +997,21 @@ function onCloseMovieModal(e) {
     e.target.classList[0] === 'icon-close' ||
     e.target.classList[0] === 'svg-icon-close' ||
     e.code === 'Escape'
-  ) {
-    refs.backdropMovieModal.classList.add('is-hidden');
-    refs.movieModalEl.classList.add('is-hidden');
-    refs.bodyEl.style.overflow = 'scroll';
-    refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
-    window.removeEventListener('keydown', onCloseMovieModal);
+    ) {
+      refs.backdropMovieModal.classList.add('is-hidden');
+      refs.movieModalEl.classList.add('is-hidden');
+      refs.bodyEl.style.overflow = 'scroll';
+      refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
+      window.removeEventListener('keydown', onCloseMovieModal);
+    }
   }
-}
-
-function idRewriter(event) {
-  if (event.target.nodeName === 'DIV') {
-    movieIdForModalMarkup = event.target.dataset.id;
-    return;
-  }
-  movieIdForModalMarkup = event.target.parentElement.dataset.id;
+  
+  function idRewriter(event) {
+    if (event.target.nodeName === 'DIV') {
+      movieIdForModalMarkup = event.target.dataset.id;
+      return;
+    }
+    movieIdForModalMarkup = event.target.parentElement.dataset.id;
   return;
 }
 
@@ -1031,16 +1031,11 @@ export function handleMovieCard(event) {
       refs.movieModalEl.classList.remove('is-hidden');
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
       window.addEventListener('keydown', onCloseMovieModal);
-
       const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
-
       refs.movieModalFilmInfoEl.innerHTML = markup;
       refs.bodyEl.style.overflow = 'hidden';
       return data;
     })
     .catch(error => console.log(error));
 }
-//
-//
-//
-//
+
