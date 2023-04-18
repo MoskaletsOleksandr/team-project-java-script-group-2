@@ -873,7 +873,6 @@ function handleWatchedBtn() {
   nothingContainer.style.display = 'none';
 
   watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
-  // console.log(watchedFilms);
 
   if (watchedFilms.length <= 0) {
     nothingContainer.style.display = 'block';
@@ -882,7 +881,6 @@ function handleWatchedBtn() {
   }
 
   const markup = createLibraryMarkup(watchedFilms);
-  console.log(watchedFilms);
   galleryContainerEl.innerHTML = markup;
   renderTrailerMarkup(watchedFilms);
 }
