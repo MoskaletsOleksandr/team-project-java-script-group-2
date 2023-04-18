@@ -30,10 +30,10 @@ const refs = {
   removeFromWatchedBtn: document.querySelector('.remove-from-watched-btn'), // <--- цієї кнопки більше немає в розмітці
   removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'), // <--- цієї кнопки більше немає в розмітці
   btnUpEl: document.querySelector('.btn-up'),
+  teamModalOpenBtn: document.querySelector('button[data-team-modal-open]'),
+ teamModalCloseBtn: document.querySelector('div[data-team-modal-close]'),
+teamModal: document.querySelector('div[data-team-modal]'),
 };
-//
-//
-//
 //
 //
 //
@@ -358,29 +358,29 @@ if (localStorage.theme === 'dark') {
 //
 //
 //
+function openTeamModal() {
+  refs.teamModal.classList.remove('is-hidden-team');
+}
 //
+function closeTeamModal() {
+  refs.teamModal.classList.add('is-hidden-team');
+}
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+refs.teamModalOpenBtn.addEventListener('click', openTeamModal);
+
+refs.teamModalCloseBtn.addEventListener('click', closeTeamModal);
+
+refs.teamModal.addEventListener('click', function (event) {
+  if (event.target === refs.teamModal) {
+    closeTeamModal();
+  }
+});
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    closeTeamModal();
+  }
+});
 //
 //
 //
