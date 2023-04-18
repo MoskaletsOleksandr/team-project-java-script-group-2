@@ -1022,7 +1022,6 @@ function onCloseMovieModal(e) {
       return;
     }
     movieIdForModalMarkup = event.target.parentElement.dataset.id;
-    console.log(movieIdForModalMarkup);
   return;
 }
 
@@ -1042,14 +1041,9 @@ export function handleMovieCard(event) {
       refs.movieModalEl.classList.remove('is-hidden');
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
       window.addEventListener('keydown', onCloseMovieModal);
-
       const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
-
       refs.movieModalFilmInfoEl.innerHTML = markup;
       refs.bodyEl.style.overflow = 'hidden';
-      console.log(`це dataForModalMarkup перед виходом з функції:`, dataForModalMarkup);
-      console.log(`це movieIdForModalMarkup перед виходом з функції:`, movieIdForModalMarkup);
-      console.log(`це data перед виходом з функції:`, data);
       return data;
     })
     .catch(error => console.log(error));

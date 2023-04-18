@@ -1148,13 +1148,9 @@ export function handleMovieCard(event) {
       refs.movieModalEl.classList.remove('is-hidden');
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
       window.addEventListener('keydown', onCloseMovieModal);
-      
       const markup = createMoveModalMarkup(data, movieIdForLibModalMarkup);
       refs.movieModalFilmInfoEl.innerHTML = markup;
       refs.bodyLibEl.style.overflow = 'hidden';
-      console.log(`це dataForLibModalMarkup перед виходом з функції:`, dataForLibModalMarkup);
-      console.log(`це movieIdForLibModalMarkup перед виходом з функції:`, movieIdForLibModalMarkup);
-      console.log(`це data перед виходом з функції:`, data);
       return data;
     })
     .catch(error => console.log(error));
