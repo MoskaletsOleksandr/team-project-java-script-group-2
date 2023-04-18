@@ -1,7 +1,7 @@
 import { saveLocalStorage } from "./localStorage";
 import { loadLocalStorage } from "./localStorage";
 export function createMoveModalMarkup(data, movieIdForModalMarkup) {
-  const BASE_IMG_URL = 'https://image.tmdb.org/t/p/original';
+  const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w400';
 
   const {
     poster_path,

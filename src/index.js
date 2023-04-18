@@ -1022,7 +1022,6 @@ function onCloseMovieModal(e) {
       return;
     }
     movieIdForModalMarkup = event.target.parentElement.dataset.id;
-    console.log(movieIdForModalMarkup);
   return;
 }
 
@@ -1042,9 +1041,7 @@ export function handleMovieCard(event) {
       refs.movieModalEl.classList.remove('is-hidden');
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
       window.addEventListener('keydown', onCloseMovieModal);
-
       const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
-
       refs.movieModalFilmInfoEl.innerHTML = markup;
       refs.bodyEl.style.overflow = 'hidden';
       return data;
