@@ -7,34 +7,13 @@
 // ::-webkit-scrollbar {
 //   display: none;
 // }
-<<<<<<< Updated upstream
-//Кастомний скролбар
-// ::-webkit-scrollbar {
-//   width: 10px;
-//   offsetHeight: 290px;
-//   position: absolute;
-//   right: -10px;
-//   bottom: 0;
-  
-// }
-// ::-webkit-scrollbar-track {
-//   -webkit-box-shadow: 5px 5px 5px -5px rgba(59, 204, 23, 0.2) inset;
-//   background-color: #f9f9fd;
-//   border-radius: 10px;
-// }
-// ::-webkit-scrollbar-thumb {
-//   border-radius: 10px;
-//   background: var(--modal-accent-color);
-// }
-// ::-webkit-scrollbar-track-piece {
-// }
-=======
+// Кастомний скролбар
 ::-webkit-scrollbar {
   width: 10px;
   offsetHeight: 290px;
-  position: absolute;
-  right: -10px;
-  bottom: 0;
+  // position: absolute;
+  // right: -10px;
+  // bottom: 0;
   
 }
 ::-webkit-scrollbar-track {
@@ -48,7 +27,6 @@
 }
 ::-webkit-scrollbar-track-piece {
 }
->>>>>>> Stashed changes
 .backdrop {
   position: fixed;
   top: 0;
