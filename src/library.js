@@ -31,6 +31,7 @@ const refs = {
   removeFromQueueBtn: document.querySelector('.remove-from-queue-btn'), // <--- цієї кнопки більше немає в розмітці
   btnUpEl: document.querySelector('.btn-up'),
 
+  bodyLibEl: document.querySelector(".body-lib"),
   galleryLibListEl: document.querySelector(".gallery-lib-list"),
   movieModalFilmInfoEl: document.querySelector('.js-film-info'),
 };
@@ -1095,9 +1096,9 @@ handleWatchedBtn();
 //
 //Олександр
 // 
-let movieIdForModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
+let movieIdForLibModalMarkup = null; //При натисканні на картку фільму на головній сторінці сюди заисується id
 // фільму і за цим id відбувається запит на бекенд
-export let dataForModalMarkup = null; //Об'єкт із повною інформацією про фільм,
+let dataForLibModalMarkup = null; //Об'єкт із повною інформацією про фільм,
 //який ми отримуємо після натискання на картку фільму на головній сторінці.
 // Цей об'єкт перезаписується щоразу після натискання на картку
 
@@ -1116,7 +1117,7 @@ function onCloseMovieModal(e) {
   ) {
     refs.backdropMovieModal.classList.add('is-hidden');
     refs.movieModalEl.classList.add('is-hidden');
-    refs.bodyEl.style.overflow = 'scroll';
+    refs.bodyLibEl.style.overflow = 'scroll';
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
   }
@@ -1124,10 +1125,10 @@ function onCloseMovieModal(e) {
 
 function idRewriter(event) {
   if (event.target.nodeName === 'DIV') {
-    movieIdForModalMarkup = event.target.dataset.id;
+    movieIdForLibModalMarkup = event.target.dataset.id;
     return;
   }
-  movieIdForModalMarkup = event.target.parentElement.dataset.id;
+  movieIdForLibModalMarkup = event.target.parentElement.dataset.id;
   return;
 }
 
@@ -1141,17 +1142,19 @@ export function handleMovieCard(event) {
     ) {
       return;
     }
-    dataForModalMarkup = fetchDataById(movieIdForModalMarkup)
+    dataForLibModalMarkup = fetchDataById(movieIdForLibModalMarkup)
     .then(data => {
       refs.backdropMovieModal.classList.remove('is-hidden');
       refs.movieModalEl.classList.remove('is-hidden');
       refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
       window.addEventListener('keydown', onCloseMovieModal);
-
-      const markup = createMoveModalMarkup(data, movieIdForModalMarkup);
-
+      
+      const markup = createMoveModalMarkup(data, movieIdForLibModalMarkup);
       refs.movieModalFilmInfoEl.innerHTML = markup;
-      refs.bodyEl.style.overflow = 'hidden';
+      refs.bodyLibEl.style.overflow = 'hidden';
+      console.log(`це dataForLibModalMarkup перед виходом з функції:`, dataForLibModalMarkup);
+      console.log(`це movieIdForLibModalMarkup перед виходом з функції:`, movieIdForLibModalMarkup);
+      console.log(`це data перед виходом з функції:`, data);
       return data;
     })
     .catch(error => console.log(error));
