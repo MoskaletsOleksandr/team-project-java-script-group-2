@@ -10,7 +10,7 @@
   width: 100%;
   height: 100%;
   background-color: var(--backdrop-team);
-  overflow: auto;
+    overflow: auto;
 }
 
 .is-hidden-team {
@@ -25,9 +25,13 @@
 }
 
 .team-list-photo {
-  width: 120px;
+  width: 250px;
+  height: auto;
   border: 1px solid var(--team-border);
   border-radius: 4px;
+  @media screen and (min-width: 1280px) {
+    width: 170px;
+  }
 }
 
 .team-list-social {
@@ -40,24 +44,36 @@ margin-right: auto;
 
 .modal-team {
   position: absolute;
-  width: 90%;
-  // max-width: 800px;
-  transform: translate(-50%, -50%) scale(1);
+  width: 300px;
+  min-height: 100%;
+    transform: translate(-50%) scale(1);
     transition: transform 250ms linear;
-    top: 50%;
+    top: 0%;
     left: 50%;
     border-radius: 4px;
   background-color: var(--bg-modal-team);
   padding: 20px;
   border-radius: 5px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 10px auto;
+  @media screen and (min-width: 768px) {
+   width: 700px;
+   min-height: 700px;
+  }
+  @media screen and (min-width: 1280px) {
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    min-height: 600px;
+    padding: 50px 20px;
+    width: 1100px;
+    margin: auto;
+  }
 }
 
 .modal-team-close {
   position: absolute;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 30px;
   height: 30px;
   display: flex;
@@ -72,6 +88,10 @@ margin-right: auto;
     background-color: var(--color-focus-team);
     transform: scale(1.05);
   }
+  @media screen and (min-width: 1280px) {
+    top: 30px;
+    right: 30px;
+  }
 }
 
 // .modal-team-close {
@@ -82,22 +102,33 @@ margin-right: auto;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  flex-direction: column;
   margin-right: auto;
   margin-left: auto;
-  padding: 30px;
+  padding: 15px;
+  width: 100%;
+  align-items: center;
+  
+  @media screen and (min-width: 768px) {
+  flex-direction: row; 
+  justify-content: center; 
+  width: 100%;
+  }
+  @media screen and (min-width: 1280px) {
+
+    flex-direction: row; 
+    justify-content: center; 
+    width: calc((100% - 40px));
+  }
 }
+
 
 .team-list-info {
   align-items: center;
   text-align: center;
   padding: 5px;
 }
-.team-item {
 
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
 
 .team-list-item {
   border: 1px solid var(--team-border);
@@ -117,14 +148,15 @@ margin-right: auto;
     background-color: var(--color-focus-team);
     transform: scale(1.05);
   }
+
 }
 
 
-.team-img {
+// .team-img {
 
-  margin-right: 10px;
-  border-radius: 50%;
-}
+//   margin-right: 10px;
+//   border-radius: 50%;
+// }
 
 .team-desc-container {
 
