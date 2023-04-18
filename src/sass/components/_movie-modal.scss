@@ -119,12 +119,30 @@ body::-webkit-scrollbar {
   }
 }
 
+
 .js-film-info__poster {
   object-fit: contain;
   width: 100%;
   height: 100%;
+  max-width: 240px;
+  max-height: 357px;
   border-radius: 5px;
+  @media screen and (min-width: 768px) {
+    max-width: 264px ;
+    max-height: 375px;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+  @media screen and (min-width: 1280px) {
+    max-width: 372px ;
+    max-height: 478px;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
 }
+
 .js-film-info__content {
   @include tablet {
     width: 264px;
