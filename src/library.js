@@ -860,7 +860,7 @@ import { createLibraryMarkup } from './js/createLibraryMarkup.js';
 
 const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
-const galleryContainerEl = document.querySelector('.gallery-list');
+const galleryContainerEl = document.querySelector('.gallery-lib-list');
 const nothingContainer = document.querySelector('.library-container');
 
 watchedBtn.addEventListener('click', handleWatchedBtn);
@@ -1108,7 +1108,7 @@ handleWatchedBtn();
 
 refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
 window.addEventListener('keydown', onCloseMovieModal);
-refs.galleryListEl.addEventListener('click', handleMovieCard);
+refs.galleryLibListEl.addEventListener('click', handleMovieCard);
 
 function onCloseMovieModal(e) {
   if (

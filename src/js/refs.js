@@ -3,6 +3,7 @@ const refs = {
   searchInputEl: document.querySelector('.input-search'),
   galleryContainerEl: document.querySelector('.gallery-container'),
   galleryListEl: document.querySelector('.gallery-list'),
+  galleryLibListEl: document.querySelector('.gallery-lib-list'),
   aboutTeamBtn: document.querySelector('.about-team'),
   btnUpEl: document.querySelector('.btn-up'),
   bodyEl: document.querySelector('body'),
@@ -17,7 +18,7 @@ const refs = {
   teamModal: document.querySelector('div[data-team-modal]'),
   pagination: document.querySelector('#pagination'),
   headerEl: document.querySelector('.header'),
-  btnThemeEl: document.querySelector('.btn-theme'),  
+  btnThemeEl: document.querySelector('.btn-theme'),
   btnIconMoonEl: document.querySelector('.btn-icon-moon'),
   btnIconSunEl: document.querySelector('.btn-icon-sun'),
 
