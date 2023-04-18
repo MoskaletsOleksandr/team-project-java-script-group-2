@@ -56,5 +56,3 @@ export function createLibraryMarkup(results) {
     })
     .join('');
 }
-
-//                         <a class="trailer-link tube" href="https://www.youtube.com/watch?v=${videoKey}">Trailer</a>
