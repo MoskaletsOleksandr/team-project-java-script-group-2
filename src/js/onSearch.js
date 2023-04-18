@@ -30,25 +30,29 @@ function onSearchByKeyword(event) {
                 Notiflix.Notify.failure(
                     'Oops. We can not find your film. Please try again'
                 );
-                clearGallery()
                 return;
             }
+            spinnerPlay();
+            setTimeout(function () {
             Notiflix.Notify.success(
                 ` Hooray! We found ${data.total_results} movies.`
             );
-            spinnerPlay();
-            spinnerStop();
-            renderMarkup(data);
-            renderTrailerMarkup();
+          
+                renderMarkup(data);
+                renderTrailerMarkup();
+            }, 1000);
+             spinnerStop();
             const pagination = createPagination(data.total_results, data.total_pages);
             pagination.on('beforeMove', ({ page }) => {
                 refs.galleryListEl.innerHTML = '';
-                getByKeyword(query, page).then(data => {
-                    renderMarkup(data);
-                    renderTrailerMarkup();
-                    spinnerPlay();
-                    spinnerStop();
-                });
+                spinnerPlay();
+                setTimeout(function () {
+                    getByKeyword(query, page).then(data => {
+                        renderMarkup(data);
+                        renderTrailerMarkup();
+                    });
+                }, 1000);
+                spinnerStop();
             });
         })
         .catch(error => {
@@ -56,6 +60,3 @@ function onSearchByKeyword(event) {
         });
 }
 
-function clearGallery() {
-    galleryListEl.innerHTML = "";
-}

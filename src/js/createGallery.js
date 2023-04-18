@@ -23,18 +23,22 @@ export function renderTrailerMarkup() {
 
 fetchTrendMoves()
   .then(data => {
+    setTimeout(function () {
     renderMarkup(data);
-    renderTrailerMarkup();
+    renderTrailerMarkup();  
+    },1000);
 
     const pagination = createPagination(data.total_results, data.total_pages);
     pagination.on('beforeMove', ({ page }) => {
       refs.galleryListEl.innerHTML = '';
-      fetchTrendMoves(page).then(data => {
+      spinnerPlay();
+      setTimeout(function () {
+        fetchTrendMoves(page).then(data => {
         renderMarkup(data);
         renderTrailerMarkup();
-        spinnerPlay();
-        spinnerStop();
       });
+    },1000);
+      spinnerStop();
     });
   })
   .catch(error => console.log(error));
