@@ -291,8 +291,7 @@ function setDarkTheme() {
   btnIconSunEl.classList.remove('btn-icon-hidden');
   btnIconMoonEl.classList.add('btn-icon-hidden');
   headerContainerEl.classList.remove('header-container');  
-  headerContainerEl.classList.add('header-container-dark');
-  headerContainerEl.classList.add('header-container-hidden');  
+  headerContainerEl.classList.add('header-container-dark');    
   localStorage.theme = 'dark';
 }
 
@@ -300,8 +299,7 @@ function setLightTheme() {
   document.body.classList.remove('dark');
 
   btnIconMoonEl.classList.remove('btn-icon-hidden');
-  btnIconSunEl.classList.add('btn-icon-hidden');
-  headerContainerEl.classList.add('header-container-hidden');
+  btnIconSunEl.classList.add('btn-icon-hidden');  
   headerContainerEl.classList.remove('header-container-dark');  
   headerContainerEl.classList.add('header-container');  
   localStorage.theme = 'light';

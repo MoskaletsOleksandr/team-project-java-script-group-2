@@ -40,38 +40,28 @@ body.dark {
   transition: background-color var(--animation);
 }
 
-// .header-container {
-//   animation-duration: 2s;
-//   animation-name: slidein-light;
-//   animation-iteration-count: 1;
-//   animation-direction: normal;
-// }
+.header-container {
+  transform: translateY(-150%);
+  animation: light 1s forwards;
+}
 
-// @keyframes slidein-light {
-//   from {
-//     margin-left: 100%;
-//     width: 300%;
-//   }
+@keyframes light {
+  0% {
+    transform: translateY(-150%);
+  }
 
-//   to {
-//     margin-left: 0%;
-//     width: 100%;
-//   }
-// }
+  100% {
+    transform: translateY(0);
+  }
+}
 
 .header-container-dark {
-  opacity: 0;
-    visibility: hidden;
-    transition: opacity var(--animation), visibility 0s linear 0.3s;
-
   position: relative;
   height: 460px;
   width: 280px;
 
-  // animation-duration: 2s;
-  // animation-name: slidein-dark;
-  // animation-iteration-count: 1;
-  // animation-direction: normal;
+  transform: translateY(-150%);
+  animation: dark 1s forwards;
 
   background-repeat: no-repeat;
   background-position: center;
@@ -135,23 +125,15 @@ body.dark {
   }
 }
 
-.header-container-hidden {
-  opacity: 1;
-    visibility: visible;
-    transition-delay: 0s;
+@keyframes dark {
+  0% {
+    transform: translateY(-150%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
-
-// @keyframes slidein-dark {
-//   from {
-//     margin-left: 100%;
-//     width: 300%;
-//   }
-
-//   to {
-//     margin-left: 0%;
-//     width: 100%;
-//   }
-// }
 
 .fixed-header-dark {
   height: 100px;
