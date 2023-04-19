@@ -2,9 +2,12 @@
     display: flex;
     gap: 8px;
     align-items: center;
-}
-
-.library-buttons-link {
+    // @include desktop {
+    //   margin-left: 480px;
+    // }
+  }
+  
+  .library-buttons-link {
     border: none;
     text-align: center;
     background-color: var(--buttons-header-bg-color);
@@ -18,75 +21,291 @@
     cursor: pointer;
     transition: color var(--animation);
     transition: background-color var(--animation);
-
+  
     @include tablet {
-        padding: 12px 24px;
+      padding: 12px 24px;
     }
-
+  
     @include desktop {
-        padding: 14px 32px;
+      padding: 14px 32px;
     }
-}
-
-.library-buttons-link:hover {
+  }
+  
+  .library-buttons-link:hover {
     color: var(--buttons-header-text-color);
     background-color: var(--buttons-library-hover-bg-color);
-}
-
-.library-buttons {
+  }
+  
+  .library-buttons {
     display: flex;
-    margin-left: auto;
+    margin-left: 0;
     align-items: center;
-}
-
-// .library-container{
-//     @include tablet {
-//         padding-top: 270px;}
-
-//     @include desktop{
-//     padding-top: 350px;}
-// }
-
-.search--lib {
+    position: absolute;
+    left: 44px;
+    bottom: 24px;
+  
+    @include tablet {
+      bottom: 170px;
+      left: 472px;
+    }
+  
+    @include desktop {
+      bottom: 254px;
+      left: 956px;
+    }
+  }
+  
+  // .library-container{
+  //     @include tablet {
+  //         padding-top: 270px;}
+  
+  //     @include desktop{
+  //     padding-top: 350px;}
+  // }
+  
+  .search--lib {
     display: flex;
     align-items: baseline;
-}
-
-.navigation--lib {
+    flex-direction: column;
+    top: 20px;
     @include tablet {
-            margin-right: 217px;
-            margin-left: 18px;
-        }
+      top: 20px;
+    }
     @include desktop {
-            margin-right: 650;
-            margin-left: 0px;
-        }
-}
-
-.gallery-lib-list {
+      top: 32px;
+    }
+  }
+  
+  .navigation--lib {
+    @include tablet {
+      margin-right: 440px;
+      margin-left: 18px;
+    }
+    @include desktop {
+      margin-right: 650;
+      margin-left: 0px;
+    }
+  }
+  
+  .gallery-lib-list {
     margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        row-gap: 20px;
-        align-items: center;
-    
-        @media screen and (min-width: 768px) {
-            margin-top: 32px;
-            flex-direction: row;
-            align-items: unset;
-            row-gap: 32px;
-            column-gap: 32px;
-        }
-    
-        @media screen and (min-width: 1280px) {
-            margin-top: 32px;
-            row-gap: 32px;
-            column-gap: 16px;
-        }
-}
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    align-items: center;
+  
+    @media screen and (min-width: 768px) {
+      margin-top: 32px;
+      flex-direction: row;
+      align-items: unset;
+      row-gap: 32px;
+      column-gap: 32px;
+    }
+  
+    @media screen and (min-width: 1280px) {
+      margin-top: 32px;
+      row-gap: 32px;
+      column-gap: 16px;
+    }
+  }
+  
+  .btn-theme-lib {
+    top: 52px;
+    left: 14px;
+  
+    @include tablet {
+      top: 8px;
+      left: 246px;
+    }
+    @include desktop {
+      top: 20px;
+      left: 283px;
+    }
+  }
+  
+  .btn-theme-lib-dark {
+    top: 44px;
+    right: 10px;
+  }
+  
+  .current {
+    color: var(--accent-text-color);
+    background-color: var(--buttons-header-hover-bg-color);
+  }
+  
+  .header-logo-lib {
+    bottom: 74px;
+    left: 44px;
+    @include tablet {
+      left: 32px;
+      bottom: 16px;
+    }
+    @include desktop {
+      bottom: 32px;
+    }
+  }
+  
+  .is-hidden {
+    display: none;
+  }
+  
+  .fixed-logo {
+    top: 16px;
+    display: none;
+  
+    @include tablet {
+      display: none;
+    }
+  
+    @include desktop {
+      top: 16px;
+      margin-left: 505px;
+    }
+  }
+  
+  .text-logo-fixed {
+    font-weight: 500;
+    color: var(--logo-text-color);
+  
+    @include tablet {
+      display: none;
+    }
+    @include desktop {
+      font-size: 32px;
+    }
+  }
+  
+  .icon-film-fixed {
+    @include tablet {
+      width: 30px;
+      height: 30px;
+    }
+  
+    @include desktop {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  
+  .icon-film {
+    @include tablet {
+      width: 40px;
+      height: 40px;
+    }
+  
+    @include desktop {
+      width: 59px;
+      height: 59px;
+    }
+  }
+  
+  .library-buttons-fixed {
+    display: flex;
+    margin-left: 0;
+    align-items: center;
+    position: absolute;
+    left: 14px;
+    bottom: 15px;
+  
+    @include tablet {
+      bottom: 20px;
+      left: 472px;
+    }
+  
+    @include desktop {
+      //bottom: 252px;
+      left: 960px;
+    }
+  }
+  
+  .fixed-header {
+    height: 100px;
+    width: 100%;
+    transform: scale(1.01);
+    transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+    transition: transform 800ms ease-out;
+    background-image: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1)
+      ),
+      url(/src/images/header/header-tablet.jpg);
+    @include retina {
+      background-image: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.1)
+        ),
+        url(/src/images/header/header-tablet-2x.jpg);
+    }
+  
+    @include tablet {
+      height: 75px;
+    }
+  
+    @include desktop {
+      height: 75px;
+      background-image: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.1)
+        ),
+        url(/src/images/header/header-desktop.jpg);
+      @include retina {
+        background-image: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.1)
+          ),
+          url(/src/images/header/header-desktop-2x.jpg);
+      }
+    }
+  }
+  
+  .btn-theme-lib-fixed {
+    top: 47px;
+    left: 232px;
+  
+    @include tablet {
+      top: 10px;
+      left: 248px;
+    }
+    @include desktop {
+      top: 20px;
+      left: 285px;
+    }
+  }
+  
+  .search-lib-fixed {
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    top: 20px;
+    @include tablet {
+      top: 25px;
+    }
+    @include desktop {
+      top: 27px;
+    }
+  }
+  
+  .gallery-fixed {
+    margin-top: 140px;
+    @include tablet {
+      margin-top: 121px;
+    }
+  }
+  
+  .gallery-no-fixed {
+    margin-top: 0;
+  }
+  
+
 
 .is-active-lib{
     background-color: rgb(15, 12, 12);
     color: #fff;
 }
+

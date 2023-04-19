@@ -1,6 +1,11 @@
 body {
   background-color: var(--body-bg-color);
-  transition: background-color var(--animation); 
+  transition: background-color var(--animation);
+
+  // animation-duration: 2s;
+  // animation-name: slidein-light;
+  // animation-iteration-count: 1;
+  // animation-direction: normal;
 }
 
 body.dark {
@@ -19,11 +24,11 @@ body.dark {
   --buttons-modal-bg-color: #efecec;
   --modal-accent-color: #b92f2c;
 
-  // ---------------modal-team-------------
+  // ---------------modal-tem-------------
   --bg-modal-team: #efecec;
   --color-focus-team: #c47c7cf5;
   --position-team: #b92f2c;
-
+  
   --pagination-number-bg-color: #b92f2c;
 
   --spinner-border-top-color: #b92f2c;
@@ -36,17 +41,21 @@ body.dark {
 }
 
 // .header-container {
-//   transform: translateY(-150%);
-//   animation: light 1s forwards;
+//   animation-duration: 2s;
+//   animation-name: slidein-light;
+//   animation-iteration-count: 1;
+//   animation-direction: normal;
 // }
 
-// @keyframes light {
-//   0% {
-//     transform: translateY(-150%);
+// @keyframes slidein-light {
+//   from {
+//     margin-left: 100%;
+//     width: 300%;
 //   }
 
-//   100% {
-//     transform: translateY(0);
+//   to {
+//     margin-left: 0%;
+//     width: 100%;
 //   }
 // }
 
@@ -55,8 +64,10 @@ body.dark {
   height: 460px;
   width: 280px;
 
-  // transform: translateY(-150%);
-  // animation: dark 1s forwards;
+  // animation-duration: 2s;
+  // animation-name: slidein-dark;
+  // animation-iteration-count: 1;
+  // animation-direction: normal;
 
   background-repeat: no-repeat;
   background-position: center;
@@ -120,13 +131,15 @@ body.dark {
   }
 }
 
-// @keyframes dark {
-//   0% {
-//     transform: translateY(-150%);
+// @keyframes slidein-dark {
+//   from {
+//     margin-left: 100%;
+//     width: 300%;
 //   }
 
-//   100% {
-//     transform: translateY(0);
+//   to {
+//     margin-left: 0%;
+//     width: 100%;
 //   }
 // }
 
@@ -149,6 +162,10 @@ body.dark {
         rgba(0, 0, 0, 0.05)
       ),
       url(/src/images/header-dark/header-tablet-dark-2x.jpg);
+  }
+
+  @include tablet {
+    height: 75px;
   }
 
   @include desktop {
