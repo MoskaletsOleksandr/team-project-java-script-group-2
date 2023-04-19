@@ -1,311 +1,394 @@
 .library-buttons-list {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    // @include desktop {
-    //   margin-left: 480px;
-    // }
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 8px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+ 
+}
+
+.library-buttons-link {
+  border: none;
+  text-align: center;
+  background-color: var(--buttons-header-bg-color);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+  padding: 10px 26px;
+  border-radius: 100px;
+  color: var(--buttons-header-text-color);
+  cursor: pointer;
+  -webkit-transition: color var(--animation);
+  -o-transition: color var(--animation);
+  transition: color var(--animation);
+  -webkit-transition: background-color var(--animation);
+  -o-transition: background-color var(--animation);
+  transition: background-color var(--animation);
+
+  @include tablet {
+    padding: 12px 24px;
   }
-  
-  .library-buttons-link {
-    border: none;
-    text-align: center;
-    background-color: var(--buttons-header-bg-color);
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1.17;
-    text-transform: uppercase;
-    padding: 10px 26px;
-    border-radius: 100px;
-    color: var(--buttons-header-text-color);
-    cursor: pointer;
-    transition: color var(--animation);
-    transition: background-color var(--animation);
-  
-    @include tablet {
-      padding: 12px 24px;
-    }
-  
-    @include desktop {
-      padding: 14px 32px;
-    }
+
+  @include desktop {
+    padding: 14px 32px;
   }
-  
-  .library-buttons-link:hover {
-    color: var(--buttons-header-text-color);
-    background-color: var(--buttons-library-hover-bg-color);
+}
+
+.library-buttons-link:hover {
+  color: var(--buttons-header-text-color);
+  background-color: var(--buttons-library-hover-bg-color);
+}
+
+.library-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  left: 44px;
+  bottom: 24px;
+
+  @include tablet {
+    bottom: 170px;
+    left: 472px;
   }
-  
-  .library-buttons {
-    display: flex;
-    margin-left: 0;
-    align-items: center;
-    position: absolute;
-    left: 44px;
-    bottom: 24px;
-  
-    @include tablet {
-      bottom: 170px;
-      left: 472px;
-    }
-  
-    @include desktop {
-      bottom: 254px;
-      left: 956px;
-    }
+
+  @include desktop {
+    bottom: 254px;
+    left: 956px;
   }
-  
-  // .library-container{
-  //     @include tablet {
-  //         padding-top: 270px;}
-  
-  //     @include desktop{
-  //     padding-top: 350px;}
-  // }
-  
-  .search--lib {
-    display: flex;
-    align-items: baseline;
-    flex-direction: column;
+}
+
+
+.search--lib {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  top: 20px;
+  @include tablet {
     top: 20px;
-    @include tablet {
-      top: 20px;
-    }
-    @include desktop {
-      top: 32px;
-    }
   }
-  
-  .navigation--lib {
-    @include tablet {
-      margin-right: 440px;
-      margin-left: 18px;
-    }
-    @include desktop {
-      margin-right: 650;
-      margin-left: 0px;
-    }
+  @include desktop {
+    top: 32px;
   }
-  
-  .gallery-lib-list {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    row-gap: 20px;
-    align-items: center;
-  
-    @media screen and (min-width: 768px) {
-      margin-top: 32px;
-      flex-direction: row;
-      align-items: unset;
-      row-gap: 32px;
-      column-gap: 32px;
-    }
-  
-    @media screen and (min-width: 1280px) {
-      margin-top: 32px;
-      row-gap: 32px;
-      column-gap: 16px;
-    }
+}
+
+.navigation--lib {
+  @include tablet {
+    margin-right: 440px;
+    margin-left: 18px;
   }
-  
-  .btn-theme-lib {
-    top: 52px;
-    left: 14px;
-  
-    @include tablet {
-      top: 8px;
-      left: 246px;
-    }
-    @include desktop {
-      top: 20px;
-      left: 283px;
-    }
+  @include desktop {
+    margin-right: 650;
+    margin-left: 0px;
   }
-  
-  .btn-theme-lib-dark {
-    top: 44px;
-    right: 10px;
+}
+
+.gallery-lib-list {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  row-gap: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 32px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    row-gap: 32px;
+    -webkit-column-gap: 32px;
+       -moz-column-gap: 32px;
+            column-gap: 32px;
   }
-  
-  .current {
-    color: var(--accent-text-color);
-    background-color: var(--buttons-header-hover-bg-color);
+
+  @media screen and (min-width: 1280px) {
+    margin-top: 32px;
+    row-gap: 32px;
+    -webkit-column-gap: 16px;
+       -moz-column-gap: 16px;
+            column-gap: 16px;
   }
-  
-  .header-logo-lib {
-    bottom: 74px;
-    left: 44px;
-    @include tablet {
-      left: 32px;
-      bottom: 16px;
-    }
-    @include desktop {
-      bottom: 32px;
-    }
+}
+
+.btn-theme-lib {
+  top: 52px;
+  left: 14px;
+
+  @include tablet {
+    top: 8px;
+    left: 246px;
   }
-  
-  .is-hidden {
+  @include desktop {
+    top: 20px;
+    left: 283px;
+  }
+}
+
+.btn-theme-lib-dark {
+  top: 44px;
+  right: 10px;
+}
+
+.current {
+  color: var(--accent-text-color);
+  background-color: var(--buttons-header-hover-bg-color);
+}
+
+.header-logo-lib {
+  bottom: 74px;
+  left: 44px;
+  @include tablet {
+    left: 32px;
+    bottom: 16px;
+  }
+  @include desktop {
+    bottom: 32px;
+  }
+}
+
+.is-hidden {
+  display: none;
+}
+
+.fixed-logo {
+  top: 16px;
+  display: none;
+
+  @include tablet {
     display: none;
   }
-  
-  .fixed-logo {
+
+  @include desktop {
     top: 16px;
+    margin-left: 505px;
+  }
+}
+
+.text-logo-fixed {
+  font-weight: 500;
+  color: var(--logo-text-color);
+
+  @include tablet {
     display: none;
-  
-    @include tablet {
-      display: none;
-    }
-  
-    @include desktop {
-      top: 16px;
-      margin-left: 505px;
-    }
   }
-  
-  .text-logo-fixed {
-    font-weight: 500;
-    color: var(--logo-text-color);
-  
-    @include tablet {
-      display: none;
-    }
-    @include desktop {
-      font-size: 32px;
-    }
+  @include desktop {
+    font-size: 32px;
   }
-  
-  .icon-film-fixed {
-    @include tablet {
-      width: 30px;
-      height: 30px;
-    }
-  
-    @include desktop {
-      width: 40px;
-      height: 40px;
-    }
+}
+
+.icon-film-fixed {
+  @include tablet {
+    width: 30px;
+    height: 30px;
   }
-  
-  .icon-film {
-    @include tablet {
-      width: 40px;
-      height: 40px;
-    }
-  
-    @include desktop {
-      width: 59px;
-      height: 59px;
-    }
+
+  @include desktop {
+    width: 40px;
+    height: 40px;
   }
-  
-  .library-buttons-fixed {
-    display: flex;
-    margin-left: 0;
-    align-items: center;
-    position: absolute;
-    left: 14px;
-    bottom: 15px;
-  
-    @include tablet {
-      bottom: 20px;
-      left: 472px;
-    }
-  
-    @include desktop {
-      //bottom: 252px;
-      left: 960px;
-    }
+}
+
+.icon-film {
+  @include tablet {
+    width: 40px;
+    height: 40px;
   }
-  
-  .fixed-header {
-    height: 100px;
-    width: 100%;
-    transform: scale(1.01);
-    transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(0);
-    transition: transform 800ms ease-out;
+
+  @include desktop {
+    width: 59px;
+    height: 59px;
+  }
+}
+
+.library-buttons-fixed {
+  top: 32px;
+}
+
+.fixed-header {
+  height: 100px;
+  width: 100%;
+  -webkit-transform: scale(1.01);
+      -ms-transform: scale(1.01);
+          transform: scale(1.01);
+  -webkit-transition: -webkit-transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: -webkit-transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  -o-transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: -webkit-transform 800ms ease-out;
+  transition: -webkit-transform 800ms ease-out;
+  -o-transition: transform 800ms ease-out;
+  transition: transform 800ms ease-out;
+  transition: transform 800ms ease-out, -webkit-transform 800ms ease-out;
+  background-image: -webkit-gradient(
+      linear,
+      left top, right top,
+      from(rgba(0, 0, 0, 0.1)),
+      to(rgba(0, 0, 0, 0.1))
+    ),
+    url(/src/images/header/header-tablet.jpg);
+  background-image: -o-linear-gradient(
+      left,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url(/src/images/header/header-tablet.jpg);
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url(/src/images/header/header-tablet.jpg);
+  @include retina {
+    background-image: -webkit-gradient(
+        linear,
+        left top, right top,
+        from(rgba(0, 0, 0, 0.1)),
+        to(rgba(0, 0, 0, 0.1))
+      ),
+      url(/src/images/header/header-tablet-2x.jpg);
+    background-image: -o-linear-gradient(
+        left,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1)
+      ),
+      url(/src/images/header/header-tablet-2x.jpg);
     background-image: linear-gradient(
         90deg,
         rgba(0, 0, 0, 0.1),
         rgba(0, 0, 0, 0.1)
       ),
-      url(/src/images/header/header-tablet.jpg);
+      url(/src/images/header/header-tablet-2x.jpg);
+  }
+
+  @include tablet {
+    height: 75px;
+  }
+
+  @include desktop {
+    height: 75px;
+    background-image: -webkit-gradient(
+        linear,
+        left top, right top,
+        from(rgba(0, 0, 0, 0.1)),
+        to(rgba(0, 0, 0, 0.1))
+      ),
+      url(/src/images/header/header-desktop.jpg);
+    background-image: -o-linear-gradient(
+        left,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1)
+      ),
+      url(/src/images/header/header-desktop.jpg);
+    background-image: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1)
+      ),
+      url(/src/images/header/header-desktop.jpg);
     @include retina {
+      background-image: -webkit-gradient(
+          linear,
+          left top, right top,
+          from(rgba(0, 0, 0, 0.1)),
+          to(rgba(0, 0, 0, 0.1))
+        ),
+        url(/src/images/header/header-desktop-2x.jpg);
+      background-image: -o-linear-gradient(
+          left,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.1)
+        ),
+        url(/src/images/header/header-desktop-2x.jpg);
       background-image: linear-gradient(
           90deg,
           rgba(0, 0, 0, 0.1),
           rgba(0, 0, 0, 0.1)
         ),
-        url(/src/images/header/header-tablet-2x.jpg);
-    }
-  
-    @include tablet {
-      height: 75px;
-    }
-  
-    @include desktop {
-      height: 75px;
-      background-image: linear-gradient(
-          90deg,
-          rgba(0, 0, 0, 0.1),
-          rgba(0, 0, 0, 0.1)
-        ),
-        url(/src/images/header/header-desktop.jpg);
-      @include retina {
-        background-image: linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.1),
-            rgba(0, 0, 0, 0.1)
-          ),
-          url(/src/images/header/header-desktop-2x.jpg);
-      }
+        url(/src/images/header/header-desktop-2x.jpg);
     }
   }
-  
-  .btn-theme-lib-fixed {
-    top: 47px;
-    left: 232px;
-  
-    @include tablet {
-      top: 10px;
-      left: 248px;
-    }
-    @include desktop {
-      top: 20px;
-      left: 285px;
-    }
+}
+
+.btn-theme-lib-fixed {
+  top: 4px;
+  left: 232px;
+
+  @include tablet {
+    top: 14px;
+    left: 400px;
   }
-  
-  .search-lib-fixed {
-    display: flex;
-    align-items: baseline;
-    flex-direction: column;
-    top: 20px;
-    @include tablet {
-      top: 25px;
-    }
-    @include desktop {
-      top: 27px;
-    }
+  @include desktop {
+   top: 14px;
+    left: 480px;
   }
-  
-  .gallery-fixed {
-    margin-top: 140px;
-    @include tablet {
-      margin-top: 121px;
-    }
+}
+
+.search-lib-fixed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  top: 20px;
+  @include tablet {
+    top: 25px;
   }
-  
-  .gallery-no-fixed {
-    margin-top: 0;
+  @include desktop {
+    top: 27px;
   }
-  
+}
+
+
 
 
 .is-active-lib{
-    background-color: rgb(15, 12, 12);
-    color: #fff;
+  background-color: rgb(15, 12, 12);
+  color: #fff;
 }
 
+.gallery-fixed {
+margin-top: 140px;
+@include tablet {
+  margin-top: 121px;
+}
+}
+
+.gallery-no-fixed {
+margin-top: 0;
+}

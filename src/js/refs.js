@@ -26,6 +26,12 @@ const refs = {
   logoHeader: document.querySelector('.header-logo'),
   logoTextHeader: document.querySelector('.header-text-logo'),
   iconFilmHeader: document.querySelector('.icon-film'),
+  //headerEl: document.querySelector('.header'),
+  libraryBtn: document.querySelector('.library-buttons'),
+  watchedButton: document.querySelector('.watched-btn'),
+  queueButton: document.querySelector('.queue-btn'),
+  searchLib: document.querySelector('.search--lib'),
+  galleryFixed: document.querySelector('.gallery-no-fixed'),
 
 };
 export default refs;
