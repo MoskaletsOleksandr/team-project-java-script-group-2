@@ -861,7 +861,6 @@ const nothingContainer = document.querySelector('.library-container');
 
 watchedBtn.addEventListener('click', handleWatchedBtn);
 queueBtn.addEventListener('click', handleQueueBtn);
-console.log(watchedBtn.classList[2]);
 
 let watchedFilms = [];
 let queueFilms = [];
@@ -981,6 +980,6 @@ export function handleMovieCard(event) {
       return data;
     })
     .catch(error => console.log(error));
-  initialLocalStorage = JSON.parse(localStorage.getItem('watched'));
+  initialLocalStorageWatched = JSON.parse(localStorage.getItem('watched'));
   initialLocalStorageQueue = JSON.parse(localStorage.getItem('queue'));
 }
