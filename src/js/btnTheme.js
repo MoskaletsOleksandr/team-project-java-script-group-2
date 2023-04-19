@@ -11,7 +11,7 @@ function setDarkTheme() {
   refs.btnIconMoonEl.classList.remove('btn-icon-hidden');
   refs.btnIconSunEl.classList.add('btn-icon-hidden');
   refs.headerContainerEl.classList.remove('header-container');
-  refs.headerContainerEl.classList.add('header-container-dark');
+  refs.headerContainerEl.classList.add('header-container-dark');  
   localStorage.theme = 'dark';
 }
 
@@ -20,7 +20,7 @@ function setLightTheme() {
 
   refs.btnIconSunEl.classList.remove('btn-icon-hidden');
   refs.btnIconMoonEl.classList.add('btn-icon-hidden');
-  refs.headerContainerEl.classList.remove('header-container-dark');
+  refs.headerContainerEl.classList.remove('header-container-dark');  
   refs.headerContainerEl.classList.add('header-container');
   localStorage.theme = 'light';
 }
