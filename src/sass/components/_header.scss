@@ -10,7 +10,7 @@ a {
   //padding-bottom: 32px;
 }
 
-.header-container {
+.header-filmoteka {
   position: relative;
   height: 460px;
   width: 280px;
@@ -428,10 +428,14 @@ a {
   }
 }
 
-// .gallery-fixed {
-//   padding-top: 20px;
-// }
 
-// .header {
-//   background-image: -webkit-image-set(./);
-// }
+.gallery-fixed {
+  margin-top: 140px;
+  @include tablet {
+    margin-top: 121px;
+  }
+}
+
+.gallery-no-fixed {
+  margin-top: 0;
+}
