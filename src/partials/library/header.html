@@ -1,6 +1,6 @@
-<section class="section-header">
-  <header class="header">
-    <div class="container header-container">
+<header class="header">
+  <div class="container">
+    <div class="header-filmoteka">
       <div class="search search--lib">
         <!-- <form class="form-search">
           <input type="text" class="input-search" placeholder="Movie search" />
@@ -9,33 +9,34 @@
         <nav class="navigation navigation--lib">
           <ul class="menu-list">
             <li class="menu-item">
-              <a href="./index.html" class="menu-link">Home</a>
+              <a href="/src/index.html" class="menu-link">Home</a>
             </li>
             <li class="menu-item">
-              <a href="./library.html" class="menu-link library-btn" >My library</a>
+              <a href="/src/library.html" class="menu-link library-btn current"
+                >My library</a
+              >
             </li>
           </ul>
         </nav>
 
-        <div class="library-buttons">
-          <ul class="library-buttons-list">
-            <li class="library-buttons-item">
-              <button class="library-buttons-link watched-btn">Watched</button>
-            </li>
-            <li class="menu-item">
-              <button class="library-buttons-link queue-btn">Queue</button>
-            </li>
-          </ul>
-        </div>
-        
       </div>
-      <div class="header-logo">
+      <div class="library-buttons">
+        <ul class="library-buttons-list">
+          <li class="library-buttons-item">
+            <button class="library-buttons-link watched-btn">Watched</button>
+          </li>
+          <li class="menu-item">
+            <button class="library-buttons-link queue-btn">Queue</button>
+          </li>
+        </ul>
+      </div>
+      <div class="header-logo header-logo-lib">
         <ul class="logo-list">
           <li class="logo-item">
             <a href="" class="header-icon-logo">
-              <!-- <svg class="icon-film" width="59" height="59">
-                <use href="/src/images/symbol-defs.svg#icon-logo"></use>
-              </svg> -->
+              <svg class="icon-film" width="32" height="32">
+                <use href="/src/images/svg-sprite.svg#icon-logo"></use>
+              </svg>
             </a>
           </li>
           <li class="logo">
@@ -43,6 +44,7 @@
           </li>
         </ul>
       </div>
+
       <button class="btn-theme" type="button" aria-label="Switch theme">
         <svg class="btn-theme-icon" width="20" height="20">
           <use class="btn-icon-moon btn-icon-hidden" href="/src/images/svg-sprite.svg#icon-moon"></use>
@@ -50,5 +52,5 @@
         </svg>
       </button>
     </div>
-  </header>
-</section>
+  </div>
+</header>

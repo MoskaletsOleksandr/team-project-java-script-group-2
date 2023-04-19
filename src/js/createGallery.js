@@ -6,9 +6,7 @@ import { spinnerPlay, spinnerStop } from './spinner';
 
 export function renderMarkup(array) {
   const markup = createTrendMovesMarkup(array);
-  if (refs.galleryListEl === null) {
-    return;
-  } else {
+  if (refs.galleryListEl !== null) {
     refs.galleryListEl.innerHTML = '';
     refs.galleryListEl.insertAdjacentHTML('beforeend', markup);
   }

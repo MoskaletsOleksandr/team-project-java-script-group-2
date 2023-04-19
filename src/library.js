@@ -47,10 +47,6 @@ export let dataForLibModalMarkup = null; //Об'єкт із повною інф�
 //
 //
 //
-//
-//
-//
-//
 //Аліна присяжнюк дещо сплутала
 // const headerEl = document.querySelector('.header');
 // const headerContainer = document.querySelector('.header-container');
@@ -362,29 +358,29 @@ export let dataForLibModalMarkup = null; //Об'єкт із повною інф�
 //
 //
 //
+function openTeamModal() {
+  refs.teamModal.classList.remove('is-hidden-team');
+}
 //
+function closeTeamModal() {
+  refs.teamModal.classList.add('is-hidden-team');
+}
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+refs.teamModalOpenBtn.addEventListener('click', openTeamModal);
+
+refs.teamModalCloseBtn.addEventListener('click', closeTeamModal);
+
+refs.teamModal.addEventListener('click', function (event) {
+  if (event.target === refs.teamModal) {
+    closeTeamModal();
+  }
+});
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    closeTeamModal();
+  }
+});
 //
 //
 //
@@ -871,6 +867,8 @@ let queueFilms = [];
 
 function handleWatchedBtn() {
   nothingContainer.style.display = 'none';
+  watchedBtn.classList.add('is-active-lib');
+  queueBtn.classList.remove('is-active-lib');
 
   watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
 
@@ -886,6 +884,9 @@ function handleWatchedBtn() {
 }
 
 function handleQueueBtn() {
+  watchedBtn.classList.remove('is-active-lib');
+  queueBtn.classList.add('is-active-lib');
+
   queueFilms = JSON.parse(localStorage.getItem('queue')) || [];
 
   nothingContainer.style.display = 'none';
@@ -897,7 +898,7 @@ function handleQueueBtn() {
   }
   const markup = createLibraryMarkup(queueFilms);
   galleryContainerEl.innerHTML = markup;
-  renderTrailerMarkup(watchedFilms);
+  renderTrailerMarkup(queueFilms);
 }
 
 handleWatchedBtn();
@@ -905,203 +906,25 @@ handleWatchedBtn();
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//Олена
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//Олександр
+let initialLocalStorageWatched;
+let initialLocalStorageQueue;
+//
+function reNewMarkupByCloseBtn() {
+  const afterLocalStorageWatched = JSON.parse(localStorage.getItem('watched'));
+  const afterLocalStorageQueue = JSON.parse(localStorage.getItem('queue'));
+  if (
+    watchedBtn.classList[2] &&
+    initialLocalStorageWatched !== afterLocalStorageWatched
+  ) {
+    handleWatchedBtn();
+  }
+  if (
+    queueBtn.classList[2] &&
+    initialLocalStorageQueue !== afterLocalStorageQueue
+  ) {
+    handleQueueBtn();
+  }
+}
 //
 
 refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
@@ -1121,6 +944,8 @@ function onCloseMovieModal(e) {
     refs.bodyEl.style.overflow = 'scroll';
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
+
+    reNewMarkupByCloseBtn();
   }
 }
 
@@ -1155,4 +980,6 @@ export function handleMovieCard(event) {
       return data;
     })
     .catch(error => console.log(error));
+  initialLocalStorageWatched = JSON.parse(localStorage.getItem('watched'));
+  initialLocalStorageQueue = JSON.parse(localStorage.getItem('queue'));
 }

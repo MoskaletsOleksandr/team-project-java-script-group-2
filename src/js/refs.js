@@ -22,9 +22,10 @@ const refs = {
   btnIconMoonEl: document.querySelector('.btn-icon-moon'),
   btnIconSunEl: document.querySelector('.btn-icon-sun'),
 
-  headerContainerEl: document.querySelector('.header-container'),
+  headerContainerEl: document.querySelector('.header-filmoteka'),
   logoHeader: document.querySelector('.header-logo'),
   logoTextHeader: document.querySelector('.header-text-logo'),
   iconFilmHeader: document.querySelector('.icon-film'),
+
 };
 export default refs;
