@@ -867,6 +867,8 @@ let queueFilms = [];
 
 function handleWatchedBtn() {
   nothingContainer.style.display = 'none';
+  watchedBtn.classList.add('is-active-lib');
+  queueBtn.classList.remove('is-active-lib');
 
   watchedFilms = JSON.parse(localStorage.getItem('watched')) || [];
 
@@ -882,6 +884,9 @@ function handleWatchedBtn() {
 }
 
 function handleQueueBtn() {
+  watchedBtn.classList.remove('is-active-lib');
+  queueBtn.classList.add('is-active-lib');
+
   queueFilms = JSON.parse(localStorage.getItem('queue')) || [];
 
   nothingContainer.style.display = 'none';
@@ -901,203 +906,25 @@ handleWatchedBtn();
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//Олена
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//Олександр
+let initialLocalStorageWatched;
+let initialLocalStorageQueue;
+//
+function reNewMarkupByCloseBtn() {
+  const afterLocalStorageWatched = JSON.parse(localStorage.getItem('watched'));
+  const afterLocalStorageQueue = JSON.parse(localStorage.getItem('queue'));
+  if (
+    watchedBtn.classList[2] &&
+    initialLocalStorageWatched !== afterLocalStorageWatched
+  ) {
+    handleWatchedBtn();
+  }
+  if (
+    queueBtn.classList[2] &&
+    initialLocalStorageQueue !== afterLocalStorageQueue
+  ) {
+    handleQueueBtn();
+  }
+}
 //
 
 refs.backdropMovieModal.addEventListener('click', onCloseMovieModal);
@@ -1117,6 +944,8 @@ function onCloseMovieModal(e) {
     refs.bodyEl.style.overflow = 'scroll';
     refs.backdropMovieModal.removeEventListener('click', onCloseMovieModal);
     window.removeEventListener('keydown', onCloseMovieModal);
+
+    reNewMarkupByCloseBtn();
   }
 }
 
@@ -1151,4 +980,6 @@ export function handleMovieCard(event) {
       return data;
     })
     .catch(error => console.log(error));
+  initialLocalStorageWatched = JSON.parse(localStorage.getItem('watched'));
+  initialLocalStorageQueue = JSON.parse(localStorage.getItem('queue'));
 }
