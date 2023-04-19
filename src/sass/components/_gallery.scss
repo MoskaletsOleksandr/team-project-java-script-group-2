@@ -109,7 +109,7 @@
 
   &:hover,
   &:focus {
-    background-color: rgba(250, 209, 5, 0.5);
+    background-color: var(--trailer-link-hover-bg-color);
     transition: 500ms;
     }
 
@@ -117,7 +117,7 @@
       left: 150px;
       &:hover,
       &:focus {
-        background-color: rgba(250, 209, 5, 0.5);
+        background-color: var(--trailer-link-hover-bg-color);
         transition: 500ms;
         }
     }
@@ -126,7 +126,7 @@
       left: 200px;
       &:hover,
       &:focus {
-        background-color: rgba(250, 209, 5, 0.5);
+        background-color: var(--trailer-link-hover-bg-color);
         transition: 500ms;
         }
     }

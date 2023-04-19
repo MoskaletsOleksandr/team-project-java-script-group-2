@@ -15,7 +15,7 @@ body.dark {
   --btn-up-fill-color: #ffffff;
   --btn-up-bg-color: #b92f2c;
   --btn-up-hover-fill-color: #b92f2c;
-  --btn-up-hover-bg-color: #ffffff;
+  --btn-up-hover-bg-color: rgba(196, 124, 124, 0.5);
   --btn-up-border-color: #b92f2c;
 
   --buttons-library-hover-bg-color: #b92f2c;
@@ -33,6 +33,11 @@ body.dark {
 
   --spinner-border-top-color: #b92f2c;
   --spinner-2-border-top-color: #b92f2c;
+
+  --trailer-link-hover-bg-color: rgba(196, 124, 124, 0.8);
+  //footer
+  --modal-votes-bg-color: #c47c7cf5;
+  --footer-text-color: #000000;
 }
 
 .header {
@@ -194,4 +199,8 @@ body.dark {
 .film-genres,
 .film-year {
   transition: color var(--animation);
+}
+
+.footer-container {
+  transition: background-color var(--animation);
 }
