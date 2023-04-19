@@ -18,15 +18,26 @@
             </li>
           </ul>
         </nav>
-
       </div>
       <div class="library-buttons">
         <ul class="library-buttons-list">
           <li class="library-buttons-item">
-            <button class="library-buttons-link watched-btn">Watched</button>
+            <button
+              type="button"
+              class="library-buttons-link watched-btn"
+              aria-label="Watched movies"
+            >
+              Watched
+            </button>
           </li>
           <li class="menu-item">
-            <button class="library-buttons-link queue-btn">Queue</button>
+            <button
+              type="button"
+              class="library-buttons-link queue-btn"
+              aria-label="Movies from queue"
+            >
+              Queue
+            </button>
           </li>
         </ul>
       </div>
@@ -47,8 +58,14 @@
 
       <button class="btn-theme" type="button" aria-label="Switch theme">
         <svg class="btn-theme-icon" width="20" height="20">
-          <use class="btn-icon-moon btn-icon-hidden" href="/src/images/svg-sprite.svg#icon-moon"></use>
-          <use class="btn-icon-sun" href="/src/images/svg-sprite.svg#icon-sun"></use>
+          <use
+            class="btn-icon-moon btn-icon-hidden"
+            href="/src/images/svg-sprite.svg#icon-moon"
+          ></use>
+          <use
+            class="btn-icon-sun"
+            href="/src/images/svg-sprite.svg#icon-sun"
+          ></use>
         </svg>
       </button>
     </div>
