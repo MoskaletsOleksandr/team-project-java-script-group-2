@@ -52,12 +52,11 @@ body::-webkit-scrollbar {
   line-height: calc(14 / 12);
   color: var(--primary-text-color);
   background-color: var(--buttons-modal-bg-color);
-  overflow: auto;
+  overflow-y: auto;
   // Візуально приховую скрол на модалці
   scrollbar-width: none; // Firefox //
   -ms-overflow-style: none; // IE и Edge //
   @include tablet {
-    max-width: 100%;
     width: 704px;
     top: 50%;
     left: 50%;
@@ -65,7 +64,6 @@ body::-webkit-scrollbar {
     padding: 40px 72px 64px 36px;
   }
   @include desktop {
-    max-width: 100%;
     width: 806px;
     padding: 40px 12px;
   }
@@ -109,40 +107,24 @@ body::-webkit-scrollbar {
 }
 .js-film-info__thumb {
   margin-bottom: 20px;
-  width: 240px;
-  height: 357px;
+  max-width: 240px;
+  max-height: 357px;
   @include tablet {
     margin-bottom: 0;
-    width: 264px;
-    height: 374px;
+    max-width: 264px;
+    max-height: 374px;
   }
   @include desktop {
-    width: 375px;
-    height: 478px;
+    max-width: 375px;
+    max-height: 478px;
   }
 }
 
 .js-film-info__poster {
-  object-fit: contain;
   width: 100%;
   height: 100%;
-  max-width: 240px;
-  max-height: 357px;
+  object-fit: cover;
   border-radius: 5px;
-  @media screen and (min-width: 768px) {
-    max-width: 264px;
-    max-height: 375px;
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
-  }
-  @media screen and (min-width: 1280px) {
-    max-width: 372px;
-    max-height: 478px;
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
-  }
 }
 
 .js-film-info__content {
